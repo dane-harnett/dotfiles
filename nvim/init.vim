@@ -102,8 +102,23 @@ let g:NERDTreeWinPos="right"
 " General editor settings
 set colorcolumn=80
 set expandtab
+set exrc
+set guicursor=
+set hidden
+set noerrorbells
 set nowrap
 set number relativenumber
+set tabstop=2 softtabstop=2
+set shiftwidth=2
+set smartindent
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set scrolloff=8
+set signcolumn=yes
+
 
 " Navigating splits
 nnoremap <C-J> <C-W><C-J>
