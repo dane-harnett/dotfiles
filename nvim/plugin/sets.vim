@@ -1,6 +1,5 @@
 set colorcolumn=80
 set expandtab
-set guicursor=
 set hidden
 set incsearch
 set nobackup
