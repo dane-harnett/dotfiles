@@ -1,6 +1,8 @@
+set exrc " Wont open project .nvimrc without this here
+
 call plug#begin("~/.vim/plugged")
   " Plugin Section
-  
+
   " Theme
   " Plug 'gruvbox-community/gruvbox'
   Plug 'ayu-theme/ayu-vim'
@@ -9,7 +11,7 @@ call plug#begin("~/.vim/plugged")
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
-  " lsp and lua 
+  " lsp and lua
 "  Plug 'neovim/nvim-lspconfig'
 "  Plug 'nvim-lua/completion-nvim'
 "  Plug 'nvim-lua/lsp-status.nvim'
@@ -17,7 +19,7 @@ call plug#begin("~/.vim/plugged")
 
   Plug 'RishabhRD/popfix'
   Plug 'RishabhRD/nvim-lsputils'
-  
+
   " TypeScript Highlighting
   Plug 'leafgarland/typescript-vim'
   Plug 'pangloss/vim-javascript'
@@ -33,19 +35,13 @@ call plug#begin("~/.vim/plugged")
   Plug 'preservim/nerdtree'
 
   Plug 'editorconfig/editorconfig-vim'
+
+  " telescope requirements...
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
-
-"Config Section
-
-" Enable theming support
-set termguicolors
-
-" Theme
-syntax enable
-let ayucolor="dark"
-colorscheme ayu
-" colorscheme gruvbox
 
 "lua require 'daneharnett'
 
@@ -54,7 +50,7 @@ colorscheme ayu
 let $FZF_DEFAULT_COMMAND = 'rg --files'
 " let g:ctrlp_custom_ignore = '(.*)\node_modules\|DS_Store\|git'
 
-nnoremap <C-p> :FZF<CR>
+" nnoremap <C-p> :FZF<CR>
 
 " LSP
 "set omnifunc=v:lua.vim.lsp.omnifunc
@@ -92,39 +88,6 @@ let mapleader = " "
 "nmap <a-cr>  <Plug>(coc-codeaction)
 "Apply AutoFix to problem on the current line.
 "nmap <leader>qf  <Plug>(coc-fix-current)
-
-" nerdtree
-nnoremap <leader>ne :NERDTreeToggle<CR>
-let g:NERDTreeIgnore = ['^.git$', '^node_modules$']
-let g:NERDTreeShowHidden=1
-let g:NERDTreeWinPos="right"
-
-" General editor settings
-set colorcolumn=80
-set expandtab
-set exrc
-set guicursor=
-set hidden
-set noerrorbells
-set nowrap
-set number relativenumber
-set tabstop=2 softtabstop=2
-set shiftwidth=2
-set smartindent
-set noswapfile
-set nobackup
-set undodir=~/.vim/undodir
-set undofile
-set incsearch
-set scrolloff=8
-set signcolumn=yes
-
-
-" Navigating splits
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
 
 " Format on save
 " autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx :Prettier
