@@ -51,8 +51,8 @@ colorscheme ayu
 
 " requires silversearcher-ag
 " used to ignore gitignore files
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let $FZF_DEFAULT_COMMAND = 'rg --files'
+" let g:ctrlp_custom_ignore = '(.*)\node_modules\|DS_Store\|git'
 
 nnoremap <C-p> :FZF<CR>
 
@@ -97,7 +97,8 @@ let mapleader = " "
 nnoremap <leader>ne :NERDTreeToggle<CR>
 let g:NERDTreeIgnore = ['^.git$', '^node_modules$']
 let g:NERDTreeShowHidden=1
- 
+let g:NERDTreeWinPos="right"
+
 " General editor settings
 set colorcolumn=80
 set expandtab
