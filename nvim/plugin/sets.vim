@@ -1,5 +1,6 @@
 set colorcolumn=80
 set expandtab
+set guicursor=n-v-c-sm:block,i-ci-ve:ver25-blinkwait5-blinkon5-blinkoff5,r-cr-o:hor20-blinkwait0-blinkon50-blinkoff50
 set hidden
 set incsearch
 set nobackup
