@@ -165,3 +165,5 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+# ensure terminal colors work inside tmux
+if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
