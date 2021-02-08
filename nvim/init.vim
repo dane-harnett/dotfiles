@@ -40,8 +40,10 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
-call plug#end()
 
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+call plug#end()
 
 "lua require 'daneharnett'
 
