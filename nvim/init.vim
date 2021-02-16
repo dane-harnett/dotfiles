@@ -5,7 +5,9 @@ call plug#begin("~/.vim/plugged")
 
   " Theme
   " Plug 'gruvbox-community/gruvbox'
-  Plug 'ayu-theme/ayu-vim'
+  " Plug 'ayu-theme/ayu-vim'
+  " Plug 'tomasr/molokai'
+  Plug 'kyoz/purify', { 'rtp': 'vim' }
 
   " Language Client
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
