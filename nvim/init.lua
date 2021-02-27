@@ -165,7 +165,6 @@ local lsp_status = require'lsp-status'
 lsp_status.register_progress()
 
 -- Diagnostics
-vim.cmd[[au! CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -180,6 +179,7 @@ local function custom_on_attach(client)
   print('Attaching to ' .. client.name)
   completion.on_attach(client)
   lsp_status.on_attach(client)
+  vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
 end
 local default_config = {
   on_attach = custom_on_attach,
