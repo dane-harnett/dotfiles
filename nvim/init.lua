@@ -165,7 +165,7 @@ local lsp_status = require'lsp-status'
 lsp_status.register_progress()
 
 -- Diagnostics
-vim.cmd [[au! CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]]
+vim.cmd[[au! CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
