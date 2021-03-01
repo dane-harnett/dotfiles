@@ -183,6 +183,8 @@ local function custom_on_attach(client)
   print('Attaching to ' .. client.name)
   completion.on_attach(client)
   lsp_status.on_attach(client)
+  client.resolved_capabilities.document_formatting = true
+  client.resolved_capabilities.goto_definition = false
   vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
 end
 local default_config = {
@@ -190,8 +192,66 @@ local default_config = {
   capabilities = lsp_status.capabilities
 }
 -- setup language servers here
+
+-- typescript
 lspconfig.tsserver.setup(default_config)
 
+-- eslint via efm-langserver
+-- @see: https://github.com/mattn/efm-langserver
+local eslint = {
+  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintStdin = true,
+  lintFormats = {"%f:%l:%c: %m"},
+  lintIgnoreExitCode = true,
+  formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+  formatStdin = true
+}
+
+local function eslint_config_exists()
+  local eslintrc = vim.fn.glob(".eslintrc*", 0, 1)
+
+  if not vim.tbl_isempty(eslintrc) then
+    return true
+  end
+
+  if vim.fn.filereadable("package.json") then
+    if vim.fn.json_decode(vim.fn.readfile("package.json"))["eslintConfig"] then
+      return true
+    end
+  end
+
+  return false
+end
+
+lspconfig.efm.setup {
+  on_attach = custom_on_attach, 
+  capabilities = lsp_status.capabilities,
+  root_dir = function()
+    if not eslint_config_exists() then
+      print('no eslint config found')
+      return nil
+    end
+    return vim.fn.getcwd()
+  end,
+  settings = {
+    languages = {
+      javascript = {eslint},
+      javascriptreact = {eslint},
+      ["javascript.jsx"] = {eslint},
+      typescript = {eslint},
+      ["typescript.tsx"] = {eslint},
+      typescriptreact = {eslint}
+    }
+  },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact"
+  },
+}
 
 -- diag completion settings
 vim.g.completion_matching_strategy_list = {'substring', 'exact', 'fuzzy', 'all'}
