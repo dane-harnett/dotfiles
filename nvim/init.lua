@@ -52,6 +52,10 @@ packer.startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/telescope.nvim'
   use 'jremmen/vim-ripgrep'
+
+  -- airline
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
   end
 )
 
@@ -214,5 +218,12 @@ key_mapper('n', '<leader>fh', ':lua require"telescope.builtin".help_tags()<CR>')
 key_mapper('n', '<leader>fb', ':lua require"telescope.builtin".buffers()<CR>')
 
 
-
+-- airline
+vim.g.airline_theme = "base16"
+vim.g.airline_powerline_fonts = 1
+vim.g["airline#extensions#tabline#enabled"] = 1
+vim.g["airline#extensions#tabline#buffer_min_count"] = 2
+vim.g["airline#extensions#tabline#formatter"] = "unique_tail"
+vim.g.airline_section_y = ""
+vim.g.airline_skip_empty_sections = 1
 
