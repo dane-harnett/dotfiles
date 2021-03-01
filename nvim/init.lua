@@ -110,7 +110,7 @@ local key_mapper = function(mode, key, result)
 end
 
 -- format on save
-vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :Prettier]]
+vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte,*.yml,*yaml :silent Prettier]]
 
 -- disable the arrow keys
 key_mapper('', '<up>', '<nop>')
