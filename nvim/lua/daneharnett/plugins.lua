@@ -53,6 +53,9 @@ packer.startup(function()
   -- airline
   use 'vim-airline/vim-airline'
   use 'vim-airline/vim-airline-themes'
+
+  -- editorconfig
+  use 'editorconfig/editorconfig-vim'
   end
 )
 
