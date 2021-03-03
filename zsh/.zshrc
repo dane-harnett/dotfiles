@@ -115,8 +115,8 @@ source $ZSH/oh-my-zsh.sh
 # set keybinds to vi mappings
 bindkey -v
 
-ssh-agent | source /dev/stdin
-ssh-add ~/.ssh/github
+ssh-agent | source /dev/stdin > /dev/null
+ssh-add -Kq ~/.ssh/github
 
 if which ruby >/dev/null && which gem >/dev/null; then
  PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
@@ -167,3 +167,4 @@ zle -N zle-keymap-select
 
 # ensure terminal colors work inside tmux
 if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
+[ -f "/Users/dane/.ghcup/env" ] && source "/Users/dane/.ghcup/env" # ghcup-env
