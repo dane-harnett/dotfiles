@@ -46,7 +46,8 @@ packer.startup(function()
   -- telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/telescope.nvim'
+  use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-fzy-native.nvim'
   use 'jremmen/vim-ripgrep'
 
   -- airline
