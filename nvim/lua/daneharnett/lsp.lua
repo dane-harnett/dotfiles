@@ -37,22 +37,18 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-local function custom_on_attach(client)
-  print('Attaching to ' .. client.name)
-  completion.on_attach(client)
-  lsp_status.on_attach(client)
-  client.resolved_capabilities.document_formatting = true
-  client.resolved_capabilities.goto_definition = false
-  vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
-end
-local default_config = {
-  on_attach = custom_on_attach,
-  capabilities = lsp_status.capabilities
-}
 -- setup language servers here
 
 -- typescript
-lspconfig.tsserver.setup(default_config)
+lspconfig.tsserver.setup({
+  on_attach = function (client)
+    print('Attaching to ' .. client.name)
+    completion.on_attach(client)
+    lsp_status.on_attach(client)
+    vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
+  end,
+  capabilities = lsp_status.capabilities
+})
 
 -- eslint via efm-langserver
 -- @see: https://github.com/mattn/efm-langserver
@@ -82,7 +78,13 @@ local function eslint_config_exists()
 end
 
 lspconfig.efm.setup {
-  on_attach = custom_on_attach,
+  on_attach = function(client)
+    print('Attaching to ' .. client.name)
+    completion.on_attach(client)
+    lsp_status.on_attach(client)
+    client.resolved_capabilities.document_formatting = true
+    client.resolved_capabilities.goto_definition = false
+  end,
   capabilities = lsp_status.capabilities,
   root_dir = function()
     if not eslint_config_exists() then
@@ -111,4 +113,3 @@ lspconfig.efm.setup {
     "typescriptreact"
   },
 }
-
