@@ -20,15 +20,18 @@ packer.startup(function()
   -- add you plugins here like:
   -- use 'neovim/nvim-lspconfig'
 
+  -- treesitter
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/playground'
   use 'sheerun/vim-polyglot'
+  use {"nvim-treesitter/completion-treesitter"}
+
   -- these are optional themes but I hear good things about gloombuddy ;)
   -- colorbuddy allows us to run the gloombuddy theme
   use 'tjdevries/colorbuddy.nvim'
   use 'bkegley/gloombuddy'
 
-  -- js/ts 
+  -- js/ts
   use 'leafgarland/typescript-vim'
   use 'pangloss/vim-javascript'
   use 'peitalin/vim-jsx-typescript'
@@ -36,9 +39,12 @@ packer.startup(function()
 
   -- lsp
   use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
+  use 'hrsh7th/nvim-compe'
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
+
+  -- completion
+  use "steelsojka/completion-buffers"
 
   -- nerdtree
   use 'preservim/nerdtree'
@@ -58,5 +64,4 @@ packer.startup(function()
   use 'editorconfig/editorconfig-vim'
   end
 )
-
 

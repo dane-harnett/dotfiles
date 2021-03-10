@@ -43,8 +43,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 lspconfig.tsserver.setup({
   on_attach = function (client)
     print('Attaching to ' .. client.name)
-    completion.on_attach(client)
     lsp_status.on_attach(client)
+    client.resolved_capabilities.document_formatting = false
     vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
   end,
   capabilities = lsp_status.capabilities
@@ -80,7 +80,6 @@ end
 lspconfig.efm.setup {
   on_attach = function(client)
     print('Attaching to ' .. client.name)
-    completion.on_attach(client)
     lsp_status.on_attach(client)
     client.resolved_capabilities.document_formatting = true
     client.resolved_capabilities.goto_definition = false
