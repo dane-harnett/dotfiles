@@ -50,6 +50,7 @@ lspconfig.tsserver.setup({
   capabilities = lsp_status.capabilities
 })
 
+--[[
 -- eslint via efm-langserver
 -- @see: https://github.com/mattn/efm-langserver
 local eslint = {
@@ -112,3 +113,4 @@ lspconfig.efm.setup {
     "typescriptreact"
   },
 }
+]]--
