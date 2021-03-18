@@ -60,6 +60,9 @@ packer.startup(function()
 
   -- editorconfig
   use 'editorconfig/editorconfig-vim'
+
+  -- vim-smoothie for smooth scrolling
+  use 'psliwka/vim-smoothie'
   end
 )
 
