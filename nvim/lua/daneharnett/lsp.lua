@@ -1,4 +1,7 @@
 local utils = require'daneharnett.utils'
+
+-- use lspsaga for all this stuff
+--[[
 local load_mappings = function()
 -- lsp keys
 utils.key_mapper('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
@@ -19,10 +22,10 @@ utils.key_mapper('n', '<leader>dp', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
 utils.key_mapper('n', '<leader>ds', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
 end
 load_mappings()
+]]--
 
 -- lsp config and setup
 local lspconfig = require'lspconfig'
-local completion = require'completion'
 local lsp_status = require'lsp-status'
 lsp_status.register_progress()
 
@@ -45,7 +48,8 @@ lspconfig.tsserver.setup({
     print('Attaching to ' .. client.name)
     lsp_status.on_attach(client)
     client.resolved_capabilities.document_formatting = false
-    vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
+    -- vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
+    vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
   end,
   capabilities = lsp_status.capabilities
 })

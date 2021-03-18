@@ -42,9 +42,7 @@ packer.startup(function()
   use 'hrsh7th/nvim-compe'
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
-
-  -- completion
-  use "steelsojka/completion-buffers"
+  use 'glepnir/lspsaga.nvim'
 
   -- nerdtree
   use 'preservim/nerdtree'

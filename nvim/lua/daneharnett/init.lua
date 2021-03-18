@@ -4,6 +4,7 @@ require'daneharnett.plugins'
 require'daneharnett.options'
 -- lsp third
 require'daneharnett.lsp'
+require'daneharnett.lspsaga'
 -- the rest
 require'daneharnett.airline'
 require'daneharnett.arrowkeys'
