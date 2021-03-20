@@ -21,6 +21,10 @@ SPACESHIP_PROMPT_ORDER=(
  char          # Prompt character
 )
 
+SPACESHIP_RPROMPT_ORDER=(
+  vi_mode       # Vi-mode indicator
+)
+
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
@@ -156,15 +160,10 @@ load-nvmrc
 # Make vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
-# Display vi mode at end of the line
-function zle-line-init zle-keymap-select {
-  RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-  RPS2=$RPS1
-  zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+eval spaceship_vi_mode_enable
 
 # ensure terminal colors work inside tmux
 if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
-[ -f "/Users/dane/.ghcup/env" ] && source "/Users/dane/.ghcup/env" # ghcup-env
+
+# ghci
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
