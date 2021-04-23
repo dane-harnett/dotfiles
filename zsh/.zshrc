@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -122,14 +119,15 @@ bindkey -v
 ssh-agent | source /dev/stdin > /dev/null
 ssh-add -Kq ~/.ssh/github
 
+# ruby
 if which ruby >/dev/null && which gem >/dev/null; then
  PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-PATH="$HOME/projects/utils/nvim-osx64/bin:$PATH"
-PATH="$HOME/.composer/vendor/bin:$PATH"
+# fzf auto-completion
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ctrl+space accepts the auto-suggestion
 bindkey '^ ' autosuggest-accept
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
