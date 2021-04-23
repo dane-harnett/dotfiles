@@ -63,6 +63,8 @@ packer.startup(function()
 
   -- vim-smoothie for smooth scrolling
   use 'psliwka/vim-smoothie'
+
+  use 'Yggdroot/indentLine'
   end
 )
 
