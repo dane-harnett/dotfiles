@@ -15,6 +15,7 @@ o.completeopt='menuone,noinsert,noselect'
 o.expandtab = true
 o.hidden = true
 o.incsearch = true
+o.listchars = [[tab:▸ ,trail:·,space:·]]
 o.shiftwidth = 2
 o.softtabstop = 2
 o.syntax = 'on'
@@ -30,6 +31,7 @@ bo.swapfile = false
 
 -- window options --
 wo.colorcolumn = '80'
+wo.list = true
 wo.number = true
 wo.relativenumber = true
 wo.scrolloff = 8
