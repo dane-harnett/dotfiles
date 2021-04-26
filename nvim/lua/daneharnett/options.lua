@@ -30,7 +30,7 @@ bo.smartindent = true
 bo.swapfile = false
 
 -- window options --
-wo.colorcolumn = '80'
+wo.colorcolumn = '80,100,120'
 wo.list = true
 wo.number = true
 wo.relativenumber = true
