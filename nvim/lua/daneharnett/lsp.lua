@@ -49,7 +49,9 @@ lspconfig.tsserver.setup({
     lsp_status.on_attach(client)
     client.resolved_capabilities.document_formatting = false
     -- vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
-    vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
+    -- Commenting this out because it causes performance issues when there are
+    -- many diagnostics in a single buffer.
+    -- vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
   end,
   capabilities = lsp_status.capabilities
 })
