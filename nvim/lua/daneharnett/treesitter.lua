@@ -13,6 +13,9 @@ treesitter_configs.setup {
   highlight = {
     enable = true,
   },
+  indent = {
+    enable = true
+  },
   playground = {
     enable = true,
     updatetime = 25
