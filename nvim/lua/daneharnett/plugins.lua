@@ -63,6 +63,9 @@ packer.startup(function()
 
   -- vim-smoothie for smooth scrolling
   use 'psliwka/vim-smoothie'
+
+  -- comments
+  use 'b3nj5m1n/kommentary'
   end
 )
 
