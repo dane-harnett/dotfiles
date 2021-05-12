@@ -1,7 +1,11 @@
+local vim = vim
+if not vim.g.vscode then
 -- plugins first
 require'daneharnett.plugins'
+end
 -- options second
 require'daneharnett.options'
+if not vim.g.vscode then
 -- lsp third
 require'daneharnett.lsp'
 require'daneharnett.lspsaga'
@@ -15,3 +19,4 @@ require'daneharnett.prettier'
 require'daneharnett.telescope'
 require'daneharnett.treesitter'
 require'daneharnett.yank'
+end
