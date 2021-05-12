@@ -17,14 +17,14 @@ packer.init({
 --- startup and add configure plugins
 packer.startup(function()
   local use = use
-  -- add you plugins here like:
+  -- add your plugins here like:
   -- use 'neovim/nvim-lspconfig'
 
   -- treesitter
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/playground'
   use 'sheerun/vim-polyglot'
-  use {"nvim-treesitter/completion-treesitter"}
+  use 'nvim-treesitter/completion-treesitter'
 
   -- these are optional themes but I hear good things about gloombuddy ;)
   -- colorbuddy allows us to run the gloombuddy theme
@@ -35,11 +35,19 @@ packer.startup(function()
   use 'leafgarland/typescript-vim'
   use 'pangloss/vim-javascript'
   use 'peitalin/vim-jsx-typescript'
-  use {'prettier/vim-prettier', run = 'yarn install' }
+  use {
+    'prettier/vim-prettier',
+    run = 'yarn install'
+  }
 
   -- lsp
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
+  use {
+    'tzachar/compe-tabnine',
+    run = './install.sh',
+    requires = 'hrsh7th/nvim-compe'
+  }
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
   use 'glepnir/lspsaga.nvim'
