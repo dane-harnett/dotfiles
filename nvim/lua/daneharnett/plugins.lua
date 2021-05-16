@@ -74,6 +74,9 @@ packer.startup(function()
 
   -- comments
   use 'b3nj5m1n/kommentary'
+
+  -- autopairs
+  use 'jiangmiao/auto-pairs'
   end
 )
 
