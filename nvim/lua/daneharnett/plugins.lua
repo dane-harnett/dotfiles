@@ -77,6 +77,9 @@ packer.startup(function()
 
   -- autopairs
   use 'jiangmiao/auto-pairs'
+
+  -- terminal
+  use 'voldikss/vim-floaterm'
   end
 )
 

@@ -21,4 +21,5 @@ if not vim.g.vscode then
   require'daneharnett.prettier'
   require'daneharnett.telescope'
   require'daneharnett.treesitter'
+  require'daneharnett.floaterm'
 end
