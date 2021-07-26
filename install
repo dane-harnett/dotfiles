@@ -1,0 +1,6 @@
+#!/bin/bash
+
+stow --target=$HOME nvim
+stow --target=$HOME tmux
+stow --target=$HOME zsh
+
