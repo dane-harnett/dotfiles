@@ -22,4 +22,9 @@ if not vim.g.vscode then
   require'daneharnett.telescope'
   require'daneharnett.treesitter'
   require'daneharnett.floaterm'
+  require'daneharnett.tests'
+
+  require'colorizer'.setup({
+    typescriptreact={css=true}
+  })
 end

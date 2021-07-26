@@ -43,11 +43,6 @@ packer.startup(function()
   -- lsp
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
-  use {
-    'tzachar/compe-tabnine',
-    run = './install.sh',
-    requires = 'hrsh7th/nvim-compe'
-  }
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
   use 'glepnir/lspsaga.nvim'
@@ -80,6 +75,10 @@ packer.startup(function()
 
   -- terminal
   use 'voldikss/vim-floaterm'
+
+  use 'vim-test/vim-test'
+
+  use 'norcalli/nvim-colorizer.lua'
   end
 )
 
