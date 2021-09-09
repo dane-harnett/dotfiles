@@ -20,7 +20,7 @@ require'compe'.setup {
     nvim_lsp = true;
     nvim_lua = true;
     spell = true;
-    tabnine = true;
+    tabnine = false;
     tags = true;
     snippets_nvim = true;
     treesitter = true;
