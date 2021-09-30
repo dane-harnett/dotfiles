@@ -1,5 +1,9 @@
 vim.g.mapleader = ' '
-vim.g.colors_name = 'gloombuddy'
+vim.cmd[[colorscheme material]]
+vim.g.colors_name = 'material'
+--vim.g.material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
+vim.g.material_theme_style = 'darker'
+
 
 local o = vim.o
 local bo = vim.bo

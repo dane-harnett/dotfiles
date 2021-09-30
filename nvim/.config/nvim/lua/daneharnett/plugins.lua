@@ -26,10 +26,7 @@ packer.startup(function()
   use 'sheerun/vim-polyglot'
   use 'nvim-treesitter/completion-treesitter'
 
-  -- these are optional themes but I hear good things about gloombuddy ;)
-  -- colorbuddy allows us to run the gloombuddy theme
-  use 'tjdevries/colorbuddy.nvim'
-  use 'bkegley/gloombuddy'
+  use 'kaicataldo/material.vim'
 
   -- js/ts
   use 'leafgarland/typescript-vim'
@@ -55,7 +52,7 @@ packer.startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-fzy-native.nvim'
-  use 'jremmen/vim-ripgrep'
+  -- use 'jremmen/vim-ripgrep'
 
   -- airline
   use 'vim-airline/vim-airline'
