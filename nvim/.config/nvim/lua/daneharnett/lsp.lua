@@ -42,6 +42,8 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 -- setup language servers here
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- typescript
 lspconfig.tsserver.setup({
   on_attach = function (client)
@@ -53,7 +55,7 @@ lspconfig.tsserver.setup({
     -- many diagnostics in a single buffer.
     -- vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
   end,
-  capabilities = lsp_status.capabilities
+  capabilities = capabilities
 })
 
 --[[
