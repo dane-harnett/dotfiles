@@ -1,3 +1,8 @@
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -117,7 +122,7 @@ source $ZSH/oh-my-zsh.sh
 bindkey -v
 
 ssh-agent | source /dev/stdin > /dev/null
-ssh-add -Kq ~/.ssh/github
+ssh-add -q --apple-use-keychain ~/.ssh/github
 
 # ruby
 if which ruby >/dev/null && which gem >/dev/null; then
@@ -165,3 +170,8 @@ if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
 
 # ghci
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
