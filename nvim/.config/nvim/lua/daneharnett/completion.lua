@@ -22,10 +22,20 @@ cmp.setup({
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
+  sorting = {
+    comparators = {
+      cmp.config.compare.sort_text,
+      cmp.config.compare.score,
+      cmp.config.compare.order,
+      cmp.config.compare.offset,
+      cmp.config.compare.kind,
+      cmp.config.compare.length,
+      cmp.config.compare.exact,
+    },
+  },
   sources = cmp.config.sources({
     {
       name = 'nvim_lsp',
-      max_item_count = 10
     },
   }, {
     {

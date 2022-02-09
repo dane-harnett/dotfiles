@@ -45,7 +45,7 @@ packer.startup(function()
   use 'hrsh7th/nvim-cmp'
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
-  use 'glepnir/lspsaga.nvim'
+  use 'tami5/lspsaga.nvim'
 
   -- nerdtree
   use 'preservim/nerdtree'
@@ -68,7 +68,12 @@ packer.startup(function()
   use 'psliwka/vim-smoothie'
 
   -- comments
-  use 'b3nj5m1n/kommentary'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
 
   -- autopairs
   use 'jiangmiao/auto-pairs'
