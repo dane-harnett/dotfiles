@@ -1,5 +1,6 @@
 #!/bin/bash
 
+stow --target=$HOME alacritty
 stow --target=$HOME nvim
 stow --target=$HOME tmux
 stow --target=$HOME zsh

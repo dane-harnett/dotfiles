@@ -1,0 +1,29 @@
+# Selection colors
+selection:
+  text:       '0xFAFAFA'
+  background: '0x252834'
+
+# Normal colors
+primary:
+  background: '0x313440'
+  foreground: '0xFAFAFA'
+normal:
+  black:   '0x282C34'
+  red:     '0xFF6059'
+  green:   '0x5FFF87'
+  yellow:  '0xFFFF87'
+  blue:    '0x5FAFFF'
+  magenta: '0xAF87FF'
+  cyan:    '0x5FAFFF'
+  white:   '0xFAFAFA'
+
+# Bright colors
+bright:
+  black:   '0x282C34'
+  red:     '0xFF6059'
+  green:   '0x5FFF87'
+  yellow:  '0xFFFF87'
+  blue:    '0x5FAFFF'
+  magenta: '0xAF87FF'
+  cyan:    '0x5FAFFF'
+  white:   '0xFAFAFA'
