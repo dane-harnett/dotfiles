@@ -12,7 +12,7 @@ require'daneharnett.arrowkeys'
 if not vim.g.vscode then
   -- lsp third
   require'daneharnett.lsp'
-  require'daneharnett.lspsaga'
+  -- require'daneharnett.lspsaga'
   -- the rest
   require'daneharnett.airline'
   require'daneharnett.completion'

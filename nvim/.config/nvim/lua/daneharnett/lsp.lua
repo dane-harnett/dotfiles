@@ -46,14 +46,49 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 -- typescript
 lspconfig.tsserver.setup({
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   on_attach = function (client)
     print('Attaching to ' .. client.name)
     lsp_status.on_attach(client)
     client.resolved_capabilities.document_formatting = false
+
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
+    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer=0})
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer=0})
+    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
+    vim.keymap.set('n', '<LEADER>r', vim.lsp.buf.rename, {buffer=0})
+    vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, {buffer=0})
+
+    vim.keymap.set('n', '<LEADER>dn', vim.diagnostic.goto_next, {buffer=0})
+    vim.keymap.set('n', '<LEADER>dp', vim.diagnostic.goto_prev, {buffer=0})
+
+    vim.keymap.set('n', '<LEADER>gr', '<CMD>TroubleToggle lsp_references<CR>', {buffer=0})
+
     -- vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
     -- Commenting this out because it causes performance issues when there are
     -- many diagnostics in a single buffer.
     -- vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
+  end,
+  capabilities = capabilities
+})
+
+lspconfig.flow.setup({
+  on_attach = function (client)
+    lsp_status.on_attach(client)
+
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
+    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer=0})
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer=0})
+    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
+    vim.keymap.set('n', '<LEADER>r', vim.lsp.buf.rename, {buffer=0})
+    vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, {buffer=0})
+
+    vim.keymap.set('n', '<LEADER>dn', vim.diagnostic.goto_next, {buffer=0})
+    vim.keymap.set('n', '<LEADER>dp', vim.diagnostic.goto_prev, {buffer=0})
+
+    vim.keymap.set('n', '<LEADER>gr', '<CMD>TroubleToggle lsp_references<CR>', {buffer=0})
   end,
   capabilities = capabilities
 })

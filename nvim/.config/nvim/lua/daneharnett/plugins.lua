@@ -45,7 +45,7 @@ packer.startup(function()
   use 'hrsh7th/nvim-cmp'
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
-  use 'tami5/lspsaga.nvim'
+  -- use 'tami5/lspsaga.nvim'
 
   -- nerdtree
   use 'preservim/nerdtree'
@@ -56,6 +56,16 @@ packer.startup(function()
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-fzy-native.nvim'
   -- use 'jremmen/vim-ripgrep'
+
+  use "kyazdani42/nvim-web-devicons"
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+      }
+    end
+  }
 
   -- airline
   use 'vim-airline/vim-airline'
