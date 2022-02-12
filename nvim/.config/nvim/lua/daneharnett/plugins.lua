@@ -26,7 +26,12 @@ packer.startup(function()
   use 'sheerun/vim-polyglot'
   use 'nvim-treesitter/completion-treesitter'
 
+  -- theme, icons and lines
+  use "kyazdani42/nvim-web-devicons"
   use 'kaicataldo/material.vim'
+  use 'akinsho/bufferline.nvim'
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
 
   -- js/ts
   -- use 'leafgarland/typescript-vim'
@@ -58,7 +63,6 @@ packer.startup(function()
   use 'nvim-telescope/telescope-fzy-native.nvim'
   -- use 'jremmen/vim-ripgrep'
 
-  use "kyazdani42/nvim-web-devicons"
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
@@ -66,10 +70,6 @@ packer.startup(function()
       require("trouble").setup {}
     end
   }
-
-  -- airline
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
 
   -- editorconfig
   use 'editorconfig/editorconfig-vim'
@@ -97,6 +97,4 @@ packer.startup(function()
   use 'norcalli/nvim-colorizer.lua'
 
   use "lewis6991/gitsigns.nvim"
-  end
-)
-
+end)

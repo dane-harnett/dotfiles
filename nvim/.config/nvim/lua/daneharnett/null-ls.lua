@@ -1,5 +1,5 @@
 local status_ok, null_ls = pcall(require, "null-ls")
-if not ls_status_ok then
+if not status_ok then
 	return
 end
 
@@ -7,15 +7,20 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
-	debug = false,
-	sources = {
-		formatting.prettier,
-    -- formatting.eslint_d,
-    -- formatting.eslint,
+  debug = false,
+  on_attach = function(client)
+    if client.resolved_capabilities.document_formatting then
+        vim.cmd([[
+        augroup LspFormatting
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+        augroup END
+        ]])
+    end
+  end,
+  sources = {
     diagnostics.eslint_d,
-    diagnostics.eslint,
-	},
+    -- formatting.eslint_d,
+    formatting.prettier,
+  },
 })
-
-
-vim.cmd[[autocmd BufWritePre *js,*ts,*jsx,*tsx,*.graphql,*.json,*.md,*.mdx,*.svelte :lua vim.lsp.buf.formatting_sync()]]

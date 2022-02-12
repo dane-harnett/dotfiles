@@ -73,7 +73,7 @@ local load_mappings = function ()
   -- utils.current_buffer_keymap("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
   -- utils.current_buffer_keymap("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
 
-  -- vim.cmd[[autocmd CursorHold <buffer> :lua vim.diagnostic.open_float()]]
+  vim.cmd[[autocmd CursorHold <buffer> :lua vim.diagnostic.open_float()]]
 end
 
 local on_attach = function (client)

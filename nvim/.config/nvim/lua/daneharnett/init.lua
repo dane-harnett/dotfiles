@@ -18,6 +18,7 @@ if not vim.g.vscode then
   require'daneharnett.null-ls'
   -- the rest
   require'daneharnett.airline'
+  require'daneharnett.bufferline'
   require'daneharnett.completion'
   require'daneharnett.diagnostics'
   require'daneharnett.floaterm'
