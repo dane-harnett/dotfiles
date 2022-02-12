@@ -1,17 +1,20 @@
-local lspsaga = require 'lspsaga'
 local utils = require'daneharnett.utils'
+local status_ok, lspsaga = pcall(require, "lspsaga")
+if not status_ok then
+	return
+end
 
 lspsaga.setup { -- defaults ...
   debug = false,
   use_saga_diagnostic_sign = true,
   -- diagnostic sign
-  error_sign = "E",
-  warn_sign = "W",
-  hint_sign = "H",
-  infor_sign = "I",
+  error_sign = "",
+  warn_sign = "",
+  hint_sign = "",
+  infor_sign = "",
   diagnostic_header_icon = " D  ",
   -- code action title icon
-  code_action_icon = "A ",
+  code_action_icon = "⚡",
   code_action_prompt = {
     enable = true,
     sign = true,

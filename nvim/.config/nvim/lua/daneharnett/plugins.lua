@@ -29,13 +29,13 @@ packer.startup(function()
   use 'kaicataldo/material.vim'
 
   -- js/ts
-  use 'leafgarland/typescript-vim'
-  use 'pangloss/vim-javascript'
-  use 'peitalin/vim-jsx-typescript'
-  use {
-    'prettier/vim-prettier',
-    run = 'yarn install'
-  }
+  -- use 'leafgarland/typescript-vim'
+  -- use 'pangloss/vim-javascript'
+  -- use 'peitalin/vim-jsx-typescript'
+  -- use {
+  --   'prettier/vim-prettier',
+  --   run = 'yarn install'
+  -- }
 
   -- lsp
   use 'neovim/nvim-lspconfig'
@@ -45,7 +45,8 @@ packer.startup(function()
   use 'hrsh7th/nvim-cmp'
   use 'nvim-lua/lsp-status.nvim'
   use 'anott03/nvim-lspinstall'
-  -- use 'tami5/lspsaga.nvim'
+  use 'tami5/lspsaga.nvim'
+  use 'jose-elias-alvarez/null-ls.nvim'
 
   -- nerdtree
   use 'preservim/nerdtree'
@@ -62,8 +63,7 @@ packer.startup(function()
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      require("trouble").setup {
-      }
+      require("trouble").setup {}
     end
   }
 
@@ -89,11 +89,14 @@ packer.startup(function()
   use 'jiangmiao/auto-pairs'
 
   -- terminal
-  use 'voldikss/vim-floaterm'
+  use 'akinsho/toggleterm.nvim'
+  -- use 'voldikss/vim-floaterm'
 
   use 'vim-test/vim-test'
 
   use 'norcalli/nvim-colorizer.lua'
+
+  use "lewis6991/gitsigns.nvim"
   end
 )
 

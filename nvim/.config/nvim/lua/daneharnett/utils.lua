@@ -1,16 +1,24 @@
 local M = {}
 
-M.key_mapper = function(mode, key, result)
-  vim.api.nvim_set_keymap(
+M.keymap = function(mode, key, result)
+  vim.keymap.set(
     mode,
     key,
     result,
     {noremap = true, silent = true}
   )
 end
-M.current_buffer_key_mapper = function(mode, key, result)
-  vim.api.nvim_buf_set_keymap(
-    0,
+M.current_buffer_keymap= function(mode, key, result)
+  vim.keymap.set(
+    mode,
+    key,
+    result,
+    {buffer = true, noremap = true, silent = true}
+  )
+end
+-- deprecated
+M.key_mapper = function(mode, key, result)
+  vim.keymap.set(
     mode,
     key,
     result,

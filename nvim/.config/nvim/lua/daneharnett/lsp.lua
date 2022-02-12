@@ -1,96 +1,133 @@
 local utils = require'daneharnett.utils'
 
--- use lspsaga for all this stuff
---[[
-local load_mappings = function()
--- lsp keys
-utils.key_mapper('n', 'gd', ':lua vim.lsp.buf.definition()<CR>')
-utils.key_mapper('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>')
-utils.key_mapper('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>')
-utils.key_mapper('n', 'gw', ':lua vim.lsp.buf.document_symbol()<CR>')
-utils.key_mapper('n', 'gW', ':lua vim.lsp.buf.workspace_symbol()<CR>')
-utils.key_mapper('n', 'gr', ':lua vim.lsp.buf.references()<CR>')
-utils.key_mapper('n', 'gt', ':lua vim.lsp.buf.type_definition()<CR>')
-utils.key_mapper('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
-utils.key_mapper('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<CR>')
-utils.key_mapper('n', '<leader>af', ':lua vim.lsp.buf.code_action()<CR>')
-utils.key_mapper('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
-
--- diagnostics keys
-utils.key_mapper('n', '<leader>dn', ':lua vim.lsp.diagnostic.goto_next()<CR>')
-utils.key_mapper('n', '<leader>dp', ':lua vim.lsp.diagnostic.goto_prev()<CR>')
-utils.key_mapper('n', '<leader>ds', ':lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
-end
-load_mappings()
-]]--
-
 -- lsp config and setup
-local lspconfig = require'lspconfig'
-local lsp_status = require'lsp-status'
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+	return
+end
+local lsp_status_status_ok, lsp_status = pcall(require, "lsp-status")
+if not lsp_status_status_ok then
+	return
+end
 lsp_status.register_progress()
 
 -- Diagnostics
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = true,
+local load_diagnostics = function ()
+  local signs = {
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
   }
-)
+
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
+
+  local config = {
+    -- disable virtual text
+    virtual_text = false,
+    -- show signs
+    signs = {
+      active = signs,
+    },
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = false,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  }
+
+  vim.diagnostic.config(config)
+end
 
 -- setup language servers here
 
+local load_mappings = function ()
+  -- utils.current_buffer_keymap('n', 'K', vim.lsp.buf.hover)
+  utils.current_buffer_keymap('n', 'gd', vim.lsp.buf.definition)
+  utils.current_buffer_keymap('n', 'gt', vim.lsp.buf.type_definition)
+  utils.current_buffer_keymap('n', 'gi', vim.lsp.buf.implementation)
+  -- utils.current_buffer_keymap('n', 'gr', vim.lsp.buf.references)
+  -- utils.current_buffer_keymap('n', '<leader>r', vim.lsp.buf.rename)
+  -- utils.current_buffer_keymap('n', '<leader>ca', vim.lsp.buf.code_action)
+  utils.current_buffer_keymap("n", "<leader>ds", vim.diagnostic.open_float)
+
+  -- Trouble
+  utils.current_buffer_keymap('n', '<leader>gr', '<cmd>TroubleToggle lsp_references<cr>')
+
+  -- Lspsaga
+  utils.current_buffer_keymap("n", "gr", "<cmd>Lspsaga rename<cr>")
+  utils.current_buffer_keymap("n", "gx", "<cmd>Lspsaga code_action<cr>")
+  utils.current_buffer_keymap("x", "gx", ":<c-u>Lspsaga range_code_action<cr>")
+  utils.current_buffer_keymap("n", "K",  "<cmd>Lspsaga hover_doc<cr>")
+  -- utils.current_buffer_keymap("n", "<leader>ds", "<cmd>Lspsaga show_line_diagnostics<cr>")
+  utils.current_buffer_keymap("n", "<leader>dn", "<cmd>Lspsaga diagnostic_jump_next<cr>")
+  utils.current_buffer_keymap("n", "<leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<cr>")
+  -- utils.current_buffer_keymap("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
+  -- utils.current_buffer_keymap("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
+
+  -- vim.cmd[[autocmd CursorHold <buffer> :lua vim.diagnostic.open_float()]]
+end
+
+local on_attach = function (client)
+  print('Attaching to ' .. client.name)
+  lsp_status.on_attach(client)
+  load_mappings()
+  load_diagnostics()
+  if client.name == 'tsserver' then
+    client.resolved_capabilities.document_formatting = false
+  end
+end
+
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+-- vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
+-- Commenting this out because it causes performance issues when there are
+-- many diagnostics in a single buffer.
+-- vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
 
 -- typescript
 lspconfig.tsserver.setup({
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  on_attach = function (client)
-    print('Attaching to ' .. client.name)
-    lsp_status.on_attach(client)
-    client.resolved_capabilities.document_formatting = false
-
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
-    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer=0})
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer=0})
-    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
-    vim.keymap.set('n', '<LEADER>r', vim.lsp.buf.rename, {buffer=0})
-    vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, {buffer=0})
-
-    vim.keymap.set('n', '<LEADER>dn', vim.diagnostic.goto_next, {buffer=0})
-    vim.keymap.set('n', '<LEADER>dp', vim.diagnostic.goto_prev, {buffer=0})
-
-    vim.keymap.set('n', '<LEADER>gr', '<CMD>TroubleToggle lsp_references<CR>', {buffer=0})
-
-    -- vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
-    -- Commenting this out because it causes performance issues when there are
-    -- many diagnostics in a single buffer.
-    -- vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
-  end,
-  capabilities = capabilities
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 lspconfig.flow.setup({
-  on_attach = function (client)
-    lsp_status.on_attach(client)
-
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer=0})
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer=0})
-    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, {buffer=0})
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {buffer=0})
-    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, {buffer=0})
-    vim.keymap.set('n', '<LEADER>r', vim.lsp.buf.rename, {buffer=0})
-    vim.keymap.set('n', '<LEADER>ca', vim.lsp.buf.code_action, {buffer=0})
-
-    vim.keymap.set('n', '<LEADER>dn', vim.diagnostic.goto_next, {buffer=0})
-    vim.keymap.set('n', '<LEADER>dp', vim.diagnostic.goto_prev, {buffer=0})
-
-    vim.keymap.set('n', '<LEADER>gr', '<CMD>TroubleToggle lsp_references<CR>', {buffer=0})
-  end,
+  on_attach = on_attach,
   capabilities = capabilities
+})
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+lspconfig.sumneko_lua.setup({
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = {'vim'},
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
 })
 
 --[[
