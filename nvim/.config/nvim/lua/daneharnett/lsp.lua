@@ -73,7 +73,8 @@ local load_mappings = function ()
   -- utils.current_buffer_keymap("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
   -- utils.current_buffer_keymap("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
 
-  vim.cmd[[autocmd CursorHold <buffer> :lua vim.diagnostic.open_float()]]
+  -- vim.cmd[[autocmd CursorHold <buffer> :lua vim.diagnostic.open_float()]]
+  vim.cmd[[autocmd CursorHold <buffer> :Lspsaga show_line_diagnostics]]
 end
 
 local on_attach = function (client)
@@ -87,11 +88,6 @@ local on_attach = function (client)
 end
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
--- vim.cmd[[autocmd CursorHold <buffer> :lua vim.lsp.diagnostic.show_line_diagnostics()]]
--- Commenting this out because it causes performance issues when there are
--- many diagnostics in a single buffer.
--- vim.cmd[[autocmd CursorHold <buffer> :lua require'lspsaga.diagnostic'.show_line_diagnostics()]]
 
 -- typescript
 lspconfig.tsserver.setup({
