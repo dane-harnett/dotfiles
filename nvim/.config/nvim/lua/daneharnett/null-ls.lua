@@ -22,7 +22,8 @@ null_ls.setup({
     diagnostics.eslint_d,
     formatting.eslint_d,
     formatting.prettier.with({
-      prefer_local = true,
+      prefer_local = "node_modules/.bin",
+      timeout = 10000,
     }),
   },
 })
