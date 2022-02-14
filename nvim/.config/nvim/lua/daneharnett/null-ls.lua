@@ -21,6 +21,8 @@ null_ls.setup({
   sources = {
     diagnostics.eslint_d,
     formatting.eslint_d,
-    formatting.prettier,
+    formatting.prettier.with({
+      prefer_local = true,
+    }),
   },
 })
