@@ -20,7 +20,7 @@ null_ls.setup({
   end,
   sources = {
     diagnostics.eslint_d,
-    -- formatting.eslint_d,
+    formatting.eslint_d,
     formatting.prettier,
   },
 })
