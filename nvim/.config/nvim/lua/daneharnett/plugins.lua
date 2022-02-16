@@ -54,7 +54,8 @@ packer.startup(function()
   use 'jose-elias-alvarez/null-ls.nvim'
 
   -- nerdtree
-  use 'preservim/nerdtree'
+  -- use 'preservim/nerdtree'
+  use 'kyazdani42/nvim-tree.lua'
 
   -- telescope
   use 'nvim-lua/popup.nvim'

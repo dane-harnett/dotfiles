@@ -25,6 +25,7 @@ if not vim.g.vscode then
   require'daneharnett.gitsigns'
   require'daneharnett.navigation'
   -- require'daneharnett.nerdtree'
+  require'daneharnett.nvim-tree'
   require'daneharnett.prettier'
   require'daneharnett.telescope'
   require'daneharnett.tests'
