@@ -1,10 +1,11 @@
 local utils = require'daneharnett.utils'
 local load_mappings = function()
+  -- In normal mode...
   -- Move text up and down
   utils.keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi")
   utils.keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi")
 
-  -- Visual --
+  -- In visual mode...
   -- Stay in indent mode
   utils.keymap("v", "<", "<gv")
   utils.keymap("v", ">", ">gv")
@@ -14,7 +15,7 @@ local load_mappings = function()
   utils.keymap("v", "<A-k>", ":m .-2<CR>==")
   utils.keymap("v", "p", '"_dP')
 
-  -- Visual Block --
+  -- In visual block mode...
   -- Move text up and down
   utils.keymap("x", "J", ":move '>+1<CR>gv-gv")
   utils.keymap("x", "K", ":move '<-2<CR>gv-gv")

@@ -1,4 +1,6 @@
 local vim = vim
+
+-- Exclude these plugins from vscode
 if not vim.g.vscode then
   -- plugins first
   require'daneharnett.plugins'
@@ -10,7 +12,7 @@ require'daneharnett.yank'
 require'daneharnett.arrowkeys'
 require'daneharnett.editing'
 
-
+-- Exclude these plugin configs from vscode
 if not vim.g.vscode then
   -- lsp third
   require'daneharnett.lsp'
