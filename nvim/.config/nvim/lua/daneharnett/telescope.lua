@@ -16,7 +16,7 @@ telescope.setup {
   defaults = {
     file_sorter = require'telescope.sorters'.get_fzy_sorter,
     path_display = {
-      smart = true,
+      shorten = 5,
     },
     prompt_prefix = ' >',
     color_devicons = true,
