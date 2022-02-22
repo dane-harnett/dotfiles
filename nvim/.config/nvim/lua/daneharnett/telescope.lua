@@ -16,10 +16,16 @@ telescope.setup {
   defaults = {
     file_sorter = require'telescope.sorters'.get_fzy_sorter,
     path_display = {
-      shorten = 5,
+      truncate = true,
     },
     prompt_prefix = ' >',
     color_devicons = true,
+    layout_config = {
+      horizontal = {
+        preview_width = 40,
+        width = 0.9,
+      },
+    },
     file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
     grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
     file_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
