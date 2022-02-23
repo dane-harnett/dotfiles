@@ -2,10 +2,10 @@ vim.g.mapleader = ' '
 
 -- Exclude these options from vscode
 if not vim.g.vscode then
+  --vim.g.material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'v
+  vim.g.material_theme_style = 'ocean'
   vim.cmd[[colorscheme material]]
   vim.g.colors_name = 'material'
-  --vim.g.material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'v
-  vim.g.material_theme_style = 'darker'
 end
 
 local o = vim.o

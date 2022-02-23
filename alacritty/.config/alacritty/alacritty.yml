@@ -10,7 +10,7 @@
 # to the user's home directory starting with `~/`.
 import:
 #  - ~/.config/alacritty/ayu-dark.colors.yml
-  - ~/.config/alacritty/purify.colors.yml
+  - ~/.config/alacritty/ayu-dark.colors.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
