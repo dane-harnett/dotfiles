@@ -113,6 +113,6 @@ nvim_tree.setup {
 
 local utils = require'daneharnett.utils'
 local load_mappings = function()
-  utils.keymap('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
+  utils.keymap('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<cr>')
 end
 load_mappings();
