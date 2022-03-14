@@ -37,4 +37,6 @@ if not vim.g.vscode then
   require'colorizer'.setup({
     typescriptreact={css=true}
   })
+
+  require'daneharnett.command-palette'
 end
