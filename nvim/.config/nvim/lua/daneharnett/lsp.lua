@@ -74,7 +74,11 @@ local load_mappings = function ()
   -- utils.current_buffer_keymap("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
 
   local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = true })
-  vim.api.nvim_create_autocmd("CursorHold", { buffer = 0, command = "Lspsaga show_line_diagnostics", group = group })
+  vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = vim.nvim_get_current_buf,
+    command = "Lspsaga show_line_diagnostics",
+    group = group
+  })
 end
 
 local on_attach = function (client)

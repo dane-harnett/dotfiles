@@ -11,7 +11,11 @@ null_ls.setup({
   on_attach = function(client)
     if client.resolved_capabilities.document_formatting then
       local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-      vim.api.nvim_create_autocmd("BufWritePre", { buffer = 0, callback = vim.lsp.buf.formatting_sync, group = group })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = vim.nvim_get_current_buf,
+        callback = vim.lsp.buf.formatting_sync,
+        group = group
+      })
     end
   end,
   sources = {
