@@ -17,6 +17,18 @@ local commands = {
     title = "Toggle terminal",
     command = "ToggleTerm",
   },
+  {
+    title = "Git changed files",
+    command = "Telescope git_status",
+  },
+  {
+    title = "Git commit history",
+    command = "Telescope git_commits",
+  },
+  {
+    title = "Diagnostics",
+    command = "Telescope diagnostics",
+  },
 }
 
 local function open_command_palette()
