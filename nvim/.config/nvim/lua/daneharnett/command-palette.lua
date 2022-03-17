@@ -29,6 +29,10 @@ local commands = {
     title = "Diagnostics",
     command = "Telescope diagnostics",
   },
+  {
+    title = "Sync plugins (packer sync)",
+    command = "PackerSync",
+  },
 }
 
 local function open_command_palette()
