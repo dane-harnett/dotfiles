@@ -11,6 +11,7 @@ end
 local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
+local opt = vim.opt
 
 -- global options --
 -- do i want to keep these settings?
@@ -20,6 +21,14 @@ local wo = vim.wo
 o.backup = false
 o.completeopt='menuone,noinsert,noselect'
 o.expandtab = true
+o.filetype = 'on'
+
+-- start with folds open
+opt.foldlevelstart = 99
+opt.foldnestmax = 3
+opt.foldminlines = 1
+-- is it possible to have a sign for a fold?
+
 o.hidden = true
 o.incsearch = true
 o.listchars = [[tab:▸ ,trail:·,space:·]]

@@ -10,6 +10,23 @@ local load_mappings = function()
 end
 load_mappings()
 
+local telescope_actions = require("telescope.actions.set")
+-- FileType event doesn't fire when opening from telescope
+-- https://github.com/nvim-telescope/telescope.nvim/issues/699
+-- workaround from:
+-- https://github.com/David-Kunz/vim/blob/master/init.lua#L205-L232
+local fixfolds = {
+  hidden = true,
+  attach_mappings = function(_)
+    telescope_actions.select:enhance({
+      post = function()
+        vim.cmd(":normal! zx")
+      end,
+    })
+    return true
+  end,
+}
+
 local telescope = require'telescope'
 telescope.setup {
   defaults = {
@@ -36,6 +53,14 @@ telescope.setup {
       override_file_sorter = true,
       case_mode = "smart_case",
     },
-  }
+  },
+  pickers = {
+    buffers = fixfolds,
+    find_files = fixfolds,
+    git_files = fixfolds,
+    grep_string = fixfolds,
+    live_grep = fixfolds,
+    oldfiles = fixfolds,
+  },
 }
 telescope.load_extension('fzf')

@@ -3,12 +3,20 @@ local utils = require'daneharnett.utils'
 -- lsp config and setup
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
-	return
+  return
 end
 local lsp_status_status_ok, lsp_status = pcall(require, "lsp-status")
 if not lsp_status_status_ok then
-	return
+  return
 end
+local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_status_ok then
+  return
+end
+
+local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = cmp_nvim_lsp.update_capabilities(client_capabilities)
+
 lsp_status.register_progress()
 
 -- Diagnostics
@@ -43,13 +51,12 @@ local load_diagnostics = function ()
       prefix = "",
     },
   }
-
   vim.diagnostic.config(config)
 end
 
 -- setup language servers here
 
-local load_mappings = function ()
+local load_mappings = function (bufnr)
   -- utils.current_buffer_keymap('n', 'K', vim.lsp.buf.hover)
   utils.current_buffer_keymap('n', 'gd', vim.lsp.buf.definition)
   utils.current_buffer_keymap('n', 'gt', vim.lsp.buf.type_definition)
@@ -75,23 +82,21 @@ local load_mappings = function ()
 
   local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = true })
   vim.api.nvim_create_autocmd("CursorHold", {
-    buffer = vim.api.nvim_get_current_buf(),
+    buffer = bufnr,
     command = "Lspsaga show_line_diagnostics",
     group = group
   })
 end
 
-local on_attach = function (client)
-  print('Attaching to ' .. client.name)
+local on_attach = function (client, bufnr)
+  print('Attaching to ' .. client.name .. ' in buffer ' .. bufnr)
   lsp_status.on_attach(client)
-  load_mappings()
+  load_mappings(bufnr)
   load_diagnostics()
   if client.name == 'tsserver' then
     client.resolved_capabilities.document_formatting = false
   end
 end
-
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- typescript
 lspconfig.tsserver.setup({
@@ -100,11 +105,73 @@ lspconfig.tsserver.setup({
   capabilities = capabilities,
 })
 
+-- flow
 lspconfig.flow.setup({
   on_attach = on_attach,
   capabilities = capabilities
 })
 
+-- json
+-- install json language server with the following command:
+-- $ npm install -g vscode-json-languageserver
+lspconfig.jsonls.setup({
+  cmd = {"vscode-json-languageserver", "--stdio"},
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = { "json", "jsonc" },
+  settings = {
+    json = {
+      -- Schemas https://www.schemastore.org
+      schemas = {
+        {
+          fileMatch = {"package.json"},
+          url = "https://json.schemastore.org/package.json"
+        },
+        {fileMatch={"manifest.json", "manifest.webmanifest"},
+          url="https://json.schemastore.org/web-manifest-combined.json"
+        },
+        {
+          fileMatch = {"tsconfig*.json"},
+          url = "https://json.schemastore.org/tsconfig.json"
+        },
+        {
+          fileMatch = {
+            ".prettierrc",
+            ".prettierrc.json",
+            "prettier.config.json"
+          },
+          url = "https://json.schemastore.org/prettierrc.json"
+        },
+        {
+          fileMatch = {".eslintrc", ".eslintrc.json"},
+          url = "https://json.schemastore.org/eslintrc.json"
+        },
+        {
+          fileMatch = {".babelrc", ".babelrc.json", "babel.config.json"},
+          url = "https://json.schemastore.org/babelrc.json"
+        },
+        {
+          fileMatch = {"lerna.json"},
+          url = "https://json.schemastore.org/lerna.json"
+        },
+        {
+          fileMatch = {"now.json", "vercel.json"},
+          url = "https://json.schemastore.org/now.json"
+        },
+        {
+          fileMatch = {
+            ".stylelintrc",
+            ".stylelintrc.json",
+            "stylelint.config.json"
+          },
+          url = "http://json.schemastore.org/stylelintrc.json"
+        }
+      }
+    }
+  }
+})
+
+-- lua
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
