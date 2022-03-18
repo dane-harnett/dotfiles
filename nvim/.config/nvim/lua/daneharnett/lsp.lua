@@ -75,7 +75,7 @@ local load_mappings = function ()
 
   local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = true })
   vim.api.nvim_create_autocmd("CursorHold", {
-    buffer = vim.nvim_get_current_buf,
+    buffer = vim.api.nvim_get_current_buf(),
     command = "Lspsaga show_line_diagnostics",
     group = group
   })
