@@ -61,7 +61,7 @@ packer.startup(function()
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzy-native.nvim'
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- use 'jremmen/vim-ripgrep'
 
   use {
