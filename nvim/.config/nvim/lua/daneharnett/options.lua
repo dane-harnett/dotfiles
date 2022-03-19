@@ -11,7 +11,6 @@ end
 local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
-local opt = vim.opt
 
 -- global options --
 -- do i want to keep these settings?
@@ -23,15 +22,18 @@ o.completeopt='menuone,noinsert,noselect'
 o.expandtab = true
 o.filetype = 'on'
 
--- start with folds open
-opt.foldlevelstart = 99
-opt.foldnestmax = 3
-opt.foldminlines = 1
--- is it possible to have a sign for a fold?
+-- folds
+-- customize chars and start open
+o.fillchars = 'foldopen:,foldclose:'
+o.foldcolumn = 'auto'
+o.foldlevelstart = 99
+o.foldnestmax = 3
+o.foldminlines = 1
 
 o.hidden = true
 o.incsearch = true
 o.listchars = [[tab:▸ ,trail:·,space:·]]
+o.scrolloff = 8
 o.shiftwidth = 2
 o.softtabstop = 2
 o.syntax = 'on'
@@ -50,6 +52,5 @@ wo.colorcolumn = '80,100,120'
 wo.list = true
 wo.number = true
 wo.relativenumber = true
-wo.scrolloff = 8
 wo.signcolumn = 'yes'
 wo.wrap = false
