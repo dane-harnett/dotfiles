@@ -27,11 +27,25 @@ packer.startup(function()
   use 'nvim-treesitter/completion-treesitter'
 
   -- theme, icons and lines
-  use "kyazdani42/nvim-web-devicons"
+  use 'kyazdani42/nvim-web-devicons'
   use 'kaicataldo/material.vim'
-  use 'akinsho/bufferline.nvim'
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+
+  use {
+    'vim-airline/vim-airline',
+    config = function()
+      require'daneharnett.airline'
+    end,
+    requires = {
+      'vim-airline/vim-airline-themes'
+    }
+  }
+
+  use {
+    'akinsho/bufferline.nvim',
+    config = function()
+      require'daneharnett.bufferline'
+    end
+  }
 
   -- js/ts
   -- use 'leafgarland/typescript-vim'
@@ -53,9 +67,12 @@ packer.startup(function()
   use 'tami5/lspsaga.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
 
-  -- nerdtree
-  -- use 'preservim/nerdtree'
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = function()
+      require'daneharnett.nvim-tree'
+    end,
+  }
 
   -- telescope
   use 'nvim-lua/popup.nvim'
@@ -65,10 +82,10 @@ packer.startup(function()
   -- use 'jremmen/vim-ripgrep'
 
   use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require("trouble").setup {}
+      require('trouble').setup {}
     end
   }
 
@@ -90,12 +107,23 @@ packer.startup(function()
   use 'jiangmiao/auto-pairs'
 
   -- terminal
-  use 'akinsho/toggleterm.nvim'
-  -- use 'voldikss/vim-floaterm'
+  use {
+    'akinsho/toggleterm.nvim',
+    config = function()
+      require'daneharnett.toggleterm'
+    end,
+  }
 
   use 'vim-test/vim-test'
 
-  use 'norcalli/nvim-colorizer.lua'
+  use {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      require'colorizer'.setup({
+        typescriptreact={css=true}
+      })
+    end
+  }
 
   use 'lewis6991/gitsigns.nvim'
 
