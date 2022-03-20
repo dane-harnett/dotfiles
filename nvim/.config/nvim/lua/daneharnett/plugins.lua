@@ -1,5 +1,3 @@
-local vim = vim
-
 local execute = vim.api.nvim_command
 local fn = vim.fn
 -- ensure that packer is installed
@@ -128,4 +126,10 @@ packer.startup(function()
   use 'lewis6991/gitsigns.nvim'
 
   use 'tpope/vim-fugitive'
+  use {
+    'APZelos/blamer.nvim',
+    config = function()
+      vim.g.blamer_enabled = 1
+    end
+  }
 end)
