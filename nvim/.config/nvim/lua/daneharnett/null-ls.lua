@@ -25,6 +25,6 @@ null_ls.setup({
             prefer_local = "node_modules/.bin",
             timeout = 10000,
         }),
-        -- formatting.stylua,
+        formatting.stylua,
     },
 })
