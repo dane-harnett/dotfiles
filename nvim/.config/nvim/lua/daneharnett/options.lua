@@ -1,11 +1,11 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 -- Exclude these options from vscode
 if not vim.g.vscode then
-  --vim.g.material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'v
-  vim.g.material_theme_style = 'ocean'
-  vim.cmd[[colorscheme material]]
-  vim.g.colors_name = 'material'
+    --vim.g.material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'v
+    vim.g.material_theme_style = "ocean"
+    vim.cmd([[colorscheme material]])
+    vim.g.colors_name = "material"
 end
 
 local o = vim.o
@@ -18,14 +18,14 @@ local wo = vim.wo
 -- o.smartcase = true
 -- o.showmode = false
 o.backup = false
-o.completeopt='menuone,noinsert,noselect'
+o.completeopt = "menuone,noinsert,noselect"
 o.expandtab = true
-o.filetype = 'on'
+o.filetype = "on"
 
 -- folds
 -- customize chars and start open
-o.fillchars = 'foldopen:,foldclose:'
-o.foldcolumn = 'auto'
+o.fillchars = "foldopen:,foldclose:"
+o.foldcolumn = "auto"
 o.foldlevelstart = 99
 o.foldnestmax = 3
 o.foldminlines = 1
@@ -36,10 +36,10 @@ o.listchars = [[tab:▸ ,trail:·,space:·]]
 o.scrolloff = 8
 o.shiftwidth = 2
 o.softtabstop = 2
-o.syntax = 'on'
+o.syntax = "on"
 o.termguicolors = true
 o.tabstop = 2
-o.undodir = vim.fn.stdpath('config') .. '/undodir'
+o.undodir = vim.fn.stdpath("config") .. "/undodir"
 o.undofile = true
 
 -- buffer options --
@@ -48,9 +48,9 @@ bo.smartindent = true
 bo.swapfile = false
 
 -- window options --
-wo.colorcolumn = '80,100,120'
+wo.colorcolumn = "80,100,120"
 wo.list = true
 wo.number = true
 wo.relativenumber = true
-wo.signcolumn = 'yes'
+wo.signcolumn = "yes"
 wo.wrap = false
