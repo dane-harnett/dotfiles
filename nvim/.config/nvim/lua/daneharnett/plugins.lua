@@ -19,25 +19,36 @@ packer.startup(function()
   -- use 'neovim/nvim-lspconfig'
 
   -- treesitter
-  use 'nvim-treesitter/nvim-treesitter'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    requires = {
+      -- This is a basic completion source based on the treesitter api of neovim.
+      use 'nvim-treesitter/completion-treesitter'
+    },
+    config = function()
+      require'daneharnett.treesitter'
+    end
+  }
   use 'nvim-treesitter/playground'
-  use 'sheerun/vim-polyglot'
-  use 'nvim-treesitter/completion-treesitter'
 
-  -- theme, icons and lines
-  use 'kyazdani42/nvim-web-devicons'
+  -- A collection of language packs for Vim.
+  use 'sheerun/vim-polyglot'
+
+  -- theme
   use 'kaicataldo/material.vim'
 
+  -- status line (bottom of buffer)
   use {
     'vim-airline/vim-airline',
-    config = function()
-      require'daneharnett.airline'
-    end,
     requires = {
       'vim-airline/vim-airline-themes'
-    }
+    },
+    config = function()
+      require'daneharnett.airline'
+    end
   }
 
+  -- buffer line (top of buffer)
   use {
     'akinsho/bufferline.nvim',
     config = function()
@@ -55,15 +66,49 @@ packer.startup(function()
   -- }
 
   -- lsp
-  use 'neovim/nvim-lspconfig'
-  use 'onsails/lspkind-nvim'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/nvim-cmp'
-  use 'nvim-lua/lsp-status.nvim'
-  use 'anott03/nvim-lspinstall'
-  use 'tami5/lspsaga.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
+  use {
+    'neovim/nvim-lspconfig',
+    requires = {
+      'anott03/nvim-lspinstall',
+      'hrsh7th/cmp-nvim-lsp',
+      'nvim-lua/lsp-status.nvim',
+    },
+    config = function()
+      require'daneharnett.lsp'
+    end
+  }
+
+  use {
+    'tami5/lspsaga.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+    },
+    config = function()
+      require'daneharnett.lspsaga'
+    end
+  }
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {
+      'neovim/nvim-lspconfig',
+    },
+    config = function()
+      require'daneharnett.null-ls'
+    end
+  }
+
+  -- completion
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'onsails/lspkind-nvim'
+    },
+    config = function()
+      require'daneharnett.completion'
+    end
+  }
 
   use {
     'kyazdani42/nvim-tree.lua',
@@ -73,10 +118,18 @@ packer.startup(function()
   }
 
   -- telescope
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/popup.nvim',
+      'nvim-lua/plenary.nvim',
+      {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    },
+    config = function()
+      require'daneharnett.telescope'
+    end
+  }
+
   -- use 'jremmen/vim-ripgrep'
 
   use {
@@ -112,7 +165,12 @@ packer.startup(function()
     end,
   }
 
-  use 'vim-test/vim-test'
+  use {
+    'vim-test/vim-test',
+    config = function()
+      require'daneharnett.tests'
+    end
+  }
 
   use {
     'norcalli/nvim-colorizer.lua',
@@ -123,7 +181,12 @@ packer.startup(function()
     end
   }
 
-  use 'lewis6991/gitsigns.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require'daneharnett.gitsigns'
+    end
+  }
 
   use 'tpope/vim-fugitive'
   use {
