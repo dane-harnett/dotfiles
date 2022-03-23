@@ -23,7 +23,7 @@ packer.startup(function()
         "nvim-treesitter/nvim-treesitter",
         requires = {
             -- This is a basic completion source based on the treesitter api of neovim.
-            use("nvim-treesitter/completion-treesitter"),
+            "nvim-treesitter/completion-treesitter",
         },
         config = function()
             require("daneharnett.treesitter")
@@ -35,16 +35,28 @@ packer.startup(function()
     use("sheerun/vim-polyglot")
 
     -- theme
-    use("kaicataldo/material.vim")
+    use({
+        "EdenEast/nightfox.nvim",
+        config = function()
+            -- Don't apply this colorscheme in vscode
+            if not vim.g.vscode then
+                vim.cmd("colorscheme nightfox")
+            end
+        end,
+    })
 
     -- status line (bottom of buffer)
     use({
-        "vim-airline/vim-airline",
+        "nvim-lualine/lualine.nvim",
         requires = {
-            "vim-airline/vim-airline-themes",
+            "kyazdani42/nvim-web-devicons",
+            opt = true,
         },
         config = function()
-            require("daneharnett.airline")
+            -- Don't setup this plugin in vscode
+            if not vim.g.vscode then
+                require("lualine").setup()
+            end
         end,
     })
 
