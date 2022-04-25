@@ -1,7 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-export PATH="${PATH}:${HOME}/.local/bin"
-eval "$(fig init zsh pre)"
-
+. "$HOME/.fig/shell/zshrc.pre.zsh"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -171,5 +169,4 @@ if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
-
+. "$HOME/.fig/shell/zshrc.post.zsh"
