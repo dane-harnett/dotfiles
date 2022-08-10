@@ -23,6 +23,11 @@ treesitter_configs.setup({
     },
 })
 
+local context_status_ok, tscontext = pcall(require, "treesitter-context")
+if context_status_ok then
+    tscontext.setup({})
+end
+
 local group = vim.api.nvim_create_augroup("FoldsWithTreesitter", { clear = true })
 local parsers = require("nvim-treesitter.parsers").available_parsers()
 local additional_file_types = {
