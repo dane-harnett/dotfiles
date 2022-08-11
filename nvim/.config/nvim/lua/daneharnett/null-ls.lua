@@ -13,7 +13,7 @@ null_ls.setup({
             local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
             vim.api.nvim_create_autocmd("BufWritePre", {
                 buffer = bufnr,
-                callback = vim.lsp.buf.formatting_sync,
+                callback = vim.lsp.buf.format,
                 group = group,
             })
         end
