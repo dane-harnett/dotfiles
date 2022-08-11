@@ -8,19 +8,21 @@ local diagnostics = null_ls.builtins.diagnostics
 
 null_ls.setup({
     debug = false,
-    on_attach = function(client, bufnr)
-        if client.server_capabilities.document_formatting then
-            local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = bufnr,
-                callback = vim.lsp.buf.format,
-                group = group,
-            })
-        end
+    on_attach = function(_, bufnr)
+        local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format()
+            end,
+            group = group,
+        })
     end,
     sources = {
         diagnostics.eslint_d,
-        formatting.eslint_d,
+        formatting.eslint_d.with({
+            timeout = 10000,
+        }),
         formatting.prettier.with({
             prefer_local = "node_modules/.bin",
             timeout = 10000,
