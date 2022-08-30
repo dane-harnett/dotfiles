@@ -29,7 +29,7 @@ packer.startup(function()
             require("daneharnett.treesitter")
         end,
     })
-    use('nvim-treesitter/nvim-treesitter-context')
+    use("nvim-treesitter/nvim-treesitter-context")
     use("nvim-treesitter/playground")
 
     -- A collection of language packs for Vim.
@@ -67,6 +67,7 @@ packer.startup(function()
         config = function()
             require("daneharnett.bufferline")
         end,
+        tag = "v2.8.2",
     })
 
     -- js/ts
