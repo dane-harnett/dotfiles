@@ -93,8 +93,10 @@ local on_attach = function(client, bufnr)
     lsp_status.on_attach(client)
     load_mappings(bufnr)
     load_diagnostics()
+    -- Need to disable formatting for tsserver because we will use eslint or prettier instead
     if client.name == "tsserver" then
-        client.server_capabilities.document_formatting = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
     end
 end
 

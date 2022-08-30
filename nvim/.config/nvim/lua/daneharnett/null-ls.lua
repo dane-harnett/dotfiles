@@ -19,14 +19,16 @@ null_ls.setup({
         })
     end,
     sources = {
-        diagnostics.eslint_d,
+        diagnostics.eslint_d.with({
+          timeout = -1,
+        }),
         formatting.eslint_d.with({
-            timeout = 10000,
+            timeout = -1,
         }),
-        formatting.prettier.with({
-            prefer_local = "node_modules/.bin",
-            timeout = 10000,
-        }),
+        -- formatting.prettier.with({
+        --     prefer_local = "node_modules/.bin",
+        --     timeout = -1,
+        -- }),
         formatting.stylua,
     },
 })
