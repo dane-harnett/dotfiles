@@ -218,7 +218,10 @@ packer.startup(function()
     })
 
     -- editorconfig
-    use("editorconfig/editorconfig-vim")
+    use({
+        "editorconfig/editorconfig-vim",
+        commit = "d354117b72b3b43b75a29b8e816c0f91af10efe9",
+    })
 
     -- vim-smoothie for smooth scrolling
     use("psliwka/vim-smoothie")
