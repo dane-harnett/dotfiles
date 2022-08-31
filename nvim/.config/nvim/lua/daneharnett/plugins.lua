@@ -21,16 +21,26 @@ packer.startup(function()
     -- treesitter
     use({
         "nvim-treesitter/nvim-treesitter",
-        requires = {
-            -- This is a basic completion source based on the treesitter api of neovim.
-            "nvim-treesitter/completion-treesitter",
-        },
+        commit = "f0c9a186eab06d7e4dcd78c973dcb60b702ac5d2",
         config = function()
             require("daneharnett.treesitter")
         end,
+        requires = {
+            -- This is a basic completion source based on the treesitter api of neovim.
+            {
+                "nvim-treesitter/completion-treesitter",
+                commit = "45c9b2faff4785539a0d0c655440c2465fed985a",
+            },
+        },
     })
-    use("nvim-treesitter/nvim-treesitter-context")
-    use("nvim-treesitter/playground")
+    use({
+        "nvim-treesitter/nvim-treesitter-context",
+        commit = "8e88b67d0dc386d6ba1b3d09c206f19a50bc0625",
+    })
+    use({
+        "nvim-treesitter/playground",
+        commit = "90d2b3e1729363f96ce2c23f16129534df893bbf",
+    })
 
     -- A collection of language packs for Vim.
     use("sheerun/vim-polyglot")
