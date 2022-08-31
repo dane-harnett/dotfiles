@@ -63,16 +63,17 @@ packer.startup(function()
     -- status line (bottom of buffer)
     use({
         "nvim-lualine/lualine.nvim",
-        requires = {
-            "kyazdani42/nvim-web-devicons",
-            opt = true,
-        },
+        commit = "3cf45404d4ab5e3b5da283877f57b676cb78d41d",
         config = function()
             -- Don't setup this plugin in vscode
             if not vim.g.vscode then
                 require("lualine").setup()
             end
         end,
+        requires = {
+            "kyazdani42/nvim-web-devicons",
+            opt = true,
+        },
     })
 
     -- buffer line (top of buffer)
