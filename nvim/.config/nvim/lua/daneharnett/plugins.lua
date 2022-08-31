@@ -273,12 +273,16 @@ packer.startup(function()
 
     use({
         "lewis6991/gitsigns.nvim",
+        commit = "1e107c91c0c5e3ae72c37df8ffdd50f87fb3ebfa",
         config = function()
             require("daneharnett.gitsigns")
         end,
     })
 
-    use("tpope/vim-fugitive")
+    use({
+        "tpope/vim-fugitive",
+        commit = "b411b753f805b969cca856e2ae51fdbab49880df",
+    })
     use({
         "APZelos/blamer.nvim",
         config = function()
