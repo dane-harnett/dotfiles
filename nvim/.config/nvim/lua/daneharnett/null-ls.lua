@@ -29,26 +29,22 @@ null_ls.setup({
         })
     end,
     sources = {
+        -- diagnostic sources
         diagnostics.eslint_d.with({
             -- We only want this source to apply when the project uses eslint.
             condition = is_eslint_project,
             timeout = -1,
         }),
-        formatting.eslint_d.with({
-            -- We only want this source to apply when the project uses eslint.
-            condition = is_eslint_project,
-            -- This filter function should prevent eslint_d from applying any
-            -- formats that have been suggested by eslint-plugin-prettier, they
-            -- will be applied by the prettier formatter below.
-            filter = function(diagnostic)
-                return diagnostic.code ~= "prettier/prettier"
-            end,
-            timeout = -1,
-        }),
+        -- formatting sources
         formatting.prettier.with({
             -- We only want this source to apply when the project uses prettier.
             condition = is_prettier_project,
             prefer_local = "node_modules/.bin",
+            timeout = -1,
+        }),
+        formatting.eslint_d.with({
+            -- We only want this source to apply when the project uses eslint.
+            condition = is_eslint_project,
             timeout = -1,
         }),
         formatting.stylua,
