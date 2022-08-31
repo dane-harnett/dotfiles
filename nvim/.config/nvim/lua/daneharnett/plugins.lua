@@ -180,14 +180,25 @@ packer.startup(function()
     -- telescope
     use({
         "nvim-telescope/telescope.nvim",
-        requires = {
-            "nvim-lua/popup.nvim",
-            "nvim-lua/plenary.nvim",
-            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-        },
+        commit = "b923665e64380e97294af09117e50266c20c71c7",
         config = function()
             require("daneharnett.telescope")
         end,
+        requires = {
+            {
+                "nvim-lua/popup.nvim",
+                commit = "b7404d35d5d3548a82149238289fa71f7f6de4ac",
+            },
+            {
+                "nvim-lua/plenary.nvim",
+                commit = "a3dafaa937921a4eb2ae65820c3479ab561e9ba3",
+            },
+            {
+                "nvim-telescope/telescope-fzf-native.nvim",
+                commit = "6791f74e9f08a9412c43dcba805ecf2f8888bdde",
+                run = "make"
+            },
+        },
     })
 
     -- use 'jremmen/vim-ripgrep'
