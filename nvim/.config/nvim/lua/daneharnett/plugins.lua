@@ -283,8 +283,10 @@ packer.startup(function()
         "tpope/vim-fugitive",
         commit = "b411b753f805b969cca856e2ae51fdbab49880df",
     })
+
     use({
         "APZelos/blamer.nvim",
+        commit = "f4eb22a9013642c411725fdda945ae45f8d93181",
         config = function()
             vim.g.blamer_enabled = 1
         end,
