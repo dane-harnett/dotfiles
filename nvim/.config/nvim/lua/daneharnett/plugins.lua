@@ -224,7 +224,10 @@ packer.startup(function()
     })
 
     -- vim-smoothie for smooth scrolling
-    use("psliwka/vim-smoothie")
+    use({
+        "psliwka/vim-smoothie",
+        commit = "df1e324e9f3395c630c1c523d0555a01d2eb1b7e",
+    })
 
     -- comments
     use({
