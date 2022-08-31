@@ -99,46 +99,74 @@ packer.startup(function()
     -- lsp
     use({
         "neovim/nvim-lspconfig",
-        requires = {
-            "anott03/nvim-lspinstall",
-            "hrsh7th/cmp-nvim-lsp",
-            "nvim-lua/lsp-status.nvim",
-        },
+        commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
         config = function()
             require("daneharnett.lsp")
         end,
+        requires = {
+            {
+                "anott03/nvim-lspinstall",
+                commit = "1d9b385dc4d963b9ee93d4597f6010c4ada4b405",
+            },
+            {
+                "hrsh7th/cmp-nvim-lsp",
+                commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8",
+            },
+            {
+                "nvim-lua/lsp-status.nvim",
+                commit = "54f48eb5017632d81d0fd40112065f1d062d0629",
+            },
+        },
     })
 
     use({
         "tami5/lspsaga.nvim",
-        requires = {
-            "neovim/nvim-lspconfig",
-        },
+        commit = "9ec569a49aa7ff265764081acff9e5da839c13fe",
         config = function()
             require("daneharnett.lspsaga")
         end,
+        requires = {
+            {
+                "neovim/nvim-lspconfig",
+                commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
+            }
+        },
     })
     use({
         "jose-elias-alvarez/null-ls.nvim",
-        requires = {
-            "neovim/nvim-lspconfig",
-        },
+        commit = "de751688c991216f0d17ced7d5076e0c37fa383f",
         config = function()
             require("daneharnett.null-ls")
         end,
+        requires = {
+            {
+                "neovim/nvim-lspconfig",
+                commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
+            }
+        },
     })
 
     -- completion
     use({
         "hrsh7th/nvim-cmp",
-        requires = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "onsails/lspkind-nvim",
-        },
+        commit = "b5885696b1f2cbdc9f523cc09c2a786919de07d5",
         config = function()
             require("daneharnett.completion")
         end,
+        requires = {
+            {
+                "hrsh7th/cmp-nvim-lsp",
+                commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8",
+            },
+            {
+                "hrsh7th/cmp-buffer",
+                commit = "3022dbc9166796b644a841a02de8dd1cc1d311fa",
+            },
+            {
+                "onsails/lspkind-nvim",
+                commit = "57e5b5dfbe991151b07d272a06e365a77cc3d0e7",
+            },
+        },
     })
 
     use({
