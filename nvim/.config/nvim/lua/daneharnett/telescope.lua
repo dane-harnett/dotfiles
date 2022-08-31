@@ -27,6 +27,12 @@ local fixfolds = {
     end,
 }
 
+local find_files = {
+    file_ignore_patterns = { ".git/" },
+    find_command = { "rg", "--files", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+    unpack(fixfolds),
+}
+
 local telescope = require("telescope")
 telescope.setup({
     defaults = {
@@ -56,7 +62,7 @@ telescope.setup({
     },
     pickers = {
         buffers = fixfolds,
-        find_files = fixfolds,
+        find_files = find_files,
         git_files = fixfolds,
         grep_string = fixfolds,
         live_grep = fixfolds,
