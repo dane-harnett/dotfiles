@@ -247,6 +247,7 @@ packer.startup(function()
     -- terminal
     use({
         "akinsho/toggleterm.nvim",
+        commit = "cd3b4d67112fbc8bee01ea44ba5ad1eea3894714",
         config = function()
             require("daneharnett.toggleterm")
         end,
@@ -254,6 +255,7 @@ packer.startup(function()
 
     use({
         "vim-test/vim-test",
+        commit = "2da8d59fdc46d1af7b7105a578d1ace3924d1a7b",
         config = function()
             require("daneharnett.tests")
         end,
@@ -261,6 +263,7 @@ packer.startup(function()
 
     use({
         "norcalli/nvim-colorizer.lua",
+        commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6",
         config = function()
             require("colorizer").setup({
                 typescriptreact = { css = true },
