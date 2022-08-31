@@ -171,6 +171,7 @@ packer.startup(function()
 
     use({
         "kyazdani42/nvim-tree.lua",
+        commit = "011a7816b8ea1b3697687a26804535f24ece70ec",
         config = function()
             require("daneharnett.nvim-tree")
         end,
