@@ -239,7 +239,10 @@ packer.startup(function()
     })
 
     -- autopairs
-    use("jiangmiao/auto-pairs")
+    use({
+        "jiangmiao/auto-pairs",
+        commit = "39f06b873a8449af8ff6a3eee716d3da14d63a76",
+    })
 
     -- terminal
     use({
