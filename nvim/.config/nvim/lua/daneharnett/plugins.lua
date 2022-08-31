@@ -51,6 +51,7 @@ packer.startup(function()
     -- theme
     use({
         "EdenEast/nightfox.nvim",
+        commit = "e2f961859cbfb2ba38147dc59fdd2314992c8b62",
         config = function()
             -- Don't apply this colorscheme in vscode
             if not vim.g.vscode then
