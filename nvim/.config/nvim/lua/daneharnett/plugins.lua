@@ -71,8 +71,10 @@ packer.startup(function()
             end
         end,
         requires = {
-            "kyazdani42/nvim-web-devicons",
-            opt = true,
+            {
+                "kyazdani42/nvim-web-devicons",
+                commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
+            }
         },
     })
 
@@ -163,10 +165,15 @@ packer.startup(function()
 
     use({
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
         config = function()
             require("trouble").setup({})
         end,
+        requires = {
+            {
+                "kyazdani42/nvim-web-devicons",
+                commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
+            }
+        },
     })
 
     -- editorconfig
