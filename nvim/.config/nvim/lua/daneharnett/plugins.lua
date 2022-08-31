@@ -43,7 +43,10 @@ packer.startup(function()
     })
 
     -- A collection of language packs for Vim.
-    use("sheerun/vim-polyglot")
+    use({
+        "sheerun/vim-polyglot",
+        commit = "38282d58387cff48ac203f6912c05e4c8686141b",
+    })
 
     -- theme
     use({
