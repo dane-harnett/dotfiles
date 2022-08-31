@@ -232,6 +232,7 @@ packer.startup(function()
     -- comments
     use({
         "numToStr/Comment.nvim",
+        commit = "80e7746e42fa685077a7941e9022308c7ad6adf8",
         config = function()
             require("Comment").setup()
         end,
