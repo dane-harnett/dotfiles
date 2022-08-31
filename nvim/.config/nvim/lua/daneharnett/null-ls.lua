@@ -13,7 +13,8 @@ null_ls.setup({
         vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
             callback = function()
-                vim.lsp.buf.format()
+                -- Set the timeout to 10s as it kept timing out for me.
+                vim.lsp.buf.format({ timeout_ms = 10000 })
             end,
             group = group,
         })
