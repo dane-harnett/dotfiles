@@ -205,6 +205,7 @@ packer.startup(function()
 
     use({
         "folke/trouble.nvim",
+        commit = "da61737d860ddc12f78e638152834487eabf0ee5",
         config = function()
             require("trouble").setup({})
         end,
