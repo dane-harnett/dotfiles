@@ -36,10 +36,9 @@ null_ls.setup({
             timeout = -1,
         }),
         -- formatting sources
-        formatting.prettier.with({
+        formatting.prettier_d_slim.with({
             -- We only want this source to apply when the project uses prettier.
             condition = is_prettier_project,
-            prefer_local = "node_modules/.bin",
             timeout = -1,
         }),
         formatting.eslint_d.with({
