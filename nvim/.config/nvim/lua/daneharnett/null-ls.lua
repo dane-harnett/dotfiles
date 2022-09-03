@@ -14,6 +14,10 @@ local is_prettier_project = function(utils)
     return utils.root_has_file({ ".prettierrc" })
 end
 
+local should_format_with_prettier = function(utils)
+    return not is_eslint_project(utils) and is_prettier_project(utils)
+end
+
 null_ls.setup({
     diagnostics_format = "[#{c}] #{m} (#{s})",
     debug = false,
@@ -37,8 +41,10 @@ null_ls.setup({
         }),
         -- formatting sources
         formatting.prettier_d_slim.with({
-            -- We only want this source to apply when the project uses prettier.
-            condition = is_prettier_project,
+            -- We only want this source to apply when the project uses prettier
+            -- and doesn't use eslint, if eslint is used it should be configured
+            -- with eslint-plugin-prettier.
+            condition = should_format_with_prettier,
             timeout = -1,
         }),
         formatting.eslint_d.with({

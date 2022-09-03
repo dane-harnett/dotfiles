@@ -5,6 +5,10 @@ local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
     return
 end
+local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
+if not lspconfig_util_status_ok then
+    return
+end
 local lsp_status_status_ok, lsp_status = pcall(require, "lsp-status")
 if not lsp_status_status_ok then
     return
@@ -102,15 +106,11 @@ end
 
 -- typescript
 lspconfig.tsserver.setup({
+    capabilities = capabilities,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     on_attach = on_attach,
-    capabilities = capabilities,
-})
-
--- flow
-lspconfig.flow.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+    -- configure tsserver for use in monorepos, spawn one process at the root.
+    root_dir = lspconfig_util.root_pattern(".git"),
 })
 
 -- json
