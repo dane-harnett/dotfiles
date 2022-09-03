@@ -108,6 +108,12 @@ end
 lspconfig.tsserver.setup({
     capabilities = capabilities,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    init_options = {
+        maxTsServerMemory = 12288,
+        preferences = {
+            importModuleSpecifierPreference = "relative",
+        },
+    },
     on_attach = on_attach,
     -- configure tsserver for use in monorepos, spawn one process at the root.
     root_dir = lspconfig_util.root_pattern(".git"),
