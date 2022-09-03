@@ -33,6 +33,12 @@ local find_files = {
     unpack(fixfolds),
 }
 
+local find_files_including_hidden = {
+    file_ignore_patterns = { ".git/" },
+    find_command = { "rg", "--files", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--hidden" },
+    unpack(fixfolds),
+}
+
 local telescope = require("telescope")
 telescope.setup({
     defaults = {
@@ -70,3 +76,7 @@ telescope.setup({
     },
 })
 telescope.load_extension("fzf")
+
+vim.api.nvim_create_user_command("TelescopeFindFilesIncludingHidden", function()
+    require("telescope.builtin").find_files(find_files_including_hidden)
+end, {})

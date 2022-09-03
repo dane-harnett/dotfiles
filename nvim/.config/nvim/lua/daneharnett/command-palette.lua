@@ -10,6 +10,10 @@ local commands = {
         command = "Telescope live_grep",
     },
     {
+        title = "Find files including hidden",
+        command = "TelescopeFindFilesIncludingHidden",
+    },
+    {
         title = "Lsp references",
         command = "Telescope lsp_references",
     },
