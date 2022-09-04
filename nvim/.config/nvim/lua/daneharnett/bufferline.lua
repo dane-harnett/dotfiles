@@ -66,7 +66,7 @@ bufferline.setup({
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
         -- can also be a table containing 2 custom separators
         -- [focused and unfocused]. eg: { '|', '|' }
-        separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
+        separator_style = "padded_slant", -- "padded_slant" | "slant" | "thick" | "thin" | { 'any', 'any' },
         enforce_regular_tabs = true,
         always_show_bufferline = true,
         -- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
@@ -75,11 +75,17 @@ bufferline.setup({
         -- end
     },
     highlights = {
-        background = {
-            bg = "#131a24",
-        },
         fill = {
             bg = "#131a24",
+        },
+        separator = {
+            fg = "#131a24",
+        },
+        separator_selected = {
+            fg = "#131a24",
+        },
+        separator_visible = {
+            fg = "#131a24",
         },
     },
 })
