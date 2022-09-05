@@ -16,6 +16,7 @@ local telescope_actions = require("telescope.actions.set")
 -- workaround from:
 -- https://github.com/David-Kunz/vim/blob/master/init.lua#L205-L232
 local fixfolds = {
+    file_ignore_patterns = { ".git/" },
     hidden = true,
     attach_mappings = function(_)
         telescope_actions.select:enhance({
@@ -27,17 +28,17 @@ local fixfolds = {
     end,
 }
 
-local find_files = {
-    file_ignore_patterns = { ".git/" },
+local buffers = vim.tbl_extend("force", fixfolds, { preview = true })
+local find_files = vim.tbl_extend("force", fixfolds, {
     find_command = { "rg", "--files", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
-    unpack(fixfolds),
-}
-
-local find_files_including_hidden = {
-    file_ignore_patterns = { ".git/" },
+})
+local find_files_including_hidden = vim.tbl_extend("force", fixfolds, {
     find_command = { "rg", "--files", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--hidden" },
-    unpack(fixfolds),
-}
+})
+local git_files = fixfolds
+local grep_string = vim.tbl_extend("force", fixfolds, { preview = true })
+local live_grep = vim.tbl_extend("force", fixfolds, { preview = true })
+local oldfiles = fixfolds
 
 local telescope = require("telescope")
 telescope.setup({
@@ -54,6 +55,7 @@ telescope.setup({
                 width = 0.9,
             },
         },
+        preview = false,
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
@@ -67,12 +69,12 @@ telescope.setup({
         },
     },
     pickers = {
-        buffers = fixfolds,
+        buffers = buffers,
         find_files = find_files,
-        git_files = fixfolds,
-        grep_string = fixfolds,
-        live_grep = fixfolds,
-        oldfiles = fixfolds,
+        git_files = git_files,
+        grep_string = grep_string,
+        live_grep = live_grep,
+        oldfiles = oldfiles,
     },
 })
 telescope.load_extension("fzf")
