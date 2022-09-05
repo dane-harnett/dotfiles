@@ -41,6 +41,7 @@ bo.swapfile = false
 
 -- window options --
 wo.colorcolumn = "80,100,120"
+wo.cursorline = true
 wo.list = true
 wo.number = true
 wo.relativenumber = true
