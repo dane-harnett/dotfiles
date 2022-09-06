@@ -60,6 +60,15 @@ packer.startup(function()
         end,
     })
 
+    -- buffer line (top of buffer)
+    use({
+        "akinsho/bufferline.nvim",
+        config = function()
+            require("daneharnett.bufferline")
+        end,
+        tag = "v2.8.2",
+    })
+
     -- status line (bottom of buffer)
     use({
         "nvim-lualine/lualine.nvim",
@@ -76,15 +85,6 @@ packer.startup(function()
                 commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
             }
         },
-    })
-
-    -- buffer line (top of buffer)
-    use({
-        "akinsho/bufferline.nvim",
-        config = function()
-            require("daneharnett.bufferline")
-        end,
-        tag = "v2.8.2",
     })
 
     -- js/ts
