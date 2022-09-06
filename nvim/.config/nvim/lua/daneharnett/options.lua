@@ -44,6 +44,7 @@ wo.colorcolumn = "80,100,120"
 wo.cursorline = true
 wo.list = true
 wo.number = true
+wo.numberwidth = 5
 wo.relativenumber = true
 wo.signcolumn = "yes"
 wo.wrap = false
