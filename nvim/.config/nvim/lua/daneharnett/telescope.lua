@@ -29,15 +29,36 @@ local fixfolds = {
 }
 
 local buffers = vim.tbl_extend("force", fixfolds, { preview = true })
+local base_find_command = {
+    "rg",
+    "--files",
+    "--color=never",
+    "--no-heading",
+    "--with-filename",
+    "--line-number",
+    "--column",
+    "--smart-case"
+}
+local find_layout_config = {
+    horizontal = {
+        preview_width = 0,
+    },
+}
 local find_files = vim.tbl_extend("force", fixfolds, {
-    find_command = { "rg", "--files", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" },
+    find_command = base_find_command,
+    layout_config = find_layout_config,
 })
 local find_files_including_hidden = vim.tbl_extend("force", fixfolds, {
-    find_command = { "rg", "--files", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--hidden" },
+    find_command = vim.tbl_extend("force", base_find_command, { "--hidden" }),
+    layout_config = find_layout_config,
 })
 local git_files = fixfolds
 local grep_string = vim.tbl_extend("force", fixfolds, { preview = true })
-local live_grep = vim.tbl_extend("force", fixfolds, { preview = true })
+local live_grep = vim.tbl_extend("force", fixfolds, {
+    additional_args = function()
+        return { "--hidden" }
+    end,
+})
 local oldfiles = fixfolds
 
 local telescope = require("telescope")
@@ -55,7 +76,6 @@ telescope.setup({
                 width = 0.9,
             },
         },
-        preview = false,
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
         grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
