@@ -50,12 +50,15 @@ packer.startup(function()
 
     -- theme
     use({
-        "EdenEast/nightfox.nvim",
-        commit = "e2f961859cbfb2ba38147dc59fdd2314992c8b62",
+        "catppuccin/nvim",
+        as = "catppuccin",
+        commit = "047770c18ddf8081873cc6279f640c2dda725bba",
         config = function()
             -- Don't apply this colorscheme in vscode
             if not vim.g.vscode then
-                vim.cmd("colorscheme nightfox")
+                vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+                require("catppuccin").setup()
+                vim.cmd("colorscheme catppuccin")
             end
         end,
     })
