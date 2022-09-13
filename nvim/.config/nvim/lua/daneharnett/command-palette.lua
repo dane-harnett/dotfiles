@@ -37,6 +37,14 @@ local commands = {
         title = "Sync plugins (packer sync)",
         command = "PackerSync",
     },
+    {
+        title = "Harpoon: mark add file",
+        command = "lua require('harpoon.mark').add_file()",
+    },
+    {
+        title = "Harpoon: open marks in telescope",
+        command = "Telescope harpoon marks",
+    },
 }
 
 local function open_command_palette()

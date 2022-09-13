@@ -98,6 +98,7 @@ telescope.setup({
     },
 })
 telescope.load_extension("fzf")
+telescope.load_extension("harpoon")
 
 vim.api.nvim_create_user_command("TelescopeFindFilesIncludingHidden", function()
     require("telescope.builtin").find_files(find_files_including_hidden)

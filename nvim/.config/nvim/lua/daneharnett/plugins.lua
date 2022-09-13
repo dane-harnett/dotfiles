@@ -180,6 +180,17 @@ packer.startup(function()
         end,
     })
 
+    use({
+        "ThePrimeagen/harpoon",
+        commit = "f4aff5bf9b512f5a85fe20eb1dcf4a87e512d971",
+        requires = {
+            {
+                "nvim-lua/plenary.nvim",
+                commit = "a3dafaa937921a4eb2ae65820c3479ab561e9ba3",
+            },
+        },
+    })
+
     -- telescope
     use({
         "nvim-telescope/telescope.nvim",
