@@ -301,8 +301,5 @@ packer.startup(function()
     use({
         "APZelos/blamer.nvim",
         commit = "f4eb22a9013642c411725fdda945ae45f8d93181",
-        config = function()
-            vim.g.blamer_enabled = 1
-        end,
     })
 end)

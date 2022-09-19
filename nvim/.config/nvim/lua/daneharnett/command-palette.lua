@@ -45,6 +45,10 @@ local commands = {
         title = "Harpoon: open marks in telescope",
         command = "Telescope harpoon marks",
     },
+    {
+        title = "Blamer: toggle",
+        command = "BlamerToggle",
+    },
 }
 
 local function open_command_palette()
