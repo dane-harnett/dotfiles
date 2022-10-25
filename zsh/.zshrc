@@ -2,11 +2,7 @@
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+source "$HOME/.zsh/spaceship/spaceship.zsh"
 
 # @see: https://github.com/denysdovhan/spaceship-prompt/blob/master/docs/Options.md
 SPACESHIP_PROMPT_ORDER=(
@@ -79,6 +75,7 @@ SPACESHIP_RPROMPT_ORDER=(
 plugins=(
   git
   per-directory-history
+  spaceship-vi-mode
   zsh-autosuggestions
 )
 
@@ -118,12 +115,14 @@ source $ZSH/oh-my-zsh.sh
 # set keybinds to vi mappings
 bindkey -v
 
-ssh-agent | source /dev/stdin > /dev/null
-ssh-add -q --apple-use-keychain ~/.ssh/github
+if [ -f "$HOME/.ssh/github" ]; then
+  ssh-agent | source /dev/stdin > /dev/null
+  ssh-add -q --apple-use-keychain ~/.ssh/github
+fi
 
 # ruby
 if which ruby >/dev/null && which gem >/dev/null; then
- PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+  PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
 # fzf auto-completion
@@ -156,6 +155,8 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+# Load nvm bash completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # Make vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
