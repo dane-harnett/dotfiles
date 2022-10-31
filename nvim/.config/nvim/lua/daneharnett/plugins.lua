@@ -79,25 +79,26 @@ packer.startup(function()
         config = function()
             -- Don't setup this plugin in vscode
             if not vim.g.vscode then
-                require("lualine").setup()
+                require("lualine").setup({
+                    sections = {
+                        lualine_c = {
+                            "lsp_progress"
+                        }
+                    }
+                })
             end
         end,
         requires = {
             {
                 "kyazdani42/nvim-web-devicons",
                 commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
+            },
+            {
+                "arkav/lualine-lsp-progress",
+                commit = "56842d097245a08d77912edf5f2a69ba29f275d7",
             }
         },
     })
-
-    -- js/ts
-    -- use 'leafgarland/typescript-vim'
-    -- use 'pangloss/vim-javascript'
-    -- use 'peitalin/vim-jsx-typescript'
-    -- use {
-    --   'prettier/vim-prettier',
-    --   run = 'yarn install'
-    -- }
 
     -- lsp
     use({
