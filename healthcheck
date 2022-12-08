@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# This script is used to check if a new computer has all the desired programs
+# installed, if not it helps instruct how to install them.
+
+# check for brew
+if [[ ! $(command -v "brew") ]]; then
+  echo -e "brew not installed. go to https://brew.sh/"
+else
+  echo -e "brew installed."
+fi
+# check for stow
+if [[ ! $(command -v "stow") ]]; then
+  echo -e "stow not installed. run brew install stow"
+else
+  echo -e "stow installed."
+fi
+
+# check for nvm
+if [[ ! -f "$NVM_DIR/nvm.sh" ]]; then
+  echo -e "nvm not installed. go to https://github.com/nvm-sh/nvm"
+else
+  echo -e "nvm installed."
+fi
+# check for node (and npm)
+if [[ ! $(command -v "node") ]]; then
+  echo -e "node not installed. run nvm install default"
+else
+  echo -e "node installed."
+fi
+
+# check for neovim
+if [[ ! $(command -v "nvim") ]]; then
+  echo -e "neovim not installed. run brew install neovim"
+else
+  echo -e "neovim installed."
+fi
+# check for typescript-language-server
+# this is used by neovims lsp in my config
+if [[ ! $(command -v "typescript-language-server") ]]; then
+  echo -e "typescript-language-server not installed. run npm install -g typescript-language-server"
+else
+  echo -e "typescript-language-server installed."
+fi
+# check for eslint_d
+# this is used by neovims lsp in my config
+if [[ ! $(command -v "eslint_d") ]]; then
+  echo -e "eslint_d not installed. run npm install -g eslint_d"
+else
+  echo -e "eslint_d installed."
+fi
+
+# check for tmux
+if [[ ! $(command -v "tmux") ]]; then
+  echo -e "tmux not installed. run: brew install starship"
+else
+  echo -e "tmux installed."
+fi
+# check for zsh
+if [[ ! $(command -v "zsh") ]]; then
+  echo -e "zsh not installed. wut."
+else
+  echo -e "zsh installed."
+fi
+# check for oh-my-zsh
+if [[ -z "${ZSH}" ]]; then
+  echo -e "oh-my-zsh not installed. go to https://ohmyz.sh/"
+else
+  echo -e "oh-my-zsh installed."
+fi
+# check for starship prompt
+if [[ ! $(command -v "starship") ]]; then
+  echo -e "starship not installed. run: brew install starship"
+else
+  echo -e "starship installed."
+fi
