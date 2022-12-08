@@ -13,69 +13,54 @@ plugins=(
   zsh-autosuggestions
 )
 
-# initialize oh-my-zsh
+# Initialize oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# my custom stuff
+# My custom configuration
 
-# set keybinds to vi mappings
+# Set keybinds to vi mappings
 bindkey -v
+# Ctrl+space accepts the auto-suggestion
+bindkey '^ ' autosuggest-accept
 
-# if my personal github ssh key exists then configure ssh-agent to use it
+# If my personal github ssh key exists then configure ssh-agent to use it
 if [ -f "$HOME/.ssh/github" ]; then
   ssh-agent | source /dev/stdin > /dev/null
   ssh-add -q --apple-use-keychain ~/.ssh/github
 fi
 
-# ruby
-if which ruby >/dev/null && which gem >/dev/null; then
-  PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-fi
+# Initialize nvm if it's installed
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  source "$NVM_DIR/nvm.sh"
 
-# ctrl+space accepts the auto-suggestion
-bindkey '^ ' autosuggest-accept
+  # Whenever changing directory... get nvm to check the current directory for
+  # an nvmrc file and switch to the appropriate node version automatically.
+  autoload -U add-zsh-hook
+  load-nvmrc() {
+    local node_version="$(nvm version)"
+    local nvmrc_path="$(nvm_find_nvmrc)"
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+    if [ -n "$nvmrc_path" ]; then
+      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
+      if [ "$nvmrc_node_version" = "N/A" ]; then
+        nvm install
+      elif [ "$nvmrc_node_version" != "$node_version" ]; then
+        nvm use
+      fi
+    elif [ "$node_version" != "$(nvm version default)" ]; then
+      echo "Reverting to nvm default version"
+      nvm use default
     fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-# Load nvm bash completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# Make vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
-export KEYTIMEOUT=1
-
-# ensure terminal colors work inside tmux
-if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
-
-# ghci
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
-
-if [[ ! $(command -v "starship") ]]; then
-  echo -e "starship not installed. run: brew install starship"
-else
-  eval "$(starship init zsh)"
+  }
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+  # Load nvm bash completion
+  [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
 fi
+
+# Initialize starship if it's installed
+[[ $(command -v "starship") ]] && eval "$(starship init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
