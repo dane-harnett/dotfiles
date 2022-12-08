@@ -82,9 +82,9 @@ packer.startup(function()
                 require("lualine").setup({
                     sections = {
                         lualine_c = {
-                            "lsp_progress"
-                        }
-                    }
+                            "lsp_progress",
+                        },
+                    },
                 })
             end
         end,
@@ -96,7 +96,7 @@ packer.startup(function()
             {
                 "arkav/lualine-lsp-progress",
                 commit = "56842d097245a08d77912edf5f2a69ba29f275d7",
-            }
+            },
         },
     })
 
@@ -133,7 +133,7 @@ packer.startup(function()
             {
                 "neovim/nvim-lspconfig",
                 commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
-            }
+            },
         },
     })
     use({
@@ -146,7 +146,7 @@ packer.startup(function()
             {
                 "neovim/nvim-lspconfig",
                 commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
-            }
+            },
         },
     })
 
@@ -195,7 +195,7 @@ packer.startup(function()
     -- telescope
     use({
         "nvim-telescope/telescope.nvim",
-        commit = "b923665e64380e97294af09117e50266c20c71c7",
+        commit = "cabf991b1d3996fa6f3232327fc649bbdf676496",
         config = function()
             require("daneharnett.telescope")
         end,
@@ -211,7 +211,7 @@ packer.startup(function()
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 commit = "6791f74e9f08a9412c43dcba805ecf2f8888bdde",
-                run = "make"
+                run = "make",
             },
         },
     })
@@ -228,7 +228,7 @@ packer.startup(function()
             {
                 "kyazdani42/nvim-web-devicons",
                 commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
-            }
+            },
         },
     })
 

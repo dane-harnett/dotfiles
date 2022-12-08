@@ -10,7 +10,7 @@ local load_mappings = function()
 end
 load_mappings()
 
-local telescope_actions = require("telescope.actions.set")
+local telescope_actions_set = require("telescope.actions.set")
 -- FileType event doesn't fire when opening from telescope
 -- https://github.com/nvim-telescope/telescope.nvim/issues/699
 -- workaround from:
@@ -19,7 +19,7 @@ local fixfolds = {
     file_ignore_patterns = { ".git/" },
     hidden = true,
     attach_mappings = function(_)
-        telescope_actions.select:enhance({
+        telescope_actions_set.select:enhance({
             post = function()
                 vim.cmd(":normal! zx")
             end,
@@ -37,7 +37,7 @@ local base_find_command = {
     "--with-filename",
     "--line-number",
     "--column",
-    "--smart-case"
+    "--smart-case",
 }
 local find_layout_config = {
     horizontal = {
@@ -62,6 +62,7 @@ local live_grep = vim.tbl_extend("force", fixfolds, {
 local oldfiles = fixfolds
 
 local telescope = require("telescope")
+local telescope_actions = require("telescope.actions")
 telescope.setup({
     defaults = {
         file_sorter = require("telescope.sorters").get_fzy_sorter,
@@ -74,6 +75,12 @@ telescope.setup({
             horizontal = {
                 preview_width = 40,
                 width = 0.9,
+            },
+        },
+        mappings = {
+            i = {
+                ["<C-D>"] = telescope_actions.cycle_history_next,
+                ["<C-U>"] = telescope_actions.cycle_history_prev,
             },
         },
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
