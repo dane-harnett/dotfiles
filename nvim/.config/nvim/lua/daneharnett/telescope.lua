@@ -58,6 +58,7 @@ local live_grep = vim.tbl_extend("force", fixfolds, {
     additional_args = function()
         return { "--hidden" }
     end,
+    -- find_command = base_find_command,
 })
 local oldfiles = fixfolds
 
@@ -109,4 +110,150 @@ telescope.load_extension("harpoon")
 
 vim.api.nvim_create_user_command("TelescopeFindFilesIncludingHidden", function()
     require("telescope.builtin").find_files(find_files_including_hidden)
+end, {})
+
+local TMP_GLOB_PATTERN_FILENAME = "/tmp/nvim_daneharnett_find_panel_include_globs"
+
+local function read_default_glob_pattern()
+    local tmp_glob_pattern_file = nil
+
+    local read_tmp_glob_pattern_file = function()
+        tmp_glob_pattern_file = io.input(TMP_GLOB_PATTERN_FILENAME)
+    end
+
+    if pcall(read_tmp_glob_pattern_file) then
+        return tmp_glob_pattern_file:read()
+    else
+        return ""
+    end
+end
+
+local function save_default_glob_pattern(glob_pattern)
+    local tmp_glob_pattern_file = io.output(TMP_GLOB_PATTERN_FILENAME)
+    tmp_glob_pattern_file:write(glob_pattern)
+    tmp_glob_pattern_file:flush()
+end
+
+-- My custom find panel implementation
+-- TODO: have a keymap in telescope that closes the picker and re-prompts
+-- TODO?: implement with a better ui
+vim.api.nvim_create_user_command("TelescopeFindPanel", function()
+    local default_glob_pattern = read_default_glob_pattern()
+
+    local glob_pattern = {}
+
+    vim.ui.input({
+        default = default_glob_pattern,
+        prompt = "Glob pattern: ",
+    }, function(input_glob_pattern)
+        if input_glob_pattern == nil then
+            -- User aborted the input dialog.
+            input_glob_pattern = "*"
+        end
+
+        save_default_glob_pattern(input_glob_pattern)
+
+        local split_patterns = vim.split(input_glob_pattern, ",")
+
+        for _, pattern in pairs(split_patterns) do
+            pattern = string.gsub(pattern, "^%s*(.-)%s*$", "%1")
+            if pattern ~= "" then
+                -- prepend and append `*` to the pattern
+                -- in order to match anywhere within the file path.
+                if string.sub(pattern, 0) ~= "*" then
+                    pattern = string.format("*%s", pattern)
+                end
+                if string.sub(pattern, -1) ~= "*" then
+                    pattern = string.format("%s*", pattern)
+                end
+                table.insert(glob_pattern, pattern)
+            end
+        end
+
+        local find_panel = vim.tbl_extend("force", fixfolds, {
+            glob_pattern = glob_pattern,
+        })
+
+        require("telescope.builtin").live_grep(find_panel)
+    end)
+end, {})
+
+local conf = require("telescope.config").values
+local finders = require("telescope.finders")
+local make_entry = require("telescope.make_entry")
+local pickers = require("telescope.pickers")
+
+vim.api.nvim_create_user_command("TelescopeLiveGrepWithGlobs", function()
+    local live_grep_with_globs = finders.new_async_job({
+        command_generator = function(prompt)
+            -- @todo: dont generate a command if we dont have both
+            -- glob(s) and search string
+            if not prompt or prompt == "" then
+                return nil
+            end
+
+            local prompt_split = vim.split(prompt, "  ")
+
+            if not prompt_split[1] or not prompt_split[2] then
+                return nil
+            end
+
+            local args = { "rg" }
+
+            if prompt_split[1] then
+                local pattern = prompt_split[1]
+                local split_pattern = vim.split(pattern, ",")
+
+                for _, patt in pairs(split_pattern) do
+                    patt = string.gsub(patt, "^%s*(.-)%s*$", "%1")
+                    if patt ~= "" then
+                        -- prepend and append `*` to the pattern
+                        -- in order to match anywhere within the file path.
+                        if string.sub(patt, 0) ~= "*" then
+                            patt = string.format("*%s", patt)
+                        end
+                        if string.sub(patt, -1) ~= "*" then
+                            patt = string.format("%s*", patt)
+                        end
+                        table.insert(args, string.format("--glob=%s", patt))
+                    end
+                end
+
+                save_default_glob_pattern(prompt_split[1])
+            end
+
+            if prompt_split[2] then
+                table.insert(args, string.format("--regexp=%s", prompt_split[2]))
+            end
+
+            local command = vim.tbl_flatten({
+                args,
+                {
+                    "--color=never",
+                    "--no-heading",
+                    "--with-filename",
+                    "--line-number",
+                    "--column",
+                    "--smart-case",
+                    "--hidden",
+                },
+            })
+
+            print(vim.inspect(command))
+
+            return command
+        end,
+        entry_maker = make_entry.gen_from_vimgrep(),
+    })
+
+    pickers
+        .new({}, {
+            debounce = 100,
+            default_text = read_default_glob_pattern(),
+            prompt_title = "Live grep with globs",
+            finder = live_grep_with_globs,
+            previewer = conf.grep_previewer({}),
+            sorter = require("telescope.sorters").highlighter_only(),
+        })
+        :find()
 end, {})
