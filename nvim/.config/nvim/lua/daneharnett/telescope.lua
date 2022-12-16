@@ -209,6 +209,8 @@ vim.api.nvim_create_user_command("TelescopeLiveGrepWithGlobs", function()
                 end
             end
 
+            table.insert(args, "--glob=!.git/")
+
             save_default_glob_pattern(prompt_split[1])
 
             -- apply the search query
