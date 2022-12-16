@@ -53,12 +53,21 @@ local commands = {
         title = "Blamer: toggle",
         command = "BlamerToggle",
     },
+    {
+        title = "Resume last cached telescope picker",
+        command = "Telescope resume",
+    },
 }
 
 local function open_command_palette()
     local opts = {}
     pickers
         .new(opts, {
+            -- This option ensures that the command palette is not cahhed
+            -- therefore ensuring that it does not get resumed when triggering
+            -- Telescope resume, meaning I can trigger resume from the command
+            -- palette itself.
+            cache_picker = false,
             prompt_title = "Command palette",
             finder = finders.new_table({
                 results = commands,
@@ -71,7 +80,7 @@ local function open_command_palette()
                 end,
             }),
             sorter = conf.generic_sorter(opts),
-            attach_mappings = function(prompt_bufnr, map)
+            attach_mappings = function(prompt_bufnr)
                 actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
                     local selection = action_state.get_selected_entry()
