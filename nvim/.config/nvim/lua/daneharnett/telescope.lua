@@ -186,37 +186,33 @@ local pickers = require("telescope.pickers")
 vim.api.nvim_create_user_command("TelescopeLiveGrepWithGlobs", function()
     local live_grep_with_globs = finders.new_async_job({
         command_generator = function(prompt)
-            -- @todo: dont generate a command if we dont have both
-            -- glob(s) and search string
             if not prompt or prompt == "" then
                 return nil
             end
 
             local prompt_split = vim.split(prompt, "  ")
 
-            if not prompt_split[1] or not prompt_split[2] then
+            if not prompt_split[1] or not prompt_split[2] or prompt_split[2] == "" then
                 return nil
             end
 
             local args = { "rg" }
 
-            if prompt_split[1] then
-                local pattern = prompt_split[1]
-                local split_pattern = vim.split(pattern, ",")
+            -- apply the globs
+            local pattern = prompt_split[1]
+            local split_pattern = vim.split(pattern, ",")
 
-                for _, patt in pairs(split_pattern) do
-                    patt = string.gsub(patt, "^%s*(.-)%s*$", "%1")
-                    if patt ~= "" then
-                        table.insert(args, string.format("--glob=%s", patt))
-                    end
+            for _, patt in pairs(split_pattern) do
+                patt = string.gsub(patt, "^%s*(.-)%s*$", "%1")
+                if patt ~= "" then
+                    table.insert(args, string.format("--glob=%s", patt))
                 end
-
-                save_default_glob_pattern(prompt_split[1])
             end
 
-            if prompt_split[2] then
-                table.insert(args, string.format("--regexp=%s", prompt_split[2]))
-            end
+            save_default_glob_pattern(prompt_split[1])
+
+            -- apply the search query
+            table.insert(args, string.format("--regexp=%s", prompt_split[2]))
 
             local command = vim.tbl_flatten({
                 args,
