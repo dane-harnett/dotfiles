@@ -207,14 +207,6 @@ vim.api.nvim_create_user_command("TelescopeLiveGrepWithGlobs", function()
                 for _, patt in pairs(split_pattern) do
                     patt = string.gsub(patt, "^%s*(.-)%s*$", "%1")
                     if patt ~= "" then
-                        -- prepend and append `*` to the pattern
-                        -- in order to match anywhere within the file path.
-                        if string.sub(patt, 0) ~= "*" then
-                            patt = string.format("*%s", patt)
-                        end
-                        if string.sub(patt, -1) ~= "*" then
-                            patt = string.format("%s*", patt)
-                        end
                         table.insert(args, string.format("--glob=%s", patt))
                     end
                 end
