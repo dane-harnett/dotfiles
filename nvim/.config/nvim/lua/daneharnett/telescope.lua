@@ -184,6 +184,28 @@ local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
 local pickers = require("telescope.pickers")
 
+local TMP_LGWG_PROMPT_FILENAME = "/tmp/nvim_daneharnett_live_grep_with_globs_prompt"
+
+local function read_saved_lgwg_prompt()
+    local tmp_file = nil
+
+    local read_file = function()
+        tmp_file = io.input(TMP_LGWG_PROMPT_FILENAME)
+    end
+
+    if pcall(read_file) then
+        return tmp_file:read()
+    else
+        return ""
+    end
+end
+
+local function save_lgwg_prompt(prompt)
+    local tmp_file = io.output(TMP_LGWG_PROMPT_FILENAME)
+    tmp_file:write(prompt)
+    tmp_file:flush()
+end
+
 vim.api.nvim_create_user_command("TelescopeLiveGrepWithGlobs", function()
     local live_grep_with_globs = finders.new_async_job({
         command_generator = function(prompt)
@@ -212,7 +234,7 @@ vim.api.nvim_create_user_command("TelescopeLiveGrepWithGlobs", function()
 
             table.insert(args, "--glob=!.git/")
 
-            save_default_glob_pattern(prompt_split[1])
+            save_lgwg_prompt(prompt)
 
             -- apply the search query
             table.insert(args, string.format("--regexp=%s", prompt_split[2]))
@@ -240,7 +262,7 @@ vim.api.nvim_create_user_command("TelescopeLiveGrepWithGlobs", function()
     pickers
         .new({}, {
             debounce = 100,
-            default_text = read_default_glob_pattern(),
+            default_text = read_saved_lgwg_prompt(),
             prompt_title = "Live grep with globs",
             finder = live_grep_with_globs,
             previewer = conf.grep_previewer({}),
