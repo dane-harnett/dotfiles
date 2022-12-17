@@ -116,7 +116,20 @@ lspconfig.tsserver.setup({
     },
     on_attach = on_attach,
     -- configure tsserver for use in monorepos, spawn one process at the root.
-    root_dir = lspconfig_util.root_pattern(".git"),
+    -- check for tsconfig.json so we don't conflict with deno projects.
+    root_dir = function(filepath)
+        return (
+            lspconfig_util.root_pattern(".git")(filepath)
+            and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+        )
+    end,
+})
+-- deno
+lspconfig.denols.setup({
+    capabilities = capabilities,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    on_attach = on_attach,
+    root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
 })
 
 -- json

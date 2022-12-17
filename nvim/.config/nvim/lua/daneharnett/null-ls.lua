@@ -14,6 +14,10 @@ local is_prettier_project = function(utils)
     return utils.root_has_file({ ".prettierrc" })
 end
 
+local is_deno_project = function(utils)
+    return utils.root_has_file({ "deno.json" })
+end
+
 local should_format_with_prettier = function(utils)
     return not is_eslint_project(utils) and is_prettier_project(utils)
 end
@@ -37,6 +41,11 @@ null_ls.setup({
         diagnostics.eslint_d.with({
             -- We only want this source to apply when the project uses eslint.
             condition = is_eslint_project,
+            timeout = -1,
+        }),
+        -- formatting sources
+        formatting.deno_fmt.with({
+            condition = is_deno_project,
             timeout = -1,
         }),
         -- formatting sources
