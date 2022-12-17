@@ -153,14 +153,14 @@ packer.startup(function()
     -- completion
     use({
         "hrsh7th/nvim-cmp",
-        commit = "b5885696b1f2cbdc9f523cc09c2a786919de07d5",
+        commit = "8bbaeda725d5db6e4e1be2867a64b43bf547cf06",
         config = function()
             require("daneharnett.completion")
         end,
         requires = {
             {
                 "hrsh7th/cmp-nvim-lsp",
-                commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8",
+                commit = "59224771f91b86d1de12570b4070fe4ad7cd1eeb",
             },
             {
                 "hrsh7th/cmp-buffer",
@@ -168,7 +168,15 @@ packer.startup(function()
             },
             {
                 "onsails/lspkind-nvim",
-                commit = "57e5b5dfbe991151b07d272a06e365a77cc3d0e7",
+                commit = "c68b3a003483cf382428a43035079f78474cd11e",
+            },
+            {
+                "L3MON4D3/LuaSnip",
+                commit = "8b25e74761eead3dc47ce04b5e017fd23da7ad7e",
+            },
+            {
+                "saadparwaiz1/cmp_luasnip",
+                commit = "18095520391186d634a0045dacaa346291096566",
             },
         },
     })
