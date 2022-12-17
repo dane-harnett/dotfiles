@@ -34,8 +34,12 @@ local commands = {
         command = "Telescope git_commits",
     },
     {
-        title = "Diagnostics",
+        title = "List diagnostics for workspace",
         command = "Telescope diagnostics",
+    },
+    {
+        title = "List diagnostics for current file",
+        command = "Telescope diagnostics bufnr=0",
     },
     {
         title = "Sync plugins (packer sync)",
