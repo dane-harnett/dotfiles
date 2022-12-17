@@ -8,6 +8,7 @@ local load_mappings = function()
     vim.keymap.set("n", "<LEADER>lb", "<CMD>Telescope buffers<CR>")
     vim.keymap.set("n", "<LEADER>lg", "<CMD>Telescope live_grep<CR>")
     vim.keymap.set("n", "<LEADER>tr", "<CMD>Telescope resume<CR>")
+    vim.keymap.set("n", "<LEADER>ff", "<CMD>TelescopeLiveGrepWithGlobs<CR>")
 end
 load_mappings()
 
