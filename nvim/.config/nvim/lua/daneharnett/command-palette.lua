@@ -57,6 +57,10 @@ local commands = {
         title = "Resume last cached telescope picker",
         command = "Telescope resume",
     },
+    {
+        title = "LSP: rename",
+        command = vim.lsp.buf.rename,
+    },
 }
 
 local function open_command_palette()
@@ -85,7 +89,11 @@ local function open_command_palette()
                     actions.close(prompt_bufnr)
                     local selection = action_state.get_selected_entry()
                     vim.schedule(function()
-                        vim.cmd(selection.value.command)
+                        if type(selection.value.command) == "function" then
+                            selection.value.command()
+                        else
+                            vim.cmd(selection.value.command)
+                        end
                     end)
                 end)
                 return true
