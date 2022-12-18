@@ -9,10 +9,6 @@ local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util"
 if not lspconfig_util_status_ok then
     return
 end
-local lsp_status_status_ok, lsp_status = pcall(require, "lsp-status")
-if not lsp_status_status_ok then
-    return
-end
 local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not cmp_nvim_lsp_status_ok then
     return
@@ -20,8 +16,6 @@ end
 
 local client_capabilities = vim.lsp.protocol.make_client_capabilities()
 local capabilities = cmp_nvim_lsp.update_capabilities(client_capabilities)
-
-lsp_status.register_progress()
 
 -- Diagnostics
 local load_diagnostics = function()
@@ -94,7 +88,6 @@ end
 
 local on_attach = function(client, bufnr)
     print("Attaching to " .. client.name .. " in buffer " .. bufnr)
-    lsp_status.on_attach(client)
     load_mappings(bufnr)
     load_diagnostics()
     -- Need to disable formatting for tsserver because we will use eslint or prettier instead

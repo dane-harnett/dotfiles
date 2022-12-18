@@ -15,8 +15,8 @@ packer.init({
 --- startup and add configure plugins
 packer.startup(function()
     local use = use
-    -- add your plugins here like:
-    -- use 'neovim/nvim-lspconfig'
+
+    use("wbthomason/packer.nvim")
 
     -- treesitter
     use({
@@ -79,23 +79,13 @@ packer.startup(function()
         config = function()
             -- Don't setup this plugin in vscode
             if not vim.g.vscode then
-                require("lualine").setup({
-                    sections = {
-                        lualine_c = {
-                            "lsp_progress",
-                        },
-                    },
-                })
+                require("lualine").setup({})
             end
         end,
         requires = {
             {
                 "kyazdani42/nvim-web-devicons",
                 commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
-            },
-            {
-                "arkav/lualine-lsp-progress",
-                commit = "56842d097245a08d77912edf5f2a69ba29f275d7",
             },
         },
     })
@@ -105,20 +95,34 @@ packer.startup(function()
         "neovim/nvim-lspconfig",
         commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
         config = function()
+            require("mason").setup()
+            require("mason-lspconfig").setup({
+                ensure_installed = {
+                    "denols",
+                    "jsonls",
+                    "sumneko_lua",
+                    "tsserver",
+                },
+            })
             require("daneharnett.lsp")
+            require("fidget").setup({})
         end,
         requires = {
             {
-                "anott03/nvim-lspinstall",
-                commit = "1d9b385dc4d963b9ee93d4597f6010c4ada4b405",
+                "williamboman/mason.nvim",
+                commit = "bfee884583ea347e5d1467839ac5e08ca01f66a3",
+            },
+            {
+                "williamboman/mason-lspconfig.nvim",
+                commit = "e8bd50153b94cc5bbfe3f59fc10ec7c4902dd526",
             },
             {
                 "hrsh7th/cmp-nvim-lsp",
                 commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8",
             },
             {
-                "nvim-lua/lsp-status.nvim",
-                commit = "54f48eb5017632d81d0fd40112065f1d062d0629",
+                "j-hui/fidget.nvim",
+                commit = "44585a0c0085765195e6961c15529ba6c5a2a13b",
             },
         },
     })
