@@ -113,8 +113,8 @@ lspconfig.tsserver.setup({
     root_dir = function(filepath)
         return (
             lspconfig_util.root_pattern(".git")(filepath)
-            and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-        )
+                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+            )
     end,
 })
 -- deno
@@ -129,10 +129,10 @@ lspconfig.denols.setup({
 -- install json language server with the following command:
 -- $ npm install -g vscode-json-languageserver
 lspconfig.jsonls.setup({
-    cmd = { "vscode-json-languageserver", "--stdio" },
-    on_attach = on_attach,
     capabilities = capabilities,
+    cmd = { "vscode-json-languageserver", "--stdio" },
     filetypes = { "json", "jsonc" },
+    on_attach = on_attach,
     settings = {
         json = {
             -- Schemas https://www.schemastore.org
@@ -192,6 +192,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 lspconfig.sumneko_lua.setup({
+    capabilities = capabilities,
     on_attach = on_attach,
     settings = {
         Lua = {
@@ -210,4 +211,21 @@ lspconfig.sumneko_lua.setup({
             },
         },
     },
+})
+
+-- rust
+lspconfig.rust_analyzer.setup({
+    capabilities = capabilities,
+    -- custom on_attach here because I'm using rust_analyzer to format.
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        local group = vim.api.nvim_create_augroup("RustLspFormatting", { clear = true })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format()
+            end,
+            group = group,
+        })
+    end,
 })

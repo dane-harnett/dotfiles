@@ -100,6 +100,7 @@ packer.startup(function()
                 ensure_installed = {
                     "denols",
                     "jsonls",
+                    "rust_analyzer",
                     "sumneko_lua",
                     "tsserver",
                 },
