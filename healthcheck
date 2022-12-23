@@ -16,15 +16,15 @@ else
   echo -e "stow installed."
 fi
 
-# check for nvm
-if [[ ! -f "$NVM_DIR/nvm.sh" ]]; then
-  echo -e "nvm not installed. go to https://github.com/nvm-sh/nvm"
+# check for fast node manager (fnm)
+if [[ ! $(command -v "fnm") ]]; then
+  echo -e "fnm not installed. run brew install fnm"
 else
-  echo -e "nvm installed."
+  echo -e "fnm installed."
 fi
 # check for node (and npm)
 if [[ ! $(command -v "node") ]]; then
-  echo -e "node not installed. run nvm install default"
+  echo -e "node not installed. run fnm install <VERSION>"
 else
   echo -e "node installed."
 fi
