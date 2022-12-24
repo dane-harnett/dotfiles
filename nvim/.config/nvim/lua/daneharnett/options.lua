@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-
 local o = vim.o
 local bo = vim.bo
 local wo = vim.wo
