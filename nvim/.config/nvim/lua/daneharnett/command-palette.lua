@@ -42,10 +42,6 @@ local commands = {
         command = "Telescope diagnostics bufnr=0",
     },
     {
-        title = "Sync plugins (packer sync)",
-        command = "PackerSync",
-    },
-    {
         title = "Harpoon: mark add file",
         command = "lua require('harpoon.mark').add_file()",
     },

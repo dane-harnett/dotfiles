@@ -40,7 +40,7 @@ function M.setup()
     })
 
     local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-    local capabilities = cmp_nvim_lsp.update_capabilities(client_capabilities)
+    local capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
 
     -- Diagnostics
     local load_diagnostics = function()
@@ -138,8 +138,8 @@ function M.setup()
         root_dir = function(filepath)
             return (
                 lspconfig_util.root_pattern(".git")(filepath)
-                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-            )
+                    and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+                )
         end,
     })
     -- deno

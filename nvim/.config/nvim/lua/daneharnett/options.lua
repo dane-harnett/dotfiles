@@ -27,7 +27,6 @@ o.scrolloff = 8
 o.shiftwidth = 2
 o.softtabstop = 2
 o.syntax = "on"
-o.termguicolors = true
 o.tabstop = 2
 o.undodir = vim.fn.stdpath("config") .. "/undodir"
 o.undofile = true

@@ -1,30 +1,12 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
--- ensure that packer is installed
-local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-    execute("packadd packer.nvim")
-end
-vim.cmd("packadd packer.nvim")
-local packer = require("packer")
-local util = require("packer.util")
-packer.init({
-    package_root = util.join_paths(vim.fn.stdpath("data"), "site", "pack"),
-})
-
 local plugins = {
-    {
-        "wbthomason/packer.nvim",
-    },
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
         commit = "f0c9a186eab06d7e4dcd78c973dcb60b702ac5d2",
-        config = function()
+        init = function()
             require("daneharnett.treesitter").setup()
         end,
-        requires = {
+        dependencies = {
             -- This is a basic completion source based on the treesitter api of neovim.
             {
                 "nvim-treesitter/completion-treesitter",
@@ -48,28 +30,28 @@ local plugins = {
     -- theme
     {
         "catppuccin/nvim",
-        as = "catppuccin",
+        name = "catppuccin",
         commit = "047770c18ddf8081873cc6279f640c2dda725bba",
-        config = function()
+        init = function()
             require("daneharnett.catppuccin").setup()
         end,
     },
     -- buffer line (top of buffer)
     {
         "akinsho/bufferline.nvim",
-        config = function()
+        init = function()
             require("daneharnett.bufferline").setup()
         end,
-        tag = "v2.8.2",
+        version = "v2.8.2",
     },
     -- status line (bottom of buffer)
     {
         "nvim-lualine/lualine.nvim",
         commit = "3cf45404d4ab5e3b5da283877f57b676cb78d41d",
-        config = function()
+        init = function()
             require("daneharnett.lualine").setup()
         end,
-        requires = {
+        dependencies = {
             {
                 "kyazdani42/nvim-web-devicons",
                 commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
@@ -80,10 +62,10 @@ local plugins = {
     {
         "neovim/nvim-lspconfig",
         commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
-        config = function()
+        init = function()
             require("daneharnett.lsp").setup()
         end,
-        requires = {
+        dependencies = {
             {
                 "williamboman/mason.nvim",
                 commit = "bfee884583ea347e5d1467839ac5e08ca01f66a3",
@@ -94,7 +76,7 @@ local plugins = {
             },
             {
                 "hrsh7th/cmp-nvim-lsp",
-                commit = "affe808a5c56b71630f17aa7c38e15c59fd648a8",
+                commit = "59224771f91b86d1de12570b4070fe4ad7cd1eeb",
             },
             {
                 "j-hui/fidget.nvim",
@@ -105,10 +87,10 @@ local plugins = {
     {
         "tami5/lspsaga.nvim",
         commit = "9ec569a49aa7ff265764081acff9e5da839c13fe",
-        config = function()
+        init = function()
             require("daneharnett.lspsaga").setup()
         end,
-        requires = {
+        dependencies = {
             {
                 "neovim/nvim-lspconfig",
                 commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
@@ -118,10 +100,10 @@ local plugins = {
     {
         "jose-elias-alvarez/null-ls.nvim",
         commit = "de751688c991216f0d17ced7d5076e0c37fa383f",
-        config = function()
+        init = function()
             require("daneharnett.null-ls").setup()
         end,
-        requires = {
+        dependencies = {
             {
                 "neovim/nvim-lspconfig",
                 commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
@@ -132,10 +114,10 @@ local plugins = {
     {
         "hrsh7th/nvim-cmp",
         commit = "8bbaeda725d5db6e4e1be2867a64b43bf547cf06",
-        config = function()
+        init = function()
             require("daneharnett.completion").setup()
         end,
-        requires = {
+        dependencies = {
             {
                 "hrsh7th/cmp-nvim-lsp",
                 commit = "59224771f91b86d1de12570b4070fe4ad7cd1eeb",
@@ -162,7 +144,7 @@ local plugins = {
     {
         "kyazdani42/nvim-tree.lua",
         commit = "011a7816b8ea1b3697687a26804535f24ece70ec",
-        config = function()
+        init = function()
             require("daneharnett.nvim-tree").setup()
         end,
     },
@@ -170,7 +152,7 @@ local plugins = {
     {
         "ThePrimeagen/harpoon",
         commit = "f4aff5bf9b512f5a85fe20eb1dcf4a87e512d971",
-        requires = {
+        dependencies = {
             {
                 "nvim-lua/plenary.nvim",
                 commit = "a3dafaa937921a4eb2ae65820c3479ab561e9ba3",
@@ -181,10 +163,10 @@ local plugins = {
     {
         "nvim-telescope/telescope.nvim",
         commit = "cabf991b1d3996fa6f3232327fc649bbdf676496",
-        config = function()
+        init = function()
             require("daneharnett.telescope").setup()
         end,
-        requires = {
+        dependencies = {
             {
                 "nvim-lua/popup.nvim",
                 commit = "b7404d35d5d3548a82149238289fa71f7f6de4ac",
@@ -196,7 +178,7 @@ local plugins = {
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 commit = "6791f74e9f08a9412c43dcba805ecf2f8888bdde",
-                run = "make",
+                build = "make",
             },
         },
     },
@@ -204,10 +186,10 @@ local plugins = {
     {
         "folke/trouble.nvim",
         commit = "da61737d860ddc12f78e638152834487eabf0ee5",
-        config = function()
+        init = function()
             require("daneharnett.trouble").setup()
         end,
-        requires = {
+        dependencies = {
             {
                 "kyazdani42/nvim-web-devicons",
                 commit = "2d02a56189e2bde11edd4712fea16f08a6656944",
@@ -228,7 +210,7 @@ local plugins = {
     {
         "numToStr/Comment.nvim",
         commit = "80e7746e42fa685077a7941e9022308c7ad6adf8",
-        config = function()
+        init = function()
             require("daneharnett.comment").setup()
         end,
     },
@@ -241,7 +223,7 @@ local plugins = {
     {
         "akinsho/toggleterm.nvim",
         commit = "cd3b4d67112fbc8bee01ea44ba5ad1eea3894714",
-        config = function()
+        init = function()
             require("daneharnett.toggleterm").setup()
         end,
     },
@@ -249,7 +231,7 @@ local plugins = {
     {
         "vim-test/vim-test",
         commit = "2da8d59fdc46d1af7b7105a578d1ace3924d1a7b",
-        config = function()
+        init = function()
             require("daneharnett.tests").setup()
         end,
     },
@@ -257,7 +239,7 @@ local plugins = {
     {
         "norcalli/nvim-colorizer.lua",
         commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6",
-        config = function()
+        init = function()
             require("daneharnett.colorizer").setup()
         end,
     },
@@ -265,7 +247,7 @@ local plugins = {
     {
         "lewis6991/gitsigns.nvim",
         commit = "1e107c91c0c5e3ae72c37df8ffdd50f87fb3ebfa",
-        config = function()
+        init = function()
             require("daneharnett.gitsigns").setup()
         end,
     },
@@ -279,10 +261,17 @@ local plugins = {
     },
 }
 
---- startup and configure plugins
-packer.startup(function()
-    local use = use
-    for _, v in pairs(plugins) do
-        use(v)
-    end
-end)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "--single-branch",
+        "https://github.com/folke/lazy.nvim.git",
+        lazypath,
+    })
+end
+vim.opt.runtimepath:prepend(lazypath)
+
+require("lazy").setup(plugins)

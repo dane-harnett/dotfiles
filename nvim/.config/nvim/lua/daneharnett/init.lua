@@ -2,6 +2,8 @@ local vim = vim
 
 -- Leader key needs to be set before plugins load
 vim.g.mapleader = " "
+-- termguicolors needs to be set before plugins load
+vim.o.termguicolors = true
 
 -- Exclude these plugins from vscode
 if not vim.g.vscode then
