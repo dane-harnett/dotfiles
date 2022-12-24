@@ -23,7 +23,7 @@ packer.startup(function()
         "nvim-treesitter/nvim-treesitter",
         commit = "f0c9a186eab06d7e4dcd78c973dcb60b702ac5d2",
         config = function()
-            require("daneharnett.treesitter")
+            require("daneharnett.treesitter").setup()
         end,
         requires = {
             -- This is a basic completion source based on the treesitter api of neovim.
@@ -54,12 +54,7 @@ packer.startup(function()
         as = "catppuccin",
         commit = "047770c18ddf8081873cc6279f640c2dda725bba",
         config = function()
-            -- Don't apply this colorscheme in vscode
-            if not vim.g.vscode then
-                vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-                require("catppuccin").setup()
-                vim.cmd("colorscheme catppuccin")
-            end
+            require("daneharnett.catppuccin").setup()
         end,
     })
 
@@ -67,7 +62,7 @@ packer.startup(function()
     use({
         "akinsho/bufferline.nvim",
         config = function()
-            require("daneharnett.bufferline")
+            require("daneharnett.bufferline").setup()
         end,
         tag = "v2.8.2",
     })
@@ -77,10 +72,7 @@ packer.startup(function()
         "nvim-lualine/lualine.nvim",
         commit = "3cf45404d4ab5e3b5da283877f57b676cb78d41d",
         config = function()
-            -- Don't setup this plugin in vscode
-            if not vim.g.vscode then
-                require("lualine").setup({})
-            end
+            require("daneharnett.lualine").setup()
         end,
         requires = {
             {
@@ -95,18 +87,7 @@ packer.startup(function()
         "neovim/nvim-lspconfig",
         commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
         config = function()
-            require("mason").setup()
-            require("mason-lspconfig").setup({
-                ensure_installed = {
-                    "denols",
-                    "jsonls",
-                    "rust_analyzer",
-                    "sumneko_lua",
-                    "tsserver",
-                },
-            })
-            require("daneharnett.lsp")
-            require("fidget").setup({})
+            require("daneharnett.lsp").setup()
         end,
         requires = {
             {
@@ -132,7 +113,7 @@ packer.startup(function()
         "tami5/lspsaga.nvim",
         commit = "9ec569a49aa7ff265764081acff9e5da839c13fe",
         config = function()
-            require("daneharnett.lspsaga")
+            require("daneharnett.lspsaga").setup()
         end,
         requires = {
             {
@@ -145,7 +126,7 @@ packer.startup(function()
         "jose-elias-alvarez/null-ls.nvim",
         commit = "de751688c991216f0d17ced7d5076e0c37fa383f",
         config = function()
-            require("daneharnett.null-ls")
+            require("daneharnett.null-ls").setup()
         end,
         requires = {
             {
@@ -160,7 +141,7 @@ packer.startup(function()
         "hrsh7th/nvim-cmp",
         commit = "8bbaeda725d5db6e4e1be2867a64b43bf547cf06",
         config = function()
-            require("daneharnett.completion")
+            require("daneharnett.completion").setup()
         end,
         requires = {
             {
@@ -190,7 +171,7 @@ packer.startup(function()
         "kyazdani42/nvim-tree.lua",
         commit = "011a7816b8ea1b3697687a26804535f24ece70ec",
         config = function()
-            require("daneharnett.nvim-tree")
+            require("daneharnett.nvim-tree").setup()
         end,
     })
 
@@ -210,7 +191,7 @@ packer.startup(function()
         "nvim-telescope/telescope.nvim",
         commit = "cabf991b1d3996fa6f3232327fc649bbdf676496",
         config = function()
-            require("daneharnett.telescope")
+            require("daneharnett.telescope").setup()
         end,
         requires = {
             {
@@ -229,13 +210,11 @@ packer.startup(function()
         },
     })
 
-    -- use 'jremmen/vim-ripgrep'
-
     use({
         "folke/trouble.nvim",
         commit = "da61737d860ddc12f78e638152834487eabf0ee5",
         config = function()
-            require("trouble").setup({})
+            require("daneharnett.trouble").setup()
         end,
         requires = {
             {
@@ -262,7 +241,7 @@ packer.startup(function()
         "numToStr/Comment.nvim",
         commit = "80e7746e42fa685077a7941e9022308c7ad6adf8",
         config = function()
-            require("Comment").setup()
+            require("daneharnett.comment").setup()
         end,
     })
 
@@ -277,7 +256,7 @@ packer.startup(function()
         "akinsho/toggleterm.nvim",
         commit = "cd3b4d67112fbc8bee01ea44ba5ad1eea3894714",
         config = function()
-            require("daneharnett.toggleterm")
+            require("daneharnett.toggleterm").setup()
         end,
     })
 
@@ -285,7 +264,7 @@ packer.startup(function()
         "vim-test/vim-test",
         commit = "2da8d59fdc46d1af7b7105a578d1ace3924d1a7b",
         config = function()
-            require("daneharnett.tests")
+            require("daneharnett.tests").setup()
         end,
     })
 
@@ -293,9 +272,7 @@ packer.startup(function()
         "norcalli/nvim-colorizer.lua",
         commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6",
         config = function()
-            require("colorizer").setup({
-                typescriptreact = { css = true },
-            })
+            require("daneharnett.colorizer").setup()
         end,
     })
 
@@ -303,7 +280,7 @@ packer.startup(function()
         "lewis6991/gitsigns.nvim",
         commit = "1e107c91c0c5e3ae72c37df8ffdd50f87fb3ebfa",
         config = function()
-            require("daneharnett.gitsigns")
+            require("daneharnett.gitsigns").setup()
         end,
     })
 

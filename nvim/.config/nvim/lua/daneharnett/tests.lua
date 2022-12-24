@@ -1,5 +1,8 @@
-local utils = require("daneharnett.utils")
-local load_mappings = function()
+local M = {}
+
+function M.setup()
+    local utils = require("daneharnett.utils")
     utils.key_mapper("n", "<leader>tf", ":TestFile<CR>")
 end
-load_mappings()
+
+return M
