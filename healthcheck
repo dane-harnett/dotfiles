@@ -39,9 +39,16 @@ fi
 
 # check for tmux
 if [[ ! $(command -v "tmux") ]]; then
-  echo -e "tmux not installed. run: brew install starship"
+  echo -e "tmux not installed. run: brew install tmux"
 else
   echo -e "tmux installed."
+fi
+
+# check for tmux plugin manager (tpm)
+if [[ ! -f ~/.tmux/plugins/tpm/README.md ]]; then
+  echo -e "tmux plugin manager not installed. go to https://github.com/tmux-plugins/tpm"
+else
+  echo -e "tmux plugin manager installed."
 fi
 
 # check for zsh
