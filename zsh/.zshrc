@@ -50,7 +50,12 @@ fi
 # These additions to PATH cannot be in zshenv due to order of execution.
 export PATH="$(brew --prefix)/opt/util-linux/sbin:$(brew --prefix)/opt/util-linux/bin:$PATH"
 export PATH="$HOME/.jenv/bin:$PATH"
-[[ $(command -v "jenv") ]] && eval "$(jenv init -)"
+if [[ $(command -v "jenv") ]]; then
+  jenv() {
+    eval "$(command jenv init -)"
+    jenv "$@"
+  }
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
