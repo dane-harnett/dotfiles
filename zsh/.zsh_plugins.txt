@@ -1,0 +1,17 @@
+# .zsh_plugins.txt
+
+# INSTRUCTIONS
+# After changing this file run:
+# antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh
+
+# prompts:
+#   with prompt plugins, remember to add this to your .zshrc:
+#   `autoload -Uz promptinit && promptinit && prompt powerlevel10k`
+romkatv/powerlevel10k kind:fpath
+
+# other plugins:
+jimhester/per-directory-history
+zdharma-continuum/fast-syntax-highlighting kind:defer
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+

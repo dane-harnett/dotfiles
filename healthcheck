@@ -9,6 +9,7 @@ if [[ ! $(command -v "brew") ]]; then
 else
   echo -e "brew installed."
 fi
+
 # check for stow
 if [[ ! $(command -v "stow") ]]; then
   echo -e "stow not installed. run brew install stow"
@@ -35,20 +36,6 @@ if [[ ! $(command -v "nvim") ]]; then
 else
   echo -e "neovim installed."
 fi
-# check for typescript-language-server
-# this is used by neovims lsp in my config
-if [[ ! $(command -v "typescript-language-server") ]]; then
-  echo -e "typescript-language-server not installed. run npm install -g typescript-language-server"
-else
-  echo -e "typescript-language-server installed."
-fi
-# check for eslint_d
-# this is used by neovims lsp in my config
-if [[ ! $(command -v "eslint_d") ]]; then
-  echo -e "eslint_d not installed. run npm install -g eslint_d"
-else
-  echo -e "eslint_d installed."
-fi
 
 # check for tmux
 if [[ ! $(command -v "tmux") ]]; then
@@ -56,21 +43,24 @@ if [[ ! $(command -v "tmux") ]]; then
 else
   echo -e "tmux installed."
 fi
+
 # check for zsh
 if [[ ! $(command -v "zsh") ]]; then
   echo -e "zsh not installed. wut."
 else
   echo -e "zsh installed."
 fi
-# check for oh-my-zsh
-if [[ -z "${ZSH}" ]]; then
-  echo -e "oh-my-zsh not installed. go to https://ohmyz.sh/"
+
+# check for antidote
+if [[ ! -f "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh" ]]; then
+  echo -e "antidote not installed. run: brew install antidote"
 else
-  echo -e "oh-my-zsh installed."
+  echo -e "antidote installed."
 fi
-# check for starship prompt
-if [[ ! $(command -v "starship") ]]; then
-  echo -e "starship not installed. run: brew install starship"
+
+# check that the antidote plugins have been bundled.
+if [[ ! -f ~/.zsh_plugins.zsh ]]; then
+  echo -e "antidote plugins not bundled. run: antidote bundle <~/.zsh_plugins.txt >~/.zsh_plugins.zsh"
 else
-  echo -e "starship installed."
+  echo -e "antidote plugins bundled."
 fi
