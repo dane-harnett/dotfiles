@@ -29,6 +29,147 @@
   # Zsh >= 5.1 is required.
   [[ $ZSH_VERSION == (5.<1->*|<6->.*) ]] || return
 
+  # catppuccin frappe flavour
+  typeset -g -A POWERLEVEL9K_CATPPUCCIN_FRAPPE=( \
+    # --- colors ---
+    [rosewater]="224" \
+    [flamingo]="217" \
+    [pink]="218" \
+    [mauve]="182" \
+    [red]="174" \
+    [maroon]="175" \
+    [peach]="216" \
+    [yellow]="186" \
+    [green]="150" \
+    [teal]="115" \
+    [sky]="116" \
+    [sapphire]="110" \
+    [blue]="111" \
+    [lavender]="147" \
+    # --- text, overlays and surfaces ---
+    [text]="189" \
+    [subtext1]="146" \
+    [subtext0]="146" \
+    [overlay2]="109" \
+    [overlay1]="103" \
+    [overlay0]="102" \
+    [surface2]="60" \
+    [surface1]="59" \
+    [surface0]="59" \
+    # --- base, mantle and crust ---
+    [base]="59" \
+    [mantle]="17" \
+    [crust]="17" \
+  )
+  # catppuccin latte flavour
+  typeset -g -A POWERLEVEL9K_CATPPUCCIN_LATTE=( \
+    # --- colors ---
+    [rosewater]="174" \
+    [flamingo]="174" \
+    [pink]="176" \
+    [mauve]="99" \
+    [red]="161" \
+    [maroon]="167" \
+    [peach]="202" \
+    [yellow]="172" \
+    [green]="70" \
+    [teal]="30" \
+    [sky]="38" \
+    [sapphire]="37" \
+    [blue]="27" \
+    [lavender]="69" \
+    # --- text, overlays and surfaces ---
+    [text]="59" \
+    [subtext1]="60" \
+    [subtext0]="60" \
+    [overlay2]="102" \
+    [overlay1]="103" \
+    [overlay0]="145" \
+    [surface2]="145" \
+    [surface1]="146" \
+    [surface0]="188" \
+    # --- base, mantle and crust ---
+    [base]="231" \
+    [mantle]="189" \
+    [crust]="188" \
+  )
+  # catppuccin macchiato flavour
+  typeset -g -A POWERLEVEL9K_CATPPUCCIN_MACCHIATO=( \
+    # --- colors ---
+    [rosewater]="224" \
+    [flamingo]="224" \
+    [pink]="218" \
+    [mauve]="183" \
+    [red]="210" \
+    [maroon]="211" \
+    [peach]="216" \
+    [yellow]="223" \
+    [green]="150" \
+    [teal]="116" \
+    [sky]="116" \
+    [sapphire]="116" \
+    [blue]="111" \
+    [lavender]="147" \
+    # --- text, overlays and surfaces ---
+    [text]="189" \
+    [subtext1]="146" \
+    [subtext0]="146" \
+    [overlay2]="103" \
+    [overlay1]="103" \
+    [overlay0]="66" \
+    [surface2]="60" \
+    [surface1]="59" \
+    [surface0]="59" \
+    # --- base, mantle and crust ---
+    [base]="17" \
+    [mantle]="17" \
+    [crust]="16" \
+  )
+  # catppuccin mocha flavour
+  typeset -g -A POWERLEVEL9K_CATPPUCCIN_MOCHA=( \
+    # --- colors ---
+    [rosewater]="224" \
+    [flamingo]="224" \
+    [pink]="218" \
+    [mauve]="183" \
+    [red]="211" \
+    [maroon]="211" \
+    [peach]="216" \
+    [yellow]="223" \
+    [green]="151" \
+    [teal]="116" \
+    [sky]="117" \
+    [sapphire]="117" \
+    [blue]="111" \
+    [lavender]="147" \
+    # --- text, overlays and surfaces ---
+    [text]="189" \
+    [subtext0]="146" \
+    [subtext1]="146" \
+    [overlay0]="60" \
+    [overlay1]="103" \
+    [overlay2]="103" \
+    [surface0]="59" \
+    [surface1]="59" \
+    [surface2]="59" \
+    # --- base, crust and mantle ---
+    # converter says 16 but I chose 234
+    [base]="234" \
+    # converter says 16 but I chose 234
+    [mantle]="234" \
+    # converter says 16 but I chose 233
+    [crust]="233" \
+  )
+  typeset -g -A POWERLEVEL9K_CATPPUCCIN_FLAVOUR=( )
+  # Change the flavour below by changing between:
+  # POWERLEVEL9K_CATPPUCCIN_FRAPPE
+  # POWERLEVEL9K_CATPPUCCIN_LATTE
+  # POWERLEVEL9K_CATPPUCCIN_MACCHIATO
+  # POWERLEVEL9K_CATPPUCCIN_MOCHA
+  for key value in ${(kv)POWERLEVEL9K_CATPPUCCIN_MOCHA}; do
+    POWERLEVEL9K_CATPPUCCIN_FLAVOUR[$key]=${value}
+  done
+
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     os_icon                 # os identifier
@@ -209,19 +350,19 @@
 
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=4
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[blue]}
   # Default current directory foreground color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=254
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[crust]}
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=250
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[crust]}
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=255
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[crust]}
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -348,11 +489,11 @@
 
   #####################################[ vcs: git status ]######################################
   # Version control background colors.
-  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=2
-  typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=3
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=2
-  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=3
-  typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND=8
+  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[green]}
+  typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[yellow]}
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[green]}
+  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[yellow]}
+  typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[mantle]}
 
   # Branch icon. Set this parameter to '\UE0A0 ' for the popular Powerline branch icon.
   typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
@@ -500,8 +641,8 @@
   # it will signify success by turning green.
   typeset -g POWERLEVEL9K_STATUS_OK=true
   typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
-  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=2
-  typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=0
+  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[green]}
+  typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[base]}
 
   # Status when some part of a pipe command fails but the overall exit status is zero. It may look
   # like this: 1|0.
@@ -514,28 +655,28 @@
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=3
-  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=1
+  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[base]}
+  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[red]}
 
   # Status when the last command was terminated by a signal.
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=true
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=3
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=1
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[base]}
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[red]}
 
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=3
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=1
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[base]}
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[red]}
 
   ###################[ command_execution_time: duration of the last command ]###################
   # Execution time color.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=0
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=3
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[mantle]}
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[yellow]}
   # Show duration of the last command if takes at least this many seconds.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
   # Show this many fractional digits. Zero means round to seconds.
@@ -805,16 +946,19 @@
   typeset -g POWERLEVEL9K_VI_MODE_FOREGROUND=0
   # Text and color for normal (a.k.a. command) vi mode.
   typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING=NORMAL
-  typeset -g POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND=2
+  typeset -g POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[blue]}
+  typeset -g POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[mantle]}
   # Text and color for visual vi mode.
   typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING=VISUAL
-  typeset -g POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND=4
+  typeset -g POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[mauve]}
+  typeset -g POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[mantle]}
   # Text and color for overtype (a.k.a. overwrite and replace) vi mode.
   typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING=OVERTYPE
   typeset -g POWERLEVEL9K_VI_MODE_OVERWRITE_BACKGROUND=3
   # Text and color for insert vi mode.
-  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING=
-  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND=8
+  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING=INSERT
+  typeset -g POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[green]}
+  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND=${POWERLEVEL9K_CATPPUCCIN_FLAVOUR[mantle]}
 
   ######################################[ ram: free RAM ]#######################################
   # RAM color.
