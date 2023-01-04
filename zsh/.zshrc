@@ -51,7 +51,8 @@ fi
 export PATH="$(brew --prefix)/opt/util-linux/sbin:$(brew --prefix)/opt/util-linux/bin:$PATH"
 export PATH="$HOME/.jenv/bin:$PATH"
 if [[ $(command -v "jenv") ]]; then
-  jenv() {
+  function jenv() {
+    unset -f jenv
     eval "$(command jenv init -)"
     jenv "$@"
   }
