@@ -11,6 +11,7 @@ romkatv/powerlevel10k kind:fpath
 
 # other plugins:
 jimhester/per-directory-history
+mattmc3/zephyr path:plugins/completion
 zdharma-continuum/fast-syntax-highlighting kind:defer
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
