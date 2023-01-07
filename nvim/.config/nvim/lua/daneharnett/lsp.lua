@@ -138,8 +138,8 @@ function M.setup()
         root_dir = function(filepath)
             return (
                 lspconfig_util.root_pattern(".git")(filepath)
-                    and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-                )
+                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+            )
         end,
     })
     -- deno
@@ -155,7 +155,6 @@ function M.setup()
     -- $ npm install -g vscode-json-languageserver
     lspconfig.jsonls.setup({
         capabilities = capabilities,
-        cmd = { "vscode-json-languageserver", "--stdio" },
         filetypes = { "json", "jsonc" },
         on_attach = on_attach,
         settings = {
