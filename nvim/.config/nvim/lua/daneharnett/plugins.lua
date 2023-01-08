@@ -22,6 +22,14 @@ local plugins = {
         "nvim-treesitter/playground",
         commit = "90d2b3e1729363f96ce2c23f16129534df893bbf",
     },
+    -- nvim-biscuits
+    {
+        "code-biscuits/nvim-biscuits",
+        commit = "cca53c667a14358688f9199e15b86f541eaeaa54",
+        init = function()
+            require("daneharnett.biscuits").setup()
+        end,
+    },
     -- A collection of language packs for Vim.
     {
         "sheerun/vim-polyglot",
