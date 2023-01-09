@@ -25,7 +25,7 @@ local plugins = {
     -- nvim-biscuits
     {
         "code-biscuits/nvim-biscuits",
-        commit = "cca53c667a14358688f9199e15b86f541eaeaa54",
+        commit = "25a880605fa4533b7075c54a0fdb5f0a25bc4f84",
         init = function()
             require("daneharnett.biscuits").setup()
         end,
