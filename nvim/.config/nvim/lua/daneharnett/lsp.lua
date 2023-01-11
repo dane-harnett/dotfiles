@@ -112,7 +112,6 @@ function M.setup()
     end
 
     local on_attach = function(client, bufnr)
-        print("Attaching to " .. client.name .. " in buffer " .. bufnr)
         load_mappings(bufnr)
         load_diagnostics()
         -- Need to disable formatting for tsserver because we will use eslint or prettier instead
