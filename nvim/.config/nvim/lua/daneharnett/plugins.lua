@@ -224,8 +224,11 @@ local plugins = {
     },
     -- autopairs
     {
-        "jiangmiao/auto-pairs",
-        commit = "39f06b873a8449af8ff6a3eee716d3da14d63a76",
+        "windwp/nvim-autopairs",
+        commit = "f00eb3b766c370cb34fdabc29c760338ba9e4c6c",
+        init = function()
+            require("daneharnett.autopairs").setup()
+        end,
     },
     -- terminal
     {
