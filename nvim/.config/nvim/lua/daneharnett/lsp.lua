@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     local utils = require("daneharnett.utils")
 
     local mason_status_ok, mason = pcall(require, "mason")
@@ -80,28 +80,64 @@ function M.setup()
     -- setup language servers here
 
     local load_mappings = function(bufnr)
-        -- utils.current_buffer_keymap('n', 'K', vim.lsp.buf.hover)
-        utils.current_buffer_keymap("n", "gd", vim.lsp.buf.definition)
-        utils.current_buffer_keymap("n", "gt", vim.lsp.buf.type_definition)
-        utils.current_buffer_keymap("n", "gi", vim.lsp.buf.implementation)
-        -- utils.current_buffer_keymap('n', 'gr', vim.lsp.buf.references)
-        -- utils.current_buffer_keymap('n', '<leader>r', vim.lsp.buf.rename)
-        -- utils.current_buffer_keymap('n', '<leader>ca', vim.lsp.buf.code_action)
-        utils.current_buffer_keymap("n", "<leader>ds", vim.diagnostic.open_float)
-
         -- Trouble
         utils.current_buffer_keymap("n", "<leader>gr", "<cmd>TroubleToggle lsp_references<cr>")
 
         -- Lspsaga
-        utils.current_buffer_keymap("n", "gr", "<cmd>Lspsaga rename<cr>")
-        utils.current_buffer_keymap("n", "gx", "<cmd>Lspsaga code_action<cr>")
-        utils.current_buffer_keymap("x", "gx", ":<c-u>Lspsaga range_code_action<cr>")
-        utils.current_buffer_keymap("n", "K", "<cmd>Lspsaga hover_doc<cr>")
-        -- utils.current_buffer_keymap("n", "<leader>ds", "<cmd>Lspsaga show_line_diagnostics<cr>")
-        utils.current_buffer_keymap("n", "<leader>dn", "<cmd>Lspsaga diagnostic_jump_next<cr>")
-        utils.current_buffer_keymap("n", "<leader>dp", "<cmd>Lspsaga diagnostic_jump_prev<cr>")
-        -- utils.current_buffer_keymap("n", "<C-u>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
-        -- utils.current_buffer_keymap("n", "<C-d>", "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
+        -- lsp provider to find the cursor word definition and reference
+        utils.current_buffer_keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+
+        -- code action
+        utils.current_buffer_keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+
+        -- show hover doc
+        utils.current_buffer_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+
+        -- Call hierarchy
+        utils.current_buffer_keymap("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+        utils.current_buffer_keymap("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+
+        -- scroll down hover doc or scroll in definition preview
+        utils.current_buffer_keymap("n", "<C-f>", ':lua require"lspsaga.action".smart_scroll_with_saga(1)<CR>')
+
+        -- scroll up hover doc
+        utils.current_buffer_keymap("n", "<C-b>", ':lua require"lspsaga.action".smart_scroll_with_saga(-1)<CR>')
+
+        -- show signature help
+        -- utils.("n", "gs", ':lua require"lspsaga.signaturehelp".signature_help()<CR>')
+
+        -- rename
+        utils.current_buffer_keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+
+        -- peek definition
+        utils.current_buffer_keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
+
+        -- go to definition
+        utils.current_buffer_keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+
+        -- show line diagnostics
+        utils.current_buffer_keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+
+        -- show cursor diagnostics
+        utils.current_buffer_keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+
+        -- Show buffer diagnostics
+        utils.current_buffer_keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+
+        -- jump to diagnostic
+        utils.current_buffer_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+        utils.current_buffer_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
+        -- Diagnostic jump with filter like Only jump to error
+        utils.current_buffer_keymap("n", "[E", function()
+            require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        end)
+        utils.current_buffer_keymap("n", "]E", function()
+            require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+        end)
+
+        -- floating terminal
+        utils.current_buffer_keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 
         local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = true })
         vim.api.nvim_create_autocmd("CursorHold", {
@@ -137,8 +173,8 @@ function M.setup()
         root_dir = function(filepath)
             return (
                 lspconfig_util.root_pattern(".git")(filepath)
-                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-            )
+                    and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+                )
         end,
     })
     -- deno

@@ -11,6 +11,7 @@ function M.setup()
             "javascript",
             "json",
             "lua",
+            "markdown",
             "tsx",
             "typescript",
         },

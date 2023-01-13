@@ -69,9 +69,9 @@ local plugins = {
     -- lsp
     {
         "neovim/nvim-lspconfig",
-        commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
+        commit = "f7ebb0fed4b952c77bb5827db030405f2d6cd4e7",
         init = function()
-            require("daneharnett.lsp").setup()
+            require("daneharnett.lsp").init()
         end,
         dependencies = {
             {
@@ -93,17 +93,18 @@ local plugins = {
         },
     },
     {
-        "tami5/lspsaga.nvim",
-        commit = "9ec569a49aa7ff265764081acff9e5da839c13fe",
-        init = function()
-            require("daneharnett.lspsaga").setup()
-        end,
+        "glepnir/lspsaga.nvim",
+        commit = "19dc0e72d78c359dcbc00fdb8bde18ba39ab37a2",
         dependencies = {
             {
                 "neovim/nvim-lspconfig",
-                commit = "df17834baeba1b8425c15a31cbf52e6b23115c37",
+                commit = "f7ebb0fed4b952c77bb5827db030405f2d6cd4e7",
             },
         },
+        event = "BufRead",
+        init = function()
+            require("daneharnett.lspsaga").init()
+        end,
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
