@@ -7,7 +7,7 @@ local action_state = require("telescope.actions.state")
 local commands = {
     {
         title = "Find in project",
-        command = "Telescope live_grep",
+        command = "TelescopeCustomLiveGrep",
     },
     {
         title = "Find files including hidden",

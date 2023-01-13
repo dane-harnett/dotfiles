@@ -174,7 +174,18 @@ function M.setup()
                 save_lgwg_prompt(prompt)
 
                 -- apply the search query
-                table.insert(args, string.format("--regexp=%s", prompt_split[2]))
+                local query = prompt_split[2]
+
+                -- a prompt is "regex" if it begins and ends with `/`
+                local is_regex_query = string.sub(query, 1, 1) == "/"
+                    and string.sub(query, string.len(query), string.len(query)) == "/"
+
+                if is_regex_query then
+                    local query_without_slashes = string.sub(query, 2, string.len(query) - 1)
+                    table.insert(args, string.format("--regexp=%s", query_without_slashes))
+                else
+                    table.insert(args, "--fixed-strings")
+                end
 
                 local command = vim.tbl_flatten({
                     args,
@@ -189,6 +200,10 @@ function M.setup()
                     },
                 })
 
+                if not is_regex_query then
+                    table.insert(command, query)
+                end
+
                 return command
             end,
             entry_maker = make_entry.gen_from_vimgrep(),
@@ -200,6 +215,61 @@ function M.setup()
                 default_text = read_saved_lgwg_prompt(),
                 prompt_title = "Live grep with globs",
                 finder = live_grep_with_globs,
+                previewer = conf.grep_previewer({}),
+                sorter = require("telescope.sorters").highlighter_only(),
+            })
+            :find()
+    end, {})
+
+    vim.api.nvim_create_user_command("TelescopeCustomLiveGrep", function()
+        local custom_live_grep = finders.new_async_job({
+            command_generator = function(prompt)
+                if not prompt or prompt == "" then
+                    return nil
+                end
+
+                local query = prompt
+
+                local args = { "rg" }
+
+                -- is "regex" if it begins and ends with `/`
+                local is_regex_query = string.sub(query, 1, 1) == "/"
+                    and string.sub(query, string.len(query), string.len(query)) == "/"
+
+                if is_regex_query then
+                    local query_without_slashes = string.sub(query, 2, string.len(query) - 1)
+                    table.insert(args, string.format("--regexp=%s", query_without_slashes))
+                else
+                    table.insert(args, "--fixed-strings")
+                end
+
+                local command = vim.tbl_flatten({
+                    args,
+                    {
+                        "--color=never",
+                        "--no-heading",
+                        "--with-filename",
+                        "--line-number",
+                        "--column",
+                        "--smart-case",
+                        "--hidden",
+                    },
+                })
+
+                if not is_regex_query then
+                    table.insert(command, query)
+                end
+
+                return command
+            end,
+            entry_maker = make_entry.gen_from_vimgrep(),
+        })
+
+        pickers
+            .new({}, {
+                debounce = 100,
+                prompt_title = "Live grep",
+                finder = custom_live_grep,
                 previewer = conf.grep_previewer({}),
                 sorter = require("telescope.sorters").highlighter_only(),
             })
