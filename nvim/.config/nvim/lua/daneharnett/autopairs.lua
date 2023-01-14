@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     local autopairs_status_ok, autopairs = pcall(require, "nvim-autopairs")
     if not autopairs_status_ok then
         return

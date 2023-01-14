@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     local status_ok, gitsigns = pcall(require, "gitsigns")
     if not status_ok then
         return

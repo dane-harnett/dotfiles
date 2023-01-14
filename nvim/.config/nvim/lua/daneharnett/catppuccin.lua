@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     -- Don't apply this colorscheme in vscode
     if not vim.g.vscode then
         vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha

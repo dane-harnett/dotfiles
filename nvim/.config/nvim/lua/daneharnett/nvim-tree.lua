@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     local status_ok, nvim_tree = pcall(require, "nvim-tree")
     if not status_ok then
         return

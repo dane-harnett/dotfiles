@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     require("colorizer").setup({
         typescriptreact = { css = true },
     })

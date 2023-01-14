@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     vim.keymap.set("n", "<C-p>", "<CMD>Telescope find_files<CR>")
     vim.keymap.set("n", "<LEADER>dl", "<CMD>Telescope diagnostics<CR>")
     vim.keymap.set("n", "<LEADER>fb", "<CMD>Telescope file_browser<CR>")

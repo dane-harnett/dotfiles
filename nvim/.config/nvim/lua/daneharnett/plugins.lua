@@ -4,7 +4,7 @@ local plugins = {
         "nvim-treesitter/nvim-treesitter",
         commit = "f0c9a186eab06d7e4dcd78c973dcb60b702ac5d2",
         init = function()
-            require("daneharnett.treesitter").setup()
+            require("daneharnett.treesitter").init()
         end,
         dependencies = {
             -- This is a basic completion source based on the treesitter api of neovim.
@@ -27,7 +27,7 @@ local plugins = {
         "code-biscuits/nvim-biscuits",
         commit = "25a880605fa4533b7075c54a0fdb5f0a25bc4f84",
         init = function()
-            require("daneharnett.biscuits").setup()
+            require("daneharnett.biscuits").init()
         end,
     },
     -- A collection of language packs for Vim.
@@ -41,14 +41,14 @@ local plugins = {
         name = "catppuccin",
         commit = "047770c18ddf8081873cc6279f640c2dda725bba",
         init = function()
-            require("daneharnett.catppuccin").setup()
+            require("daneharnett.catppuccin").init()
         end,
     },
     -- buffer line (top of buffer)
     {
         "akinsho/bufferline.nvim",
         init = function()
-            require("daneharnett.bufferline").setup()
+            require("daneharnett.bufferline").init()
         end,
         version = "v2.8.2",
     },
@@ -57,7 +57,7 @@ local plugins = {
         "nvim-lualine/lualine.nvim",
         commit = "3cf45404d4ab5e3b5da283877f57b676cb78d41d",
         init = function()
-            require("daneharnett.lualine").setup()
+            require("daneharnett.lualine").init()
         end,
         dependencies = {
             {
@@ -110,7 +110,7 @@ local plugins = {
         "jose-elias-alvarez/null-ls.nvim",
         commit = "de751688c991216f0d17ced7d5076e0c37fa383f",
         init = function()
-            require("daneharnett.null-ls").setup()
+            require("daneharnett.null-ls").init()
         end,
         dependencies = {
             {
@@ -124,7 +124,7 @@ local plugins = {
         "hrsh7th/nvim-cmp",
         commit = "8bbaeda725d5db6e4e1be2867a64b43bf547cf06",
         init = function()
-            require("daneharnett.completion").setup()
+            require("daneharnett.completion").init()
         end,
         dependencies = {
             {
@@ -154,7 +154,7 @@ local plugins = {
         "kyazdani42/nvim-tree.lua",
         commit = "011a7816b8ea1b3697687a26804535f24ece70ec",
         init = function()
-            require("daneharnett.nvim-tree").setup()
+            require("daneharnett.nvim-tree").init()
         end,
     },
     -- harpoon
@@ -173,7 +173,7 @@ local plugins = {
         "nvim-telescope/telescope.nvim",
         commit = "cabf991b1d3996fa6f3232327fc649bbdf676496",
         init = function()
-            require("daneharnett.telescope").setup()
+            require("daneharnett.telescope").init()
         end,
         dependencies = {
             {
@@ -196,7 +196,7 @@ local plugins = {
         "folke/trouble.nvim",
         commit = "da61737d860ddc12f78e638152834487eabf0ee5",
         init = function()
-            require("daneharnett.trouble").setup()
+            require("daneharnett.trouble").init()
         end,
         dependencies = {
             {
@@ -220,7 +220,7 @@ local plugins = {
         "numToStr/Comment.nvim",
         commit = "80e7746e42fa685077a7941e9022308c7ad6adf8",
         init = function()
-            require("daneharnett.comment").setup()
+            require("daneharnett.comment").init()
         end,
     },
     -- autopairs
@@ -228,7 +228,7 @@ local plugins = {
         "windwp/nvim-autopairs",
         commit = "f00eb3b766c370cb34fdabc29c760338ba9e4c6c",
         init = function()
-            require("daneharnett.autopairs").setup()
+            require("daneharnett.autopairs").init()
         end,
     },
     -- terminal
@@ -236,7 +236,7 @@ local plugins = {
         "akinsho/toggleterm.nvim",
         commit = "cd3b4d67112fbc8bee01ea44ba5ad1eea3894714",
         init = function()
-            require("daneharnett.toggleterm").setup()
+            require("daneharnett.toggleterm").init()
         end,
     },
     -- run tests
@@ -244,7 +244,7 @@ local plugins = {
         "vim-test/vim-test",
         commit = "2da8d59fdc46d1af7b7105a578d1ace3924d1a7b",
         init = function()
-            require("daneharnett.tests").setup()
+            require("daneharnett.tests").init()
         end,
     },
     -- show colors visually
@@ -252,7 +252,7 @@ local plugins = {
         "norcalli/nvim-colorizer.lua",
         commit = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6",
         init = function()
-            require("daneharnett.colorizer").setup()
+            require("daneharnett.colorizer").init()
         end,
     },
     -- git
@@ -260,7 +260,7 @@ local plugins = {
         "lewis6991/gitsigns.nvim",
         commit = "1e107c91c0c5e3ae72c37df8ffdd50f87fb3ebfa",
         init = function()
-            require("daneharnett.gitsigns").setup()
+            require("daneharnett.gitsigns").init()
         end,
     },
     {

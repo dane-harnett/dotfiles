@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     require("trouble").setup({})
 end
 

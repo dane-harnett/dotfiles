@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup()
+function M.init()
     local cmp_status_ok, cmp = pcall(require, "cmp")
     if not cmp_status_ok then
         return
