@@ -2,21 +2,18 @@ local plugins = {
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
-        commit = "f0c9a186eab06d7e4dcd78c973dcb60b702ac5d2",
+        commit = "372177fb996b7d94246fd214cc44573116704618",
         init = function()
             require("daneharnett.treesitter").init()
         end,
-        dependencies = {
-            -- This is a basic completion source based on the treesitter api of neovim.
-            {
-                "nvim-treesitter/completion-treesitter",
-                commit = "45c9b2faff4785539a0d0c655440c2465fed985a",
-            },
-        },
+    },
+    {
+        "nvim-treesitter/completion-treesitter",
+        commit = "45c9b2faff4785539a0d0c655440c2465fed985a",
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
-        commit = "8e88b67d0dc386d6ba1b3d09c206f19a50bc0625",
+        commit = "cacee4828152dd3a83736169ae61bbcd29a3d213",
     },
     {
         "nvim-treesitter/playground",
