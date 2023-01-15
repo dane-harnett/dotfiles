@@ -271,13 +271,6 @@ local plugins = {
         "APZelos/blamer.nvim",
         commit = "f4eb22a9013642c411725fdda945ae45f8d93181",
     },
-    {
-        "echasnovski/mini.animate",
-        commit = "da11baed58e47ba4abca9ce9806ada996845f801",
-        init = function()
-            require("mini.animate").setup()
-        end,
-    },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
