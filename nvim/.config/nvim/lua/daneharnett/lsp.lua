@@ -1,7 +1,8 @@
 local M = {}
 
 function M.init()
-    local utils = require("daneharnett.utils")
+    local my_lspsaga = require("daneharnett.lspsaga")
+    local my_trouble = require("daneharnett.trouble")
 
     local mason_status_ok, mason = pcall(require, "mason")
     if not mason_status_ok then
@@ -78,77 +79,9 @@ function M.init()
     end
 
     -- setup language servers here
-
-    local load_mappings = function(bufnr)
-        -- Trouble
-        utils.current_buffer_keymap("n", "<leader>gr", "<cmd>TroubleToggle lsp_references<cr>")
-
-        -- Lspsaga
-        -- lsp provider to find the cursor word definition and reference
-        utils.current_buffer_keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
-
-        -- code action
-        utils.current_buffer_keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
-
-        -- show hover doc
-        utils.current_buffer_keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
-
-        -- Call hierarchy
-        utils.current_buffer_keymap("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-        utils.current_buffer_keymap("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-
-        -- scroll down hover doc or scroll in definition preview
-        utils.current_buffer_keymap("n", "<C-f>", ':lua require"lspsaga.action".smart_scroll_with_saga(1)<CR>')
-
-        -- scroll up hover doc
-        utils.current_buffer_keymap("n", "<C-b>", ':lua require"lspsaga.action".smart_scroll_with_saga(-1)<CR>')
-
-        -- show signature help
-        -- utils.("n", "gs", ':lua require"lspsaga.signaturehelp".signature_help()<CR>')
-
-        -- rename
-        utils.current_buffer_keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
-
-        -- peek definition
-        utils.current_buffer_keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
-
-        -- go to definition
-        utils.current_buffer_keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
-
-        -- show line diagnostics
-        utils.current_buffer_keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
-
-        -- show cursor diagnostics
-        utils.current_buffer_keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
-
-        -- Show buffer diagnostics
-        utils.current_buffer_keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-
-        -- jump to diagnostic
-        utils.current_buffer_keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-        utils.current_buffer_keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-
-        -- Diagnostic jump with filter like Only jump to error
-        utils.current_buffer_keymap("n", "[E", function()
-            require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-        end)
-        utils.current_buffer_keymap("n", "]E", function()
-            require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-        end)
-
-        -- floating terminal
-        utils.current_buffer_keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
-
-        local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = true })
-        vim.api.nvim_create_autocmd("CursorHold", {
-            buffer = bufnr,
-            command = "Lspsaga show_line_diagnostics",
-            group = group,
-        })
-    end
-
     local on_attach = function(client, bufnr)
-        load_mappings(bufnr)
+        my_lspsaga.attach_keymaps_to_buffer(bufnr)
+        my_trouble.attach_keymaps_to_buffer(bufnr)
         load_diagnostics()
         -- Need to disable formatting for tsserver because we will use eslint or prettier instead
         if client.name == "tsserver" then
@@ -173,8 +106,8 @@ function M.init()
         root_dir = function(filepath)
             return (
                 lspconfig_util.root_pattern(".git")(filepath)
-                    and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-                )
+                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+            )
         end,
     })
     -- deno
