@@ -42,6 +42,10 @@ function M.init()
         end
 
         local has_eslintrc_js = utils.root_has_file({ ".eslintrc.js" })
+        if has_eslintrc_js then
+            is_eslint_project_result = true
+            return true
+        end
 
         local has_package_json = utils.root_has_file({ "package.json" })
         local package_json_has_eslint_config = false
@@ -63,7 +67,7 @@ function M.init()
             end
         end
 
-        is_eslint_project_result = has_eslintrc_js or package_json_has_eslint_config
+        is_eslint_project_result = package_json_has_eslint_config
         return is_eslint_project_result
     end
 
