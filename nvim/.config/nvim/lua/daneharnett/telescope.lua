@@ -169,8 +169,6 @@ function M.init()
                     end
                 end
 
-                table.insert(args, "--glob=!.git/")
-
                 save_lgwg_prompt(prompt)
 
                 -- apply the search query
@@ -210,7 +208,9 @@ function M.init()
         })
 
         pickers
-            .new({}, {
+            .new({
+                file_ignore_patterns = { ".git/" },
+            }, {
                 debounce = 100,
                 default_text = read_saved_lgwg_prompt(),
                 prompt_title = "Live grep with globs",
@@ -266,7 +266,9 @@ function M.init()
         })
 
         pickers
-            .new({}, {
+            .new({
+                file_ignore_patterns = { ".git/" },
+            }, {
                 debounce = 100,
                 prompt_title = "Live grep",
                 finder = custom_live_grep,
