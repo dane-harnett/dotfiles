@@ -33,15 +33,27 @@ function M.init()
         end
     end
 
+    local get_match_count = function(filepath, needle)
+        local grep_cmd = "cat " .. filepath .. " | grep -c --max-count=1 " .. needle
+        local grep_cmd_handle = io.popen(grep_cmd)
+        if grep_cmd_handle then
+            local grep_result = grep_cmd_handle:read("*a")
+            grep_cmd_handle:close()
+            -- trim whitespace
+            local count_matches = string.gsub(grep_result, "^%s*(.-)%s*$", "%1")
+            return tonumber(count_matches)
+        end
+        return 0
+    end
     -- this var is used to cache the result of this function so we don't run
     -- the grep command over and over.
     local is_eslint_project_result = nil
     local is_eslint_project = function(utils)
-        if is_eslint_project_result == true or is_eslint_project_result == false then
+        if type(is_eslint_project_result) == "boolean" then
             return is_eslint_project_result
         end
 
-        local has_eslintrc_js = utils.root_has_file({ ".eslintrc.js" })
+        local has_eslintrc_js = utils.root_has_file({ ".eslintrc.js", ".eslintrc.json" })
         if has_eslintrc_js then
             is_eslint_project_result = true
             return true
@@ -52,18 +64,9 @@ function M.init()
         if has_package_json then
             local filepath = null_ls_utils.path.join({ null_ls_utils.get_root(), "package.json" })
 
-            -- grep -c will output the number of matches found
-            local grep_cmd = "cat " .. filepath .. " | grep -c --max-count=1 eslintConfig"
-            local grep_cmd_handle = io.popen(grep_cmd)
-            if grep_cmd_handle then
-                local grep_result = grep_cmd_handle:read("*a")
-                grep_cmd_handle:close()
-                -- trim whitespace
-                local count_matches = string.gsub(grep_result, "^%s*(.-)%s*$", "%1")
-
-                if count_matches == "1" then
-                    package_json_has_eslint_config = true
-                end
+            local count_matches = get_match_count(filepath, "eslintConfig")
+            if count_matches >= 1 then
+                package_json_has_eslint_config = true
             end
         end
 
@@ -71,8 +74,41 @@ function M.init()
         return is_eslint_project_result
     end
 
+    -- A project is an `eslint prettier` project if it's package.json includes
+    -- `eslint-plugin-prettier`
+    local is_eslint_prettier_project_result = nil
+    local is_eslint_prettier_project = function(utils)
+        if type(is_eslint_prettier_project_result) == "boolean" then
+            return is_eslint_prettier_project_result
+        end
+
+        local has_package_json = utils.root_has_file({ "package.json" })
+        if has_package_json then
+            local filepath = null_ls_utils.path.join({ null_ls_utils.get_root(), "package.json" })
+
+            local count_matches = get_match_count(filepath, "eslint-plugin-prettier")
+            if count_matches >= 1 then
+                is_eslint_prettier_project_result = true
+                return is_eslint_prettier_project_result
+            end
+        end
+        is_eslint_prettier_project_result = false
+        return is_eslint_prettier_project_result
+    end
+
+    local is_prettier_project_result = nil
     local is_prettier_project = function(utils)
-        return utils.root_has_file({ ".prettierrc" })
+        if type(is_prettier_project_result) == "boolean" then
+            return is_prettier_project_result
+        end
+
+        if utils.root_has_file({ ".prettierrc" }) then
+            is_prettier_project_result = true
+            return is_prettier_project_result
+        end
+
+        is_prettier_project_result = false
+        return is_prettier_project_result
     end
 
     local is_deno_project = function(utils)
@@ -80,12 +116,18 @@ function M.init()
     end
 
     local should_format_with_prettier = function(utils)
-        return not is_eslint_project(utils) and is_prettier_project(utils)
+        if not is_prettier_project(utils) then
+            return false
+        end
+        if is_eslint_project(utils) and is_eslint_prettier_project(utils) then
+            return false
+        end
+        return true
     end
 
     null_ls.setup({
         diagnostics_format = "[#{c}] #{m} (#{s})",
-        debug = false,
+        debug = true,
         on_attach = function(_, bufnr)
             local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -109,7 +151,6 @@ function M.init()
                 condition = is_deno_project,
                 timeout = -1,
             }),
-            -- formatting sources
             formatting.prettierd.with({
                 -- We only want this source to apply when the project uses prettier
                 -- and doesn't use eslint, if eslint is used it should be configured
