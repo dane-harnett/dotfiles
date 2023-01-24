@@ -45,7 +45,7 @@ if [ -f "$HOME/.ssh/github" ]; then
 fi
 
 # Initialize fast node manager (fnm)
-[[ $(command -v "fnm") ]] && eval "$(fnm env --use-on-cd)"
+[[ $(command -v "fnm") ]] && eval "$(fnm env --use-on-cd --log-level=quiet)"
 
 # These additions to PATH cannot be in zshenv due to order of execution.
 export PATH="$(brew --prefix)/opt/util-linux/sbin:$(brew --prefix)/opt/util-linux/bin:$PATH"
