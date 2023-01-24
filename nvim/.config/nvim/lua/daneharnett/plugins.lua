@@ -91,7 +91,7 @@ local plugins = {
     },
     {
         "glepnir/lspsaga.nvim",
-        commit = "d8fd138ffa25bb53a5aaac46ae661d1a4ca2ff27",
+        commit = "0ba70874d74e12ea504099d7c95122afed001b96",
         dependencies = {
             {
                 "neovim/nvim-lspconfig",
