@@ -24,7 +24,7 @@
   "nvim-biscuits": { "branch": "main", "commit": "25a880605fa4533b7075c54a0fdb5f0a25bc4f84" },
   "nvim-cmp": { "branch": "main", "commit": "8bbaeda725d5db6e4e1be2867a64b43bf547cf06" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" },
-  "nvim-lspconfig": { "branch": "master", "commit": "d228bcf7cd94611929482a09e114a42c41fe81a8" },
+  "nvim-lspconfig": { "branch": "master", "commit": "582842c158968a59ed5acf9439bc6eaf637f1839" },
   "nvim-tree.lua": { "branch": "master", "commit": "011a7816b8ea1b3697687a26804535f24ece70ec" },
   "nvim-treesitter": { "branch": "master", "commit": "372177fb996b7d94246fd214cc44573116704618" },
   "nvim-treesitter-context": { "branch": "master", "commit": "cacee4828152dd3a83736169ae61bbcd29a3d213" },

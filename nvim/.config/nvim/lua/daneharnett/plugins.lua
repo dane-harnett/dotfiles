@@ -1,3 +1,5 @@
+local nvim_lspconfig_commit = "582842c158968a59ed5acf9439bc6eaf637f1839"
+
 local plugins = {
     -- treesitter
     {
@@ -66,7 +68,7 @@ local plugins = {
     -- lsp
     {
         "neovim/nvim-lspconfig",
-        commit = "d228bcf7cd94611929482a09e114a42c41fe81a8",
+        commit = nvim_lspconfig_commit,
         init = function()
             require("daneharnett.lsp").init()
         end,
@@ -108,7 +110,7 @@ local plugins = {
         dependencies = {
             {
                 "neovim/nvim-lspconfig",
-                commit = "d228bcf7cd94611929482a09e114a42c41fe81a8",
+                commit = nvim_lspconfig_commit,
             },
         },
         event = "BufRead",
