@@ -1,7 +1,13 @@
 local M = {}
 
 function M.init()
-    require("lualine").setup({})
+    require("lualine").setup({
+        options = {
+            disabled_filetypes = {
+                "NvimTree",
+            },
+        },
+    })
 end
 
 return M
