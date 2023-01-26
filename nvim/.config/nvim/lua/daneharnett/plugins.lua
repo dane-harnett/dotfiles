@@ -25,6 +25,7 @@ local plugins = {
     {
         "code-biscuits/nvim-biscuits",
         commit = "25a880605fa4533b7075c54a0fdb5f0a25bc4f84",
+        cond = not vim.g.vscode,
         init = function()
             require("daneharnett.biscuits").init()
         end,
@@ -39,6 +40,7 @@ local plugins = {
         "catppuccin/nvim",
         name = "catppuccin",
         commit = "047770c18ddf8081873cc6279f640c2dda725bba",
+        cond = not vim.g.vscode,
         init = function()
             require("daneharnett.catppuccin").init()
         end,
@@ -55,6 +57,7 @@ local plugins = {
     {
         "nvim-lualine/lualine.nvim",
         commit = "3cf45404d4ab5e3b5da283877f57b676cb78d41d",
+        cond = not vim.g.vscode,
         init = function()
             require("daneharnett.lualine").init()
         end,

@@ -1,10 +1,7 @@
 local M = {}
 
 function M.init()
-    -- Don't setup this plugin in vscode
-    if not vim.g.vscode then
-        require("lualine").setup({})
-    end
+    require("lualine").setup({})
 end
 
 return M
