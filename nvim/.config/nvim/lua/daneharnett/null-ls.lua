@@ -9,29 +9,13 @@ function M.init()
     if not null_ls_utils_status_ok then
         return
     end
-    local mason_registry_status_ok, mason_registry = pcall(require, "mason-registry")
-    if not mason_registry_status_ok then
+    local mason_null_ls_status_ok, mason_null_ls = pcall(require, "mason-null-ls")
+    if not mason_null_ls_status_ok then
         return
     end
 
     local formatting = null_ls.builtins.formatting
     local diagnostics = null_ls.builtins.diagnostics
-
-    if not mason_registry.is_installed("eslint_d") then
-        local mason_registry_eslint_d = mason_registry.get_package("eslint_d")
-        if mason_registry_eslint_d then
-            print("Installing eslint_d with mason")
-            mason_registry_eslint_d:install()
-        end
-    end
-
-    if not mason_registry.is_installed("prettierd") then
-        local mason_registry_prettierd = mason_registry.get_package("prettierd")
-        if mason_registry_prettierd then
-            print("Installing prettierd with mason")
-            mason_registry_prettierd:install()
-        end
-    end
 
     local get_match_count = function(filepath, needle)
         local grep_cmd = "cat " .. filepath .. " | grep -c --max-count=1 " .. needle
@@ -165,6 +149,12 @@ function M.init()
             }),
             formatting.stylua,
         },
+    })
+
+    mason_null_ls.setup({
+        ensure_installed = nil,
+        automatic_installation = true,
+        automatic_setup = false,
     })
 end
 

@@ -73,11 +73,11 @@ local plugins = {
         dependencies = {
             {
                 "williamboman/mason.nvim",
-                commit = "bfee884583ea347e5d1467839ac5e08ca01f66a3",
+                commit = "e7303a1632c004ebd2dcd0be1aaa4354586c030b",
             },
             {
                 "williamboman/mason-lspconfig.nvim",
-                commit = "e8bd50153b94cc5bbfe3f59fc10ec7c4902dd526",
+                commit = "c29f9a9f9b01528ca6a44cd14814f5af20778f7a",
             },
             {
                 "hrsh7th/cmp-nvim-lsp",
@@ -88,6 +88,19 @@ local plugins = {
                 commit = "44585a0c0085765195e6961c15529ba6c5a2a13b",
             },
         },
+    },
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        commit = "ef3d4a438f96865e3ae018e33ed30156a955ed00",
+        dependencies = {
+            {
+                "jay-babu/mason-null-ls.nvim",
+                commit = "93946aef86b1409958c97ee5feaf30bdd1053e24",
+            },
+        },
+        init = function()
+            require("daneharnett.null-ls").init()
+        end,
     },
     {
         "glepnir/lspsaga.nvim",
@@ -102,19 +115,6 @@ local plugins = {
         init = function()
             require("daneharnett.lspsaga").init()
         end,
-    },
-    {
-        "jose-elias-alvarez/null-ls.nvim",
-        commit = "ef3d4a438f96865e3ae018e33ed30156a955ed00",
-        init = function()
-            require("daneharnett.null-ls").init()
-        end,
-        dependencies = {
-            {
-                "neovim/nvim-lspconfig",
-                commit = "d228bcf7cd94611929482a09e114a42c41fe81a8",
-            },
-        },
     },
     -- completion
     {
