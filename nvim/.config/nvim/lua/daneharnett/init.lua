@@ -21,7 +21,7 @@ require("daneharnett.arrowkeys")
 require("daneharnett.editing")
 require("daneharnett.buffers")
 
--- Exclude these plugin configs from vscode
+-- Exclude these configs from vscode
 if not vim.g.vscode then
     require("daneharnett.navigation")
     require("daneharnett.command-palette")
