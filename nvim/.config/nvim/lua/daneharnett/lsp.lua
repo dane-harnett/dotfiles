@@ -45,6 +45,10 @@ function M.init()
 
     -- Diagnostics
     local load_diagnostics = function()
+        -- configure diagnostics
+        vim.g.diagnostic_enable_virtual_text = 1
+        vim.g.diagnostic_insert_delay = 1
+
         local signs = {
             { name = "DiagnosticSignError", text = "" },
             { name = "DiagnosticSignWarn", text = "" },
@@ -106,8 +110,8 @@ function M.init()
         root_dir = function(filepath)
             return (
                 lspconfig_util.root_pattern(".git")(filepath)
-                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-            )
+                    and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+                )
         end,
     })
     -- deno
