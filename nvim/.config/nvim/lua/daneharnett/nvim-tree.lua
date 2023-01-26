@@ -28,6 +28,8 @@ function M.init()
 
     local utils = require("daneharnett.utils")
     utils.keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
+    utils.keymap("n", "<C-8>", "<cmd>NvimTreeResize +5<cr>")
+    utils.keymap("n", "<C-9>", "<cmd>NvimTreeResize -5<cr>")
 end
 
 return M
