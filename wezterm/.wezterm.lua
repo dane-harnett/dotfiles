@@ -9,5 +9,17 @@ return {
 	},
 	font_size = 16.0,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+	keys = {
+		{
+			key = "-",
+			mods = "CTRL",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+		{
+			key = "=",
+			mods = "CTRL",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+	},
 	use_fancy_tab_bar = false,
 }
