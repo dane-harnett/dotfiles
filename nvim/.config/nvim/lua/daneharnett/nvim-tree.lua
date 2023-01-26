@@ -6,6 +6,8 @@ function M.init()
         return
     end
 
+    local default_width = 60
+
     nvim_tree.setup({
         diagnostics = {
             enable = true,
@@ -18,6 +20,7 @@ function M.init()
         view = {
             centralize_selection = true,
             side = "right",
+            width = default_width,
         },
         renderer = {
             indent_markers = {
@@ -28,6 +31,8 @@ function M.init()
 
     local utils = require("daneharnett.utils")
     utils.keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
+    utils.keymap("n", "<C-6>", "<cmd>NvimTreeResize " .. default_width .. "<cr>")
+    utils.keymap("n", "<C-7>", "<cmd>NvimTreeResize 100<cr>")
     utils.keymap("n", "<C-8>", "<cmd>NvimTreeResize +5<cr>")
     utils.keymap("n", "<C-9>", "<cmd>NvimTreeResize -5<cr>")
 end
