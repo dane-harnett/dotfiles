@@ -67,7 +67,7 @@ function M.attach_keymaps_to_buffer(bufnr)
     -- floating terminal
     utils.buffer_keymap(bufnr, { "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 
-    local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = true })
+    local group = vim.api.nvim_create_augroup("ShowDiagnosticsOnHover", { clear = false })
     vim.api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,
         command = "Lspsaga show_line_diagnostics",

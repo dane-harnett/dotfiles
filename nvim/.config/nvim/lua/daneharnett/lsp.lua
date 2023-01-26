@@ -211,7 +211,7 @@ function M.init()
         -- custom on_attach here because I'm using rust_analyzer to format.
         on_attach = function(client, bufnr)
             on_attach(client, bufnr)
-            local group = vim.api.nvim_create_augroup("RustLspFormatting", { clear = true })
+            local group = vim.api.nvim_create_augroup("RustLspFormatting", { clear = false })
             vim.api.nvim_create_autocmd("BufWritePre", {
                 buffer = bufnr,
                 callback = function()

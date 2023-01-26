@@ -113,7 +113,7 @@ function M.init()
         diagnostics_format = "[#{c}] #{m} (#{s})",
         debug = true,
         on_attach = function(_, bufnr)
-            local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+            local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
             vim.api.nvim_create_autocmd("BufWritePre", {
                 buffer = bufnr,
                 callback = function()
