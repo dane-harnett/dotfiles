@@ -153,8 +153,8 @@ local plugins = {
     },
     -- file-tree sidebar explorer
     {
-        "kyazdani42/nvim-tree.lua",
-        commit = "011a7816b8ea1b3697687a26804535f24ece70ec",
+        "nvim-tree/nvim-tree.lua",
+        commit = "9e87ee2d6e86f37ff09cb74ec7dcf2ac984a01e9",
         init = function()
             require("daneharnett.nvim-tree").init()
         end,

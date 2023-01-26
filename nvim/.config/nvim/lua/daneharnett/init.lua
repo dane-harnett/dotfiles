@@ -2,8 +2,11 @@ local vim = vim
 
 -- Leader key needs to be set before plugins load
 vim.g.mapleader = " "
+-- disable netrw (strongly advised by nvim-tree)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- termguicolors needs to be set before plugins load
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
 -- Exclude these plugins from vscode
 if not vim.g.vscode then
