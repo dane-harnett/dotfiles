@@ -39,10 +39,16 @@ local plugins = {
     -- buffer line (top of buffer)
     {
         "akinsho/bufferline.nvim",
+        dependencies = {
+            {
+                "nvim-tree/nvim-web-devicons",
+            },
+        },
+        event = "BufRead",
         init = function()
             require("daneharnett.bufferline").init()
         end,
-        version = "v2.8.2",
+        version = "^3",
     },
     -- status line (bottom of buffer)
     {
@@ -53,7 +59,7 @@ local plugins = {
         end,
         dependencies = {
             {
-                "kyazdani42/nvim-web-devicons",
+                "nvim-tree/nvim-web-devicons",
             },
         },
     },
@@ -169,7 +175,7 @@ local plugins = {
         end,
         dependencies = {
             {
-                "kyazdani42/nvim-web-devicons",
+                "nvim-tree/nvim-web-devicons",
             },
         },
     },
