@@ -1,6 +1,11 @@
 local M = {}
 
 function M.init()
+    -- Exclude this from vscode
+    if vim.g.vscode then
+        return
+    end
+
     local utils = require("daneharnett.utils")
     -- Normal --
     -- Better window navigation

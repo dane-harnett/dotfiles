@@ -1,6 +1,11 @@
 local M = {}
 
 function M.init()
+    -- Exclude this from vscode
+    if vim.g.vscode then
+        return
+    end
+
     local pickers = require("telescope.pickers")
     local finders = require("telescope.finders")
     local conf = require("telescope.config").values

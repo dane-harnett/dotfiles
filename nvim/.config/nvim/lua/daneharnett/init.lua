@@ -20,10 +20,6 @@ require("daneharnett.yank").init()
 require("daneharnett.arrowkeys").init()
 require("daneharnett.editing").init()
 require("daneharnett.buffers").init()
-
--- Exclude these configs from vscode
-if not vim.g.vscode then
-    require("daneharnett.diagnostics").init()
-    require("daneharnett.navigation").init()
-    require("daneharnett.command-palette").init()
-end
+require("daneharnett.diagnostics").init()
+require("daneharnett.navigation").init()
+require("daneharnett.command-palette").init()
