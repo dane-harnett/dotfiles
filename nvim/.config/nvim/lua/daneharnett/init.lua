@@ -25,5 +25,5 @@ require("daneharnett.buffers").init()
 if not vim.g.vscode then
     require("daneharnett.diagnostics").init()
     require("daneharnett.navigation").init()
-    require("daneharnett.command-palette")
+    require("daneharnett.command-palette").init()
 end
