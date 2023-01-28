@@ -23,7 +23,7 @@ require("daneharnett.buffers").init()
 
 -- Exclude these configs from vscode
 if not vim.g.vscode then
-    require("daneharnett.diagnostics")
+    require("daneharnett.diagnostics").init()
     require("daneharnett.navigation")
     require("daneharnett.command-palette")
 end
