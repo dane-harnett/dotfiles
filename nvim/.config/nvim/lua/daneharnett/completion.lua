@@ -24,10 +24,15 @@ function M.init()
             }),
         },
         mapping = cmp.mapping.preset.insert({
+            -- scroll up the docs window
             ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+            -- scroll down the docs window
             ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            -- open completion popup when in insert mode and its not open
             ["<C-Space>"] = cmp.mapping.complete(),
+            -- close completion popup with no suggestion
             ["<C-e>"] = cmp.mapping.abort(),
+            -- complete the currently selected suggestion
             ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         snippet = {
