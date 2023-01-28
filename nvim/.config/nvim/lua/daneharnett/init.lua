@@ -16,7 +16,7 @@ end
 
 -- options second
 require("daneharnett.options")
-require("daneharnett.yank")
+require("daneharnett.yank").init()
 require("daneharnett.arrowkeys")
 require("daneharnett.editing")
 require("daneharnett.buffers")
