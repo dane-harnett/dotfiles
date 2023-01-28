@@ -1,5 +1,3 @@
-local vim = vim
-
 -- these settings need to be set before the plugins are loaded
 require("daneharnett.pre-plugins").init()
 
