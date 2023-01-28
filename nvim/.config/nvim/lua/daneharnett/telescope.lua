@@ -1,16 +1,7 @@
 local M = {}
 
 function M.init()
-    vim.keymap.set("n", "<C-p>", "<CMD>Telescope find_files<CR>")
-    vim.keymap.set("n", "<LEADER>dl", "<CMD>Telescope diagnostics<CR>")
-    vim.keymap.set("n", "<LEADER>fb", "<CMD>Telescope file_browser<CR>")
-    vim.keymap.set("n", "<LEADER>fg", "<CMD>Telescope git_files<CR>")
-    vim.keymap.set("n", "<LEADER>fh", "<CMD>Telescope help_tags<CR>")
-    vim.keymap.set("n", "<LEADER>fs", "<CMD>Telescope grep_string<CR>")
-    vim.keymap.set("n", "<LEADER>lb", "<CMD>Telescope buffers<CR>")
-    vim.keymap.set("n", "<LEADER>lg", "<CMD>Telescope live_grep<CR>")
-    vim.keymap.set("n", "<LEADER>tr", "<CMD>Telescope resume<CR>")
-    vim.keymap.set("n", "<LEADER>ff", "<CMD>TelescopeLiveGrepWithGlobs<CR>")
+    M.attach_keymaps()
 
     local telescope_actions_set = require("telescope.actions.set")
     -- FileType event doesn't fire when opening from telescope
@@ -277,6 +268,20 @@ function M.init()
             })
             :find()
     end, {})
+end
+
+M.attach_keymaps = function()
+    local utils = require("daneharnett.utils")
+    utils.keymap("n", "<C-p>", "<CMD>Telescope find_files<CR>")
+    utils.keymap("n", "<LEADER>dl", "<CMD>Telescope diagnostics<CR>")
+    utils.keymap("n", "<LEADER>fb", "<CMD>Telescope file_browser<CR>")
+    utils.keymap("n", "<LEADER>fg", "<CMD>Telescope git_files<CR>")
+    utils.keymap("n", "<LEADER>fh", "<CMD>Telescope help_tags<CR>")
+    utils.keymap("n", "<LEADER>fs", "<CMD>Telescope grep_string<CR>")
+    utils.keymap("n", "<LEADER>lb", "<CMD>Telescope buffers<CR>")
+    utils.keymap("n", "<LEADER>lg", "<CMD>Telescope live_grep<CR>")
+    utils.keymap("n", "<LEADER>tr", "<CMD>Telescope resume<CR>")
+    utils.keymap("n", "<LEADER>ff", "<CMD>TelescopeLiveGrepWithGlobs<CR>")
 end
 
 return M
