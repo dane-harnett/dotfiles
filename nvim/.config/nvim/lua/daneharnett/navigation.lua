@@ -1,5 +1,7 @@
-local utils = require("daneharnett.utils")
-local load_mappings = function()
+local M = {}
+
+function M.init()
+    local utils = require("daneharnett.utils")
     -- Normal --
     -- Better window navigation
     utils.keymap("n", "<C-h>", "<C-w>h")
@@ -17,4 +19,5 @@ local load_mappings = function()
     utils.keymap("n", "<S-l>", ":bnext<CR>")
     utils.keymap("n", "<S-h>", ":bprevious<CR>")
 end
-load_mappings()
+
+return M
