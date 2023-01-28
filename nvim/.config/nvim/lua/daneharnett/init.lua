@@ -15,7 +15,7 @@ if not vim.g.vscode then
 end
 
 -- options second
-require("daneharnett.options")
+require("daneharnett.options").init()
 require("daneharnett.yank").init()
 require("daneharnett.arrowkeys").init()
 require("daneharnett.editing").init()
