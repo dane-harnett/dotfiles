@@ -2,7 +2,7 @@ local plugins = {
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
-        init = function()
+        config = function()
             require("daneharnett.treesitter").init()
         end,
     },
@@ -19,7 +19,7 @@ local plugins = {
     {
         "code-biscuits/nvim-biscuits",
         cond = not vim.g.vscode,
-        init = function()
+        config = function()
             require("daneharnett.biscuits").init()
         end,
     },
@@ -30,31 +30,31 @@ local plugins = {
     -- theme
     {
         "catppuccin/nvim",
-        name = "catppuccin",
         cond = not vim.g.vscode,
-        init = function()
+        config = function()
             require("daneharnett.catppuccin").init()
         end,
+        name = "catppuccin",
     },
     -- buffer line (top of buffer)
     {
         "akinsho/bufferline.nvim",
+        config = function()
+            require("daneharnett.bufferline").init()
+        end,
         dependencies = {
             {
                 "nvim-tree/nvim-web-devicons",
             },
         },
         event = "BufRead",
-        init = function()
-            require("daneharnett.bufferline").init()
-        end,
         version = "^3",
     },
     -- status line (bottom of buffer)
     {
         "nvim-lualine/lualine.nvim",
         cond = not vim.g.vscode,
-        init = function()
+        config = function()
             require("daneharnett.lualine").init()
         end,
         dependencies = {
@@ -66,7 +66,7 @@ local plugins = {
     -- lsp
     {
         "neovim/nvim-lspconfig",
-        init = function()
+        config = function()
             require("daneharnett.lsp").init()
         end,
         dependencies = {
@@ -91,12 +91,15 @@ local plugins = {
                 "jay-babu/mason-null-ls.nvim",
             },
         },
-        init = function()
+        config = function()
             require("daneharnett.null-ls").init()
         end,
     },
     {
         "glepnir/lspsaga.nvim",
+        config = function()
+            require("daneharnett.lspsaga").init()
+        end,
         dependencies = {
             {
                 "neovim/nvim-lspconfig",
@@ -104,14 +107,11 @@ local plugins = {
             },
         },
         event = "BufRead",
-        init = function()
-            require("daneharnett.lspsaga").init()
-        end,
     },
     -- completion
     {
         "hrsh7th/nvim-cmp",
-        init = function()
+        config = function()
             require("daneharnett.completion").init()
         end,
         dependencies = {
@@ -135,7 +135,7 @@ local plugins = {
     -- file-tree sidebar explorer
     {
         "nvim-tree/nvim-tree.lua",
-        init = function()
+        config = function()
             require("daneharnett.nvim-tree").init()
         end,
     },
@@ -151,7 +151,7 @@ local plugins = {
     -- telescope
     {
         "nvim-telescope/telescope.nvim",
-        init = function()
+        config = function()
             require("daneharnett.telescope").init()
         end,
         dependencies = {
@@ -170,7 +170,7 @@ local plugins = {
     -- trouble
     {
         "folke/trouble.nvim",
-        init = function()
+        config = function()
             require("daneharnett.trouble").init()
         end,
         dependencies = {
@@ -190,42 +190,42 @@ local plugins = {
     -- comments
     {
         "numToStr/Comment.nvim",
-        init = function()
+        config = function()
             require("daneharnett.comment").init()
         end,
     },
     -- autopairs
     {
         "windwp/nvim-autopairs",
-        init = function()
+        config = function()
             require("daneharnett.autopairs").init()
         end,
     },
     -- terminal
     {
         "akinsho/toggleterm.nvim",
-        init = function()
+        config = function()
             require("daneharnett.toggleterm").init()
         end,
     },
     -- run tests
     {
         "vim-test/vim-test",
-        init = function()
+        config = function()
             require("daneharnett.tests").init()
         end,
     },
     -- show colors visually
     {
         "norcalli/nvim-colorizer.lua",
-        init = function()
+        config = function()
             require("daneharnett.colorizer").init()
         end,
     },
     -- git
     {
         "lewis6991/gitsigns.nvim",
-        init = function()
+        config = function()
             require("daneharnett.gitsigns").init()
         end,
     },
@@ -234,7 +234,7 @@ local plugins = {
     },
     {
         "APZelos/blamer.nvim",
-        init = function()
+        config = function()
             require("daneharnett.blamer").init()
         end,
     },
