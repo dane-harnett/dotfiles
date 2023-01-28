@@ -1,4 +1,16 @@
 local plugins = {
+    -- theme
+    {
+        "catppuccin/nvim",
+        cond = not vim.g.vscode,
+        config = function()
+            require("daneharnett.catppuccin").init()
+        end,
+        lazy = false,
+        name = "catppuccin",
+        -- colorschemes need high priority
+        priority = 1000,
+    },
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
@@ -27,15 +39,6 @@ local plugins = {
     {
         "sheerun/vim-polyglot",
     },
-    -- theme
-    {
-        "catppuccin/nvim",
-        cond = not vim.g.vscode,
-        config = function()
-            require("daneharnett.catppuccin").init()
-        end,
-        name = "catppuccin",
-    },
     -- buffer line (top of buffer)
     {
         "akinsho/bufferline.nvim",
@@ -47,7 +50,6 @@ local plugins = {
                 "nvim-tree/nvim-web-devicons",
             },
         },
-        event = "BufRead",
         version = "^3",
     },
     -- status line (bottom of buffer)
