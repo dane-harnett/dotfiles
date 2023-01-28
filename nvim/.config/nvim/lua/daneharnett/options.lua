@@ -46,6 +46,3 @@ wo.numberwidth = 5
 wo.relativenumber = true
 wo.signcolumn = "yes"
 wo.wrap = false
-
--- Make it so that yanking also places the selection into the system clipboard --
-vim.opt.clipboard:append("unnamedplus")

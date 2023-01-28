@@ -1,5 +1,10 @@
 local utils = require("daneharnett.utils")
 
+if not vim.g.vscode then
+    -- Make it so that yanking also places the selection into the system clipboard --
+    vim.opt.clipboard:append("unnamedplus")
+end
+
 local load_mappings = function()
     -- When in visual mode, after yanking keep the cursor in the last selected
     -- position.
