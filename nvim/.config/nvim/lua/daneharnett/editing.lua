@@ -1,5 +1,7 @@
-local utils = require("daneharnett.utils")
-local load_mappings = function()
+local M = {}
+
+function M.init()
+    local utils = require("daneharnett.utils")
     -- In normal mode...
     -- Move text up and down
     utils.keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi")
@@ -22,4 +24,5 @@ local load_mappings = function()
     utils.keymap("x", "<A-j>", ":move '>+1<CR>gv-gv")
     utils.keymap("x", "<A-k>", ":move '<-2<CR>gv-gv")
 end
-load_mappings()
+
+return M

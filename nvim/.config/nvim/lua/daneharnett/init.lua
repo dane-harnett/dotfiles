@@ -18,7 +18,7 @@ end
 require("daneharnett.options")
 require("daneharnett.yank").init()
 require("daneharnett.arrowkeys").init()
-require("daneharnett.editing")
+require("daneharnett.editing").init()
 require("daneharnett.buffers")
 
 -- Exclude these configs from vscode
