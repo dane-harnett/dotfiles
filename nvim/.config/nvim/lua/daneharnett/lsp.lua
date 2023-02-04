@@ -1,28 +1,19 @@
 local M = {}
 
 local server_configs = {
-    denols = function(capabilities)
-        local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
-        if not lspconfig_util_status_ok then
-            return
-        end
-
+    denols = function()
         return {
-            capabilities = capabilities,
             filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
             on_attach = M.make_on_attach(),
-            root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
         }
     end,
-    jsonls = function(capabilities)
+    jsonls = function()
         local schemastore_status_ok, schemastore = pcall(require, "schemastore")
         if not schemastore_status_ok then
             return
         end
 
         return {
-            capabilities = capabilities,
-            filetypes = { "json", "jsonc" },
             on_attach = M.make_on_attach(),
             settings = {
                 json = {
@@ -32,9 +23,8 @@ local server_configs = {
             },
         }
     end,
-    rust_analyzer = function(capabilities)
+    rust_analyzer = function()
         return {
-            capabilities = capabilities,
             on_attach = M.make_on_attach({
                 on_after = function(_, bufnr)
                     -- use rust_analyzer to format on save
@@ -50,13 +40,12 @@ local server_configs = {
             }),
         }
     end,
-    sumneko_lua = function(capabilities)
+    sumneko_lua = function()
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")
         table.insert(runtime_path, "lua/?/init.lua")
 
         return {
-            capabilities = capabilities,
             on_attach = M.make_on_attach(),
             settings = {
                 Lua = {
@@ -77,14 +66,13 @@ local server_configs = {
             },
         }
     end,
-    tsserver = function(capabilities)
+    tsserver = function()
         local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
         if not lspconfig_util_status_ok then
             return
         end
 
         return {
-            capabilities = capabilities,
             filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
             init_options = {
                 maxTsServerMemory = 12288,
@@ -104,8 +92,8 @@ local server_configs = {
             root_dir = function(filepath)
                 return (
                     lspconfig_util.root_pattern(".git")(filepath)
-                    and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-                )
+                        and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+                    )
             end,
         }
     end,
@@ -131,13 +119,15 @@ function M.init()
 
     local client_capabilities = vim.lsp.protocol.make_client_capabilities()
     local capabilities =
-        vim.tbl_deep_extend("force", client_capabilities, cmp_nvim_lsp.default_capabilities(client_capabilities))
+    vim.tbl_deep_extend("force", client_capabilities, cmp_nvim_lsp.default_capabilities(client_capabilities))
 
     local servers = {}
     for server_name, make_server_config in pairs(server_configs) do
-        local server_config = make_server_config(capabilities)
+        local server_config = make_server_config()
         if server_config then
-            servers[server_name] = server_config
+            servers[server_name] = vim.tbl_extend("force", server_config, {
+                capabilities = capabilities,
+            })
         end
     end
 
