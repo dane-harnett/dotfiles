@@ -113,15 +113,9 @@ function M.init()
         diagnostics_format = "[#{c}] #{m} (#{s})",
         debug = true,
         on_attach = function(_, bufnr)
-            local group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = bufnr,
-                callback = function()
-                    -- Set the timeout to 10s as it kept timing out for me.
-                    vim.lsp.buf.format({ timeout_ms = 10000 })
-                end,
-                group = group,
-            })
+            local utils = require("daneharnett.utils")
+            -- Set the timeout to 10s as it kept timing out for me.
+            utils.create_format_on_save_autocmd("NullLs", bufnr, 10000)
         end,
         sources = {
             -- diagnostic sources
