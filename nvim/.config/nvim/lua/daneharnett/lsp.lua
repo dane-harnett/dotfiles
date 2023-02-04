@@ -1,6 +1,10 @@
 local M = {}
 
 function M.init()
+    local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+    if not lspconfig_status_ok then
+        return
+    end
     local mason_status_ok, mason = pcall(require, "mason")
     if not mason_status_ok then
         return
@@ -18,25 +22,28 @@ function M.init()
         return
     end
 
+    local client_capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities =
+        vim.tbl_deep_extend("force", client_capabilities, cmp_nvim_lsp.default_capabilities(client_capabilities))
+
+    local servers = {
+        denols = M.make_denols(capabilities),
+        jsonls = M.make_jsonls(capabilities),
+        rust_analyzer = M.make_rust_analyzer(capabilities),
+        sumneko_lua = M.make_sumneko_lua(capabilities),
+        tsserver = M.make_tsserver(capabilities),
+    }
+
     mason.setup()
     mason_lspconfig.setup({
-        ensure_installed = {
-            "denols",
-            "jsonls",
-            "rust_analyzer",
-            "sumneko_lua",
-            "tsserver",
-        },
+        ensure_installed = vim.tbl_keys(servers),
     })
 
-    local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-    local capabilities = cmp_nvim_lsp.default_capabilities(client_capabilities)
-
-    M.setup_denols(capabilities)
-    M.setup_jsonls(capabilities)
-    M.setup_rust_analyzer(capabilities)
-    M.setup_sumneko_lua(capabilities)
-    M.setup_tsserver(capabilities)
+    mason_lspconfig.setup_handlers({
+        function(server_name)
+            lspconfig[server_name].setup(servers[server_name])
+        end,
+    })
 
     fidget.setup({})
 end
@@ -95,69 +102,22 @@ M.make_on_attach = function(opts)
     end
 end
 
-M.setup_tsserver = function(capabilities)
-    local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-    if not lspconfig_status_ok then
-        return
-    end
+M.make_denols = function(capabilities)
     local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
     if not lspconfig_util_status_ok then
         return
     end
 
-    -- typescript
-    lspconfig.tsserver.setup({
-        capabilities = capabilities,
-        filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-        init_options = {
-            maxTsServerMemory = 12288,
-            preferences = {
-                importModuleSpecifierPreference = "relative",
-            },
-        },
-        on_attach = M.make_on_attach({
-            on_after = function(client)
-                -- Need to disable formatting for tsserver because we will use eslint or prettier instead
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
-            end,
-        }),
-        -- configure tsserver for use in monorepos, spawn one process at the root.
-        -- check for tsconfig.json so we don't conflict with deno projects.
-        root_dir = function(filepath)
-            return (
-                lspconfig_util.root_pattern(".git")(filepath)
-                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-            )
-        end,
-    })
-end
-
-M.setup_denols = function(capabilities)
-    local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-    if not lspconfig_status_ok then
-        return
-    end
-    local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
-    if not lspconfig_util_status_ok then
-        return
-    end
-
-    lspconfig.denols.setup({
+    return {
         capabilities = capabilities,
         filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
         on_attach = M.make_on_attach(),
         root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
-    })
+    }
 end
 
-M.setup_jsonls = function(capabilities)
-    local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-    if not lspconfig_status_ok then
-        return
-    end
-
-    lspconfig.jsonls.setup({
+M.make_jsonls = function(capabilities)
+    return {
         capabilities = capabilities,
         filetypes = { "json", "jsonc" },
         on_attach = M.make_on_attach(),
@@ -212,20 +172,34 @@ M.setup_jsonls = function(capabilities)
                 },
             },
         },
-    })
+    }
 end
 
-M.setup_sumneko_lua = function(capabilities)
-    local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-    if not lspconfig_status_ok then
-        return
-    end
+M.make_rust_analyzer = function(capabilities)
+    return {
+        capabilities = capabilities,
+        on_attach = M.make_on_attach({
+            on_after = function(_, bufnr)
+                -- use rust_analyzer to format on save
+                local group = vim.api.nvim_create_augroup("RustLspFormatting", { clear = false })
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    buffer = bufnr,
+                    callback = function()
+                        vim.lsp.buf.format()
+                    end,
+                    group = group,
+                })
+            end,
+        }),
+    }
+end
 
+M.make_sumneko_lua = function(capabilities)
     local runtime_path = vim.split(package.path, ";")
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
 
-    lspconfig.sumneko_lua.setup({
+    return {
         capabilities = capabilities,
         on_attach = M.make_on_attach(),
         settings = {
@@ -245,31 +219,40 @@ M.setup_sumneko_lua = function(capabilities)
                 },
             },
         },
-    })
+    }
 end
 
-M.setup_rust_analyzer = function(capabilities)
-    local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-    if not lspconfig_status_ok then
+M.make_tsserver = function(capabilities)
+    local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
+    if not lspconfig_util_status_ok then
         return
     end
 
-    lspconfig.rust_analyzer.setup({
+    return {
         capabilities = capabilities,
+        filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+        init_options = {
+            maxTsServerMemory = 12288,
+            preferences = {
+                importModuleSpecifierPreference = "relative",
+            },
+        },
         on_attach = M.make_on_attach({
-            on_after = function(_, bufnr)
-                -- use rust_analyzer to format on save
-                local group = vim.api.nvim_create_augroup("RustLspFormatting", { clear = false })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    buffer = bufnr,
-                    callback = function()
-                        vim.lsp.buf.format()
-                    end,
-                    group = group,
-                })
+            on_after = function(client)
+                -- Need to disable formatting for tsserver because we will use eslint or prettier instead
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
             end,
         }),
-    })
+        -- configure tsserver for use in monorepos, spawn one process at the root.
+        -- check for tsconfig.json so we don't conflict with deno projects.
+        root_dir = function(filepath)
+            return (
+                lspconfig_util.root_pattern(".git")(filepath)
+                and lspconfig_util.root_pattern("tsconfig.json")(filepath)
+            )
+        end,
+    }
 end
 
 return M
