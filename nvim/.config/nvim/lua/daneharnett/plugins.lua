@@ -84,6 +84,9 @@ local plugins = {
             {
                 "j-hui/fidget.nvim",
             },
+            {
+                "b0o/schemastore.nvim",
+            },
         },
     },
     {

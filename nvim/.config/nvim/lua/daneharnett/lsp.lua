@@ -15,59 +15,19 @@ local server_configs = {
         }
     end,
     jsonls = function(capabilities)
+        local schemastore_status_ok, schemastore = pcall(require, "schemastore")
+        if not schemastore_status_ok then
+            return
+        end
+
         return {
             capabilities = capabilities,
             filetypes = { "json", "jsonc" },
             on_attach = M.make_on_attach(),
             settings = {
                 json = {
-                    -- Schemas https://www.schemastore.org
-                    schemas = {
-                        {
-                            fileMatch = { "package.json" },
-                            url = "https://json.schemastore.org/package.json",
-                        },
-                        {
-                            fileMatch = { "manifest.json", "manifest.webmanifest" },
-                            url = "https://json.schemastore.org/web-manifest-combined.json",
-                        },
-                        {
-                            fileMatch = { "tsconfig*.json" },
-                            url = "https://json.schemastore.org/tsconfig.json",
-                        },
-                        {
-                            fileMatch = {
-                                ".prettierrc",
-                                ".prettierrc.json",
-                                "prettier.config.json",
-                            },
-                            url = "https://json.schemastore.org/prettierrc.json",
-                        },
-                        {
-                            fileMatch = { ".eslintrc", ".eslintrc.json" },
-                            url = "https://json.schemastore.org/eslintrc.json",
-                        },
-                        {
-                            fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
-                            url = "https://json.schemastore.org/babelrc.json",
-                        },
-                        {
-                            fileMatch = { "lerna.json" },
-                            url = "https://json.schemastore.org/lerna.json",
-                        },
-                        {
-                            fileMatch = { "now.json", "vercel.json" },
-                            url = "https://json.schemastore.org/now.json",
-                        },
-                        {
-                            fileMatch = {
-                                ".stylelintrc",
-                                ".stylelintrc.json",
-                                "stylelint.config.json",
-                            },
-                            url = "http://json.schemastore.org/stylelintrc.json",
-                        },
-                    },
+                    schemas = schemastore.json.schemas(),
+                    validate = { enable = true },
                 },
             },
         }
