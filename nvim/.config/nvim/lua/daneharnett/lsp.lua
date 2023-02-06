@@ -29,6 +29,11 @@ local server_configs = {
             },
         }
     end,
+    quick_lint_js = function()
+        return {
+            on_attach = M.make_on_attach(),
+        }
+    end,
     rust_analyzer = function()
         return {
             on_attach = M.make_on_attach({
