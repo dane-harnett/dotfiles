@@ -53,7 +53,7 @@ end
 
 M.setup_treesitter_folds = function()
     local ts_parsers_status_ok, ts_parsers = pcall(require, "nvim-treesitter.parsers")
-    if ts_parsers_status_ok then
+    if not ts_parsers_status_ok then
         return
     end
 
