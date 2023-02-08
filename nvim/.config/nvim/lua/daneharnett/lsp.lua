@@ -9,7 +9,6 @@ local server_configs = {
 
         return {
             filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-            on_attach = M.make_on_attach(),
             root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
         }
     end,
@@ -20,7 +19,6 @@ local server_configs = {
         end
 
         return {
-            on_attach = M.make_on_attach(),
             settings = {
                 json = {
                     schemas = schemastore.json.schemas(),
@@ -30,9 +28,7 @@ local server_configs = {
         }
     end,
     quick_lint_js = function()
-        return {
-            on_attach = M.make_on_attach(),
-        }
+        return {}
     end,
     rust_analyzer = function()
         return {
@@ -50,7 +46,6 @@ local server_configs = {
         table.insert(runtime_path, "lua/?/init.lua")
 
         return {
-            on_attach = M.make_on_attach(),
             settings = {
                 Lua = {
                     runtime = {
@@ -129,8 +124,9 @@ function M.init()
     for server_name, make_server_config in pairs(server_configs) do
         local server_config = make_server_config()
         if server_config then
-            servers[server_name] = vim.tbl_extend("force", server_config, {
+            servers[server_name] = vim.tbl_extend("keep", server_config, {
                 capabilities = capabilities,
+                on_attach = M.make_on_attach(),
             })
         end
     end
