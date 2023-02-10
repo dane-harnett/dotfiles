@@ -26,6 +26,7 @@ M.setup_treesitter_configs = function()
             "json",
             "lua",
             "markdown",
+            "markdown_inline",
             "tsx",
             "typescript",
         },
