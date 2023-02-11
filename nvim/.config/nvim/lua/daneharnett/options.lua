@@ -31,7 +31,7 @@ function M.init()
     o.softtabstop = 2
     o.syntax = "on"
     o.tabstop = 2
-    o.undodir = vim.fn.stdpath("config") .. "/undodir"
+    o.undodir = vim.fn.stdpath("data") .. "/undodir"
     o.undofile = true
 
     -- buffer options --
