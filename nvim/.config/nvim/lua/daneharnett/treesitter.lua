@@ -75,7 +75,10 @@ M.setup_treesitter_folds = function()
     for _, filetype in ipairs(all_file_types) do
         vim.api.nvim_create_autocmd("FileType", {
             pattern = filetype,
-            command = "setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()",
+            callback = function()
+                vim.wo.foldmethod = "expr"
+                vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+            end,
             group = group,
         })
     end
