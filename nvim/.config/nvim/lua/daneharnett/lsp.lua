@@ -86,14 +86,24 @@ local server_configs = {
                     client.server_capabilities.documentRangeFormattingProvider = false
                 end,
             }),
-            -- configure tsserver for use in monorepos, spawn one process at the root.
-            -- check for tsconfig.json so we don't conflict with deno projects.
+            -- configure for use in monorepos, spawn one process at the root of
+            -- the project (the directory with `.git`) unless it's a deno project.
+            -- otherwise, fallback to the default root_dir.
             root_dir = function(filepath)
-                return (
-                    lspconfig_util.root_pattern(".git")(filepath)
-                    and lspconfig_util.root_pattern("tsconfig.json")(filepath)
-                )
+                local is_deno_project = lspconfig_util.root_pattern("deno.json", "deno.jsonc")(filepath)
+                if is_deno_project then
+                    return nil
+                end
+
+                local git_ancestor = lspconfig_util.find_git_ancestor(filepath)
+                if not git_ancestor then
+                    return lspconfig_util.root_pattern("tsconfig.json")(filepath)
+                        or lspconfig_util.root_pattern("package.json", "jsconfig.json", ".git")(filepath)
+                end
+
+                return git_ancestor
             end,
+            single_file_support = false,
         }
     end,
 }
@@ -125,9 +135,9 @@ function M.init()
         local server_config = make_server_config()
         if server_config then
             servers[server_name] = vim.tbl_extend("keep", server_config, {
-                capabilities = capabilities,
-                on_attach = M.make_on_attach(),
-            })
+                    capabilities = capabilities,
+                    on_attach = M.make_on_attach(),
+                })
         end
     end
 
@@ -151,9 +161,9 @@ end
 M.setup_diagnostics = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn", text = "" },
-        { name = "DiagnosticSignHint", text = "" },
-        { name = "DiagnosticSignInfo", text = "" },
+        { name = "DiagnosticSignWarn",  text = "" },
+        { name = "DiagnosticSignHint",  text = "" },
+        { name = "DiagnosticSignInfo",  text = "" },
     }
 
     for _, sign in ipairs(signs) do
