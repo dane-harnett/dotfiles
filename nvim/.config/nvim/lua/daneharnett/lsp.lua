@@ -81,27 +81,31 @@ local server_configs = {
             },
             on_attach = M.make_on_attach({
                 on_after = function(client)
-                    -- Need to disable formatting for tsserver because we will use eslint or prettier instead
+                    -- Need to disable formatting because we will use eslint or prettier instead
                     client.server_capabilities.documentFormattingProvider = false
                     client.server_capabilities.documentRangeFormattingProvider = false
                 end,
             }),
             -- configure for use in monorepos, spawn one process at the root of
-            -- the project (the directory with `.git`) unless it's a deno project.
+            -- the project (the directory with `.git` AND a file that matches
+            -- `tsconfig*.json`).
             -- otherwise, fallback to the default root_dir.
             root_dir = function(filepath)
-                local is_deno_project = lspconfig_util.root_pattern("deno.json", "deno.jsonc")(filepath)
-                if is_deno_project then
-                    return nil
-                end
-
                 local git_ancestor = lspconfig_util.find_git_ancestor(filepath)
                 if not git_ancestor then
                     return lspconfig_util.root_pattern("tsconfig.json")(filepath)
                         or lspconfig_util.root_pattern("package.json", "jsconfig.json", ".git")(filepath)
                 end
 
-                return git_ancestor
+                -- does a file exist at the gitancestor that matches `tsconfig*.json`?
+                for _, p in ipairs(vim.fn.glob(lspconfig_util.path.join(git_ancestor, "tsconfig*.json"), true, true)) do
+                    if lspconfig_util.path.exists(p) then
+                        return git_ancestor
+                    end
+                end
+
+                return lspconfig_util.root_pattern("tsconfig.json")(filepath)
+                    or lspconfig_util.root_pattern("package.json", "jsconfig.json", ".git")(filepath)
             end,
             single_file_support = false,
         }
