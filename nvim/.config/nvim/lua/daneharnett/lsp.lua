@@ -27,20 +27,7 @@ local server_configs = {
             },
         }
     end,
-    quick_lint_js = function()
-        return {}
-    end,
-    rust_analyzer = function()
-        return {
-            on_attach = M.make_on_attach({
-                on_after = function(_, bufnr)
-                    local utils = require("daneharnett.utils")
-                    utils.create_format_on_save_autocmd("Rust", bufnr)
-                end,
-            }),
-        }
-    end,
-    sumneko_lua = function()
+    lua_ls = function()
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")
         table.insert(runtime_path, "lua/?/init.lua")
@@ -63,6 +50,19 @@ local server_configs = {
                     },
                 },
             },
+        }
+    end,
+    quick_lint_js = function()
+        return {}
+    end,
+    rust_analyzer = function()
+        return {
+            on_attach = M.make_on_attach({
+                on_after = function(_, bufnr)
+                    local utils = require("daneharnett.utils")
+                    utils.create_format_on_save_autocmd("Rust", bufnr)
+                end,
+            }),
         }
     end,
     tsserver = function()
@@ -137,9 +137,9 @@ function M.init()
         local server_config = make_server_config()
         if server_config then
             servers[server_name] = vim.tbl_extend("keep", server_config, {
-                    capabilities = capabilities,
-                    on_attach = M.make_on_attach(),
-                })
+                capabilities = capabilities,
+                on_attach = M.make_on_attach(),
+            })
         end
     end
 
@@ -163,9 +163,9 @@ end
 M.setup_diagnostics = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn",  text = "" },
-        { name = "DiagnosticSignHint",  text = "" },
-        { name = "DiagnosticSignInfo",  text = "" },
+        { name = "DiagnosticSignWarn", text = "" },
+        { name = "DiagnosticSignHint", text = "" },
+        { name = "DiagnosticSignInfo", text = "" },
     }
 
     for _, sign in ipairs(signs) do
