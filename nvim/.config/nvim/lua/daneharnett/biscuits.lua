@@ -7,6 +7,11 @@ function M.init()
     end
     biscuits.setup({
         cursor_line_only = true,
+        on_events = {
+            "CursorHold",
+            "CursorHoldI",
+            "InsertLeave",
+        },
     })
 end
 
