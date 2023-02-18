@@ -108,7 +108,6 @@ local plugins = {
         dependencies = {
             {
                 "neovim/nvim-lspconfig",
-                commit = nvim_lspconfig_commit,
             },
         },
         event = "BufRead",
