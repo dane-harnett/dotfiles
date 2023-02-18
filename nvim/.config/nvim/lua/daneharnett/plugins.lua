@@ -11,6 +11,8 @@ local plugins = {
         -- colorschemes need high priority
         priority = 1000,
     },
+    -- enhanced vim.notify ui
+    { "rcarriga/nvim-notify" },
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
