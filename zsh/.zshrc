@@ -58,5 +58,8 @@ if [[ $(command -v "jenv") ]]; then
   }
 fi
 
+# Disable that annoying beep when using tab-completion.
+unsetopt LIST_BEEP
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
