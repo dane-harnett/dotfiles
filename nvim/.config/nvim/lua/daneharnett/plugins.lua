@@ -93,27 +93,40 @@ local plugins = {
         },
     },
     {
-        "creativenull/diagnosticls-configs-nvim",
+        "jose-elias-alvarez/null-ls.nvim",
         dependencies = {
             {
-                "neovim/nvim-lspconfig",
+                "jay-babu/mason-null-ls.nvim",
             },
         },
         config = function()
-            require("daneharnett.diagnosticls").init()
+            require("daneharnett.null-ls").init()
         end,
     },
-    {
-        "creativenull/efmls-configs-nvim",
-        dependencies = {
-            {
-                "neovim/nvim-lspconfig",
-            },
-        },
-        config = function()
-            require("daneharnett.efmls").init()
-        end,
-    },
+    -- Disabling via commenting this for now as it doesn't quite meet my needs,
+    -- more tinkering required.
+    -- {
+    --     "creativenull/diagnosticls-configs-nvim",
+    --     dependencies = {
+    --         {
+    --             "neovim/nvim-lspconfig",
+    --         },
+    --     },
+    --     config = function()
+    --         require("daneharnett.diagnosticls").init()
+    --     end,
+    -- },
+    -- {
+    --     "creativenull/efmls-configs-nvim",
+    --     dependencies = {
+    --         {
+    --             "neovim/nvim-lspconfig",
+    --         },
+    --     },
+    --     config = function()
+    --         require("daneharnett.efmls").init()
+    --     end,
+    -- },
     {
         "glepnir/lspsaga.nvim",
         config = function()
