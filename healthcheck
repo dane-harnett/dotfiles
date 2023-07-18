@@ -44,6 +44,20 @@ else
   echo -e "tmux installed."
 fi
 
+# check for efm-langserver
+if [[ ! $(command -v "efm-langserver") ]]; then
+  echo -e "efm-langserver not installed. run: brew install efm-langserver"
+else
+  echo -e "efm-langserver installed."
+fi
+
+# check for diagnostic-languageserver
+if [[ ! $(command -v "diagnostic-languageserver") ]]; then
+  echo -e "diagnostic-languageserver not installed. run: npm i -g diagnostic-languageserver"
+else
+  echo -e "diagnostic-languageserver installed."
+fi
+
 # check for tmux plugin manager (tpm)
 if [[ ! -f ~/.tmux/plugins/tpm/README.md ]]; then
   echo -e "tmux plugin manager not installed. go to https://github.com/tmux-plugins/tpm"

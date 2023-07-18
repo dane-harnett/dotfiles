@@ -93,14 +93,25 @@ local plugins = {
         },
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "creativenull/diagnosticls-configs-nvim",
         dependencies = {
             {
-                "jay-babu/mason-null-ls.nvim",
+                "neovim/nvim-lspconfig",
             },
         },
         config = function()
-            require("daneharnett.null-ls").init()
+            require("daneharnett.diagnosticls").init()
+        end,
+    },
+    {
+        "creativenull/efmls-configs-nvim",
+        dependencies = {
+            {
+                "neovim/nvim-lspconfig",
+            },
+        },
+        config = function()
+            require("daneharnett.efmls").init()
         end,
     },
     {
