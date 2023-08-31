@@ -128,16 +128,15 @@ local plugins = {
     --     end,
     -- },
     {
-        "glepnir/lspsaga.nvim",
+        "nvimdev/lspsaga.nvim",
         config = function()
             require("daneharnett.lspsaga").init()
         end,
         dependencies = {
-            {
-                "neovim/nvim-lspconfig",
-            },
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
         },
-        event = "BufRead",
+        event = "LspAttach",
     },
     -- completion
     {
