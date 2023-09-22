@@ -42,6 +42,9 @@ local server_configs = {
                     diagnostics = {
                         globals = { "vim" },
                     },
+                    hint = {
+                        enable = true,
+                    },
                     workspace = {
                         library = vim.api.nvim_get_runtime_file("", true),
                     },
@@ -106,6 +109,17 @@ local server_configs = {
                 return git_ancestor
             end,
             single_file_support = false,
+            typescript = {
+                inlayHints = {
+                    includeInlayEnumMemberValueHints = true,
+                    includeInlayFunctionLikeReturnTypeHints = true,
+                    includeInlayFunctionParameterTypeHints = true,
+                    includeInlayParameterNameHints = "all",
+                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                    includeInlayPropertyDeclarationTypeHints = true,
+                    includeInlayVariableTypeHints = true,
+                },
+            },
         }
     end,
 }
@@ -195,10 +209,16 @@ M.setup_diagnostics = function()
 end
 
 M.attach_keymaps_to_buffer = function(bufnr)
+    local utils = require("daneharnett.utils")
     local my_lspsaga = require("daneharnett.lspsaga")
     local my_trouble = require("daneharnett.trouble")
     my_lspsaga.attach_keymaps_to_buffer(bufnr)
     my_trouble.attach_keymaps_to_buffer(bufnr)
+    if vim.lsp.inlay_hint then
+        utils.buffer_keymap(bufnr, "n", "<leader>uh", function()
+            vim.lsp.inlay_hint(bufnr, nil)
+        end)
+    end
 end
 
 M.make_on_attach = function(opts)
