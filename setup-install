@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# This script is currently a work-in-progress and has not yet been tested.
+
+# install brew if its not already available
+if [[ ! $(command -v "brew") ]]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# install stow via brew if its not already available
+if [[ ! $(command -v "stow") ]]; then
+  brew install stow
+fi
+
+# install fnm via brew if its not already available
+if [[ ! $(command -v "fnm") ]]; then
+  brew install fnm
+fi
+
+if [[ ! $(command -v "nvim") ]]; then
+  brew install neovim
+fi
+
+if [[ ! $(command -v "tmux") ]]; then
+  brew install tmux
+fi
+
+# check for tmux plugin manager (tpm)
+if [[ ! -f ~/.tmux/plugins/tpm/README.md ]]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+if [[ ! $(command -v "wezterm") ]]; then
+  brew install --cask wez/wezterm/wezterm
+fi
+
+
+
+
+
+if [[ ! $(command -v "node") ]]; then
+  fnm install v16.19.0
+fi
+
+
+
+echo -e "Setup complete. Now run ./install to apply the config"
