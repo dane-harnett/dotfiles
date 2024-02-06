@@ -117,6 +117,8 @@ function M.init()
             -- Set the timeout to 10s as it kept timing out for me.
             utils.create_format_on_save_autocmd("NullLs", bufnr, 10000)
         end,
+        -- Support monorepos where a lock file exists in a subfolder.
+        root_dir = null_ls_utils.root_pattern("package-lock.json", "yarn.lock", ".null-ls-root", "Makefile", ".git"),
         sources = {
             -- diagnostic sources
             diagnostics.eslint_d.with({
