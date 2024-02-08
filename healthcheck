@@ -17,6 +17,13 @@ else
   echo -e "stow installed."
 fi
 
+# check for eza
+if [[ ! $(command -v "eza") ]]; then
+  echo -e "eza not installed. run brew install eza"
+else
+  echo -e "eza installed."
+fi
+
 # check for fast node manager (fnm)
 if [[ ! $(command -v "fnm") ]]; then
   echo -e "fnm not installed. run brew install fnm"

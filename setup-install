@@ -12,6 +12,11 @@ if [[ ! $(command -v "stow") ]]; then
   brew install stow
 fi
 
+# install eza via brew if its not already available
+if [[ ! $(command -v "eza") ]]; then
+  brew install eza
+fi
+
 # install fnm via brew if its not already available
 if [[ ! $(command -v "fnm") ]]; then
   brew install fnm
