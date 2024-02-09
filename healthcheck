@@ -24,6 +24,13 @@ else
   echo -e "eza installed."
 fi
 
+# check for zoxide
+if [[ ! $(command -v "zoxide") ]]; then
+  echo -e "zoxide not installed. run brew install zoxide"
+else
+  echo -e "zoxide installed."
+fi
+
 # check for fast node manager (fnm)
 if [[ ! $(command -v "fnm") ]]; then
   echo -e "fnm not installed. run brew install fnm"

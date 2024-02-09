@@ -17,6 +17,11 @@ if [[ ! $(command -v "eza") ]]; then
   brew install eza
 fi
 
+# install zoxide via brew if its not already available
+if [[ ! $(command -v "zoxide") ]]; then
+  brew install zoxide
+fi
+
 # install fnm via brew if its not already available
 if [[ ! $(command -v "fnm") ]]; then
   brew install fnm

@@ -80,5 +80,10 @@ if [[ $(command -v "eza") ]]; then
   alias ls="eza"
 fi
 
+if [[ $(command -v "zoxide") ]]; then
+  alias cd="z"
+  alias zz="z -"
+fi
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
