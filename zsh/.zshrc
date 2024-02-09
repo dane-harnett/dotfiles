@@ -81,7 +81,7 @@ if [[ $(command -v "eza") ]]; then
 fi
 
 if [[ $(command -v "zoxide") ]]; then
-  alias z="zoxide"
+  eval "$(zoxide init zsh)"
   alias cd="z"
   alias zz="z -"
 fi
