@@ -1,8 +1,8 @@
 #!/bin/bash
 
 stow --target=$HOME alacritty
+stow --target=$HOME fzf
 stow --target=$HOME nvim
 stow --target=$HOME tmux
 stow --target=$HOME wezterm
 stow --target=$HOME zsh
-stow --target=$HOME fzf

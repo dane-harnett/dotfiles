@@ -1,6 +1,9 @@
 #!/bin/bash
 
+stow --delete --target=$HOME alacritty
+stow --delete --target=$HOME fzf
 stow --delete --target=$HOME nvim
 stow --delete --target=$HOME tmux
+stow --delete --target=$HOME wezterm
 stow --delete --target=$HOME zsh
 
