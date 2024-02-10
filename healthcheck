@@ -31,6 +31,13 @@ else
   echo -e "zoxide installed."
 fi
 
+# check for fzf
+if [[ ! $(command -v "fzf") ]]; then
+  echo -e "fzf not installed. run brew install fzf"
+else
+  echo -e "fzf installed."
+fi
+
 # check for fast node manager (fnm)
 if [[ ! $(command -v "fnm") ]]; then
   echo -e "fnm not installed. run brew install fnm"

@@ -22,6 +22,11 @@ if [[ ! $(command -v "zoxide") ]]; then
   brew install zoxide
 fi
 
+# install fzf via brew if its not already available
+if [[ ! $(command -v "fzf") ]]; then
+  brew install fzf
+fi
+
 # install fnm via brew if its not already available
 if [[ ! $(command -v "fnm") ]]; then
   brew install fnm
