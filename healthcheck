@@ -106,3 +106,10 @@ if [[ ! -f ~/.zsh_plugins.zsh ]]; then
 else
   echo -e "antidote plugins bundled."
 fi
+
+# check for sketchybar
+if [[ ! $(command -v "sketchybar") ]]; then
+  echo -e "sketchybar not installed. run: brew tap FelixKratz/formulae && brew install sketchybar && brew services start sketchybar"
+else
+  echo -e "sketchybar installed."
+fi
