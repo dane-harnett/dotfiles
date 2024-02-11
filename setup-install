@@ -65,6 +65,11 @@ if [[ ! $(command -v "sketchybar") ]]; then
   brew services start sketchybar
 fi
 
+if [[ ! $(command -v "yabai") ]]; then
+  brew install koekeishiya/formulae/yabai
+  yabai --start-service
+fi
+
 
 
 echo -e "Setup complete. Now run ./install to apply the config"

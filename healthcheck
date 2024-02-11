@@ -113,3 +113,10 @@ if [[ ! $(command -v "sketchybar") ]]; then
 else
   echo -e "sketchybar installed."
 fi
+
+# check for yabai
+if [[ ! $(command -v "yabai") ]]; then
+  echo -e "yabai not installed. run: brew install koekeishiya/formulae/yabai"
+else
+  echo -e "yabai installed."
+fi

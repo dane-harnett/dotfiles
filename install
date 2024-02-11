@@ -6,4 +6,5 @@ stow --target=$HOME nvim
 stow --target=$HOME sketchybar
 stow --target=$HOME tmux
 stow --target=$HOME wezterm
+stow --target=$HOME yabai
 stow --target=$HOME zsh
