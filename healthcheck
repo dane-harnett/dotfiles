@@ -120,3 +120,10 @@ if [[ ! $(command -v "yabai") ]]; then
 else
   echo -e "yabai installed."
 fi
+
+# check for skhd
+if [[ ! $(command -v "skhd") ]]; then
+  echo -e "skhd not installed. run: brew install koekeishiya/formulae/skhd"
+else
+  echo -e "skhd installed."
+fi
