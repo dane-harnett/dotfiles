@@ -54,6 +54,8 @@ yabai -m rule --add label="mpv" app="^mpv$" manage=off
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="HHKB" app="HHKB Keymap Tool" title="About This Mac" manage=off
+yabai -m rule --add label="Cisco Secure Client" app="Cisco Secure Client" manage=off
+yabai -m rule --add label="Zoom" app="zoom.us" manage=off
 
 # ===== Signals ================================
 
