@@ -1,6 +1,7 @@
 #!/bin/bash
 
 stow --delete --target=$HOME alacritty
+stow --delete --target=$HOME borders
 stow --delete --target=$HOME fzf
 stow --delete --target=$HOME nvim
 stow --delete --target=$HOME sketchybar

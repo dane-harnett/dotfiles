@@ -75,6 +75,11 @@ if [[ ! $(command -v "skhd") ]]; then
   skhd --start-service
 fi
 
+if [[ ! $(command -v "borders") ]]; then
+  brew install FelixKratz/formulae/borders
+  brew services start borders
+fi
+
 
 
 echo -e "Setup complete. Now run ./install to apply the config"

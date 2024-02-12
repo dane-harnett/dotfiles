@@ -127,3 +127,10 @@ if [[ ! $(command -v "skhd") ]]; then
 else
   echo -e "skhd installed."
 fi
+
+# check for borders
+if [[ ! $(command -v "borders") ]]; then
+  echo -e "borders not installed. run: brew install brew install FelixKratz/formulae/borders"
+else
+  echo -e "borders installed."
+fi
