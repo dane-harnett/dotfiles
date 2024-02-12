@@ -1,6 +1,6 @@
 # === Session defaults ===
 # reset border color in default mode
-:: default : yabai -m config active_window_border_color 0xE032CD32
+:: default : borders active_color=0xffe2e2e3
 # kickstart yabai
 hyper - y : yabai --restart-service
 # lock screen immediately
@@ -29,9 +29,10 @@ hyper - c : open "x-apple.systempreferences:"
 
 # === Resize Mode ===
 # Set resize border color
-:: resize @ : yabai -m config active_window_border_color 0xFFFF00FF
+:: resize @ : borders active_color=0xFFFF0000
 # toggle resize mode
 resize < hyper - r ; default
+resize < hyper - f ; focus
 default < hyper - r ; resize
 # resize commands
 resize < left : yabai -m window --resize left:-50:0; \
@@ -44,8 +45,10 @@ resize < right : yabai -m window --resize right:50:0; \
                   yabai -m window --resize left:50:0
 
 # === Navigation ===
+:: focus @ : borders active_color=0xFF0000FF
 # toggle focus mode
 focus < hyper - f ; default
+focus < hyper - r ; resize
 default < hyper - f ; focus
 
 # window focus
@@ -75,7 +78,7 @@ focus < cmd - 9 : yabai -m space --focus 9
 
 # create a space
 # hyper - n : yabai -m space --create; \
-		sketchybar --update
+#		sketchybar --update
 
 # destroy current space
 # hyper - d : yabai -m space --destroy
@@ -149,3 +152,7 @@ hyper - e : yabai -m space --balance
 # Make window native fullscreen
 # alt - f         : yabai -m window --toggle zoom-fullscreen
 # shift + alt - f : yabai -m window --toggle native-fullscreen
+
+.blacklist [
+  "terminal"
+]
