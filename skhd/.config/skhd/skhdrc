@@ -155,7 +155,7 @@ hyper - e : yabai -m space --balance
 #     yabai -m window --toggle border
 
 # Make window native fullscreen
-# alt - f         : yabai -m window --toggle zoom-fullscreen
+hyper - m         : yabai -m window --toggle zoom-fullscreen
 # shift + alt - f : yabai -m window --toggle native-fullscreen
 
 .blacklist [
