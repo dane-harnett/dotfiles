@@ -57,6 +57,8 @@ yabai -m rule --add label="HHKB" app="HHKB Keymap Tool" title="About This Mac" m
 yabai -m rule --add label="Cisco Secure Client" app="Cisco Secure Client" manage=off
 yabai -m rule --add label="Zoom" app="zoom.us" manage=off
 yabai -m rule --add label="Finder" app="Finder" manage=off
+yabai -m rule --add label="Cypress" app="Cypress" manage=off
+yabai -m rule --add label="Chrome Cypress" app="Chrome" title="cypress" manage=off
 
 # ===== Signals ================================
 
