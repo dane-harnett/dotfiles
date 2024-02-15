@@ -4,6 +4,7 @@ function M.init()
     local o = vim.o
     local bo = vim.bo
     local wo = vim.wo
+    local opt = vim.opt
 
     -- global options --
     -- do i want to keep these settings?
@@ -49,6 +50,10 @@ function M.init()
     wo.relativenumber = true
     wo.signcolumn = "yes"
     wo.wrap = false
+
+    -- split options --
+    opt.splitright = true
+    opt.splitbelow = true
 end
 
 return M
