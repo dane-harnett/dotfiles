@@ -268,6 +268,18 @@ local plugins = {
             require("daneharnett.blamer").init()
         end,
     },
+    {
+        "nvim-pack/nvim-spectre",
+        config = function()
+            require("daneharnett.spectre").init()
+        end,
+        dependencies = {
+            {
+                "nvim-tree/nvim-web-devicons",
+                "nvim-lua/plenary.nvim",
+            },
+        },
+    },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
