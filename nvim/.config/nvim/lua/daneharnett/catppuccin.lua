@@ -1,7 +1,7 @@
 local M = {}
 
 function M.init()
-    local catppuccin_status_ok, catppuccin = pcall(require, "mason")
+    local catppuccin_status_ok, catppuccin = pcall(require, "catppuccin")
     if not catppuccin_status_ok then
         return
     end
