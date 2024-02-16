@@ -59,8 +59,7 @@ if [[ ! $(command -v "sketchybar") ]]; then
   brew tap homebrew/cask-fonts
   brew install --cask homebrew/cask-fonts/font-hasklug-nerd-font
   # install sketchybar
-  brew tap FelixKratz/formulae
-  brew install sketchybar
+  brew install FelixKratz/formulae/sketchybar
   # run automatically at startup
   brew services start sketchybar
 fi
@@ -76,7 +75,9 @@ if [[ ! $(command -v "skhd") ]]; then
 fi
 
 if [[ ! $(command -v "borders") ]]; then
+  # install borders
   brew install FelixKratz/formulae/borders
+  # run automatically at startup
   brew services start borders
 fi
 

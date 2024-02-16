@@ -109,7 +109,7 @@ fi
 
 # check for sketchybar
 if [[ ! $(command -v "sketchybar") ]]; then
-  echo -e "sketchybar not installed. run: brew tap FelixKratz/formulae && brew install sketchybar && brew services start sketchybar"
+  echo -e "sketchybar not installed. run: brew install FelixKratz/formulae/sketchybar && brew services start sketchybar"
 else
   echo -e "sketchybar installed."
 fi
@@ -130,7 +130,7 @@ fi
 
 # check for borders
 if [[ ! $(command -v "borders") ]]; then
-  echo -e "borders not installed. run: brew install brew install FelixKratz/formulae/borders"
+  echo -e "borders not installed. run: brew install FelixKratz/formulae/borders"
 else
   echo -e "borders installed."
 fi
