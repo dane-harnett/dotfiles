@@ -141,3 +141,10 @@ if [[ ! $(command -v "gsed") ]]; then
 else
   echo -e "gnu-sed installed."
 fi
+
+# check for raycast
+if [[ ! -d /Applications/Raycast.app ]]; then
+  echo -e "raycast not installed. run: brew install --cask raycast"
+else
+  echo -e "raycast installed."
+fi

@@ -21,6 +21,9 @@ zsh is my preferred shell environment. I use the antidote plugin manager for zsh
 ## Text editor
 I use neovim.
 
+## Command palette
+I use raycast with some custom scripts.
+
 ## Shell utilities
 
 ### eza
