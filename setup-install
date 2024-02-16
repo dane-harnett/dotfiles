@@ -80,6 +80,10 @@ if [[ ! $(command -v "borders") ]]; then
   brew services start borders
 fi
 
+if [[ ! $(command -v "gsed") ]]; then
+  brew install gnu-sed
+fi
+
 
 
 echo -e "Setup complete. Now run ./install to apply the config"

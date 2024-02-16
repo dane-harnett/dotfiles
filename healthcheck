@@ -134,3 +134,10 @@ if [[ ! $(command -v "borders") ]]; then
 else
   echo -e "borders installed."
 fi
+
+# check for gnu-sed
+if [[ ! $(command -v "gsed") ]]; then
+  echo -e "gnu-sed not installed. run: brew install gnu-sed"
+else
+  echo -e "gnu-sed installed."
+fi

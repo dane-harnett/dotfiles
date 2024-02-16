@@ -32,6 +32,9 @@ A fuzzy-finder.
 ### zoxide
 A better `cd`
 
+### gnu-sed
+Used for text replacement in nvim-spectre
+
 ## Node.js version management
 I use both Fast Node Manager (`fnm`) and Node Version Manager (`nvm`) (for reasons).
 
