@@ -89,5 +89,54 @@ if [[ $(command -v "zoxide") ]]; then
   alias zz="z -"
 fi
 
+# Custom p10k prompt for git repository info
+# uses git-status-fly for improved performance in large repositories.
+function prompt_my_gsf() {
+  # The git-status-fly binary will run git status and output a script that
+  # will set environment variables with the git information.
+  . <(git-status-fly)
+    local res=""
+    local state='CLEAN'
+    local background="${POWERLEVEL9K_VCS_CLEAN_BACKGROUND}"
+    local myGsfIcon=$'\uF1D2'
+
+    if [[ -n $GSF_REPOSITORY && "$GSF_REPOSITORY"=="1" ]]; then
+
+      if [[ -n $GSF_BRANCH ]]; then
+        local branch=${GSF_BRANCH}
+        # If local branch name is at most 32 characters long, show it in full.
+        # Otherwise show the first 12 … the last 12.
+        # Tip: To always show local branch name in full without truncation, delete the next line.
+        (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
+        res+="${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
+      fi
+
+      if [[ -n $GSF_STASH && "$GSF_STASH"=="1" ]]; then
+        res+=" *"
+      fi
+      if [[ -n $GSF_DIRTY && "$GSF_DIRTY"=="1" ]]; then
+        state='MODIFIED'
+        background="${POWERLEVEL9K_VCS_MODIFIED_BACKGROUND}"
+        res+=" !"
+      fi
+      if [[ -n $GSF_STAGED && "${GSF_STAGED}"=="1" ]]; then
+        state='MODIFIED'
+        background="${POWERLEVEL9K_VCS_MODIFIED_BACKGROUND}"
+        res+=" +"
+      fi
+
+      p10k segment -s ${state} -b "${background}" -i "${myGsfIcon}" -t "${res}"
+    fi
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# If git-status-fly is available then use it to power the git prompt segment,
+# otherwise fallback to the p10k vcs segment.
+if [[ $(command -v "git-status-fly") ]]; then
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=my_gsf
+else
+  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=vcs
+fi
+
