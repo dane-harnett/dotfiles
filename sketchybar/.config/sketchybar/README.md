@@ -2,6 +2,7 @@
 
 [SketchyBar](https://felixkratz.github.io/SketchyBar/) configuration.
 Originally based on the config from: https://github.com/sgoodluck/mac-dotfiles
+Some tweaks taken from https://github.com/Pe8er/dotfiles
 
 ## Features
 
