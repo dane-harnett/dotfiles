@@ -19,7 +19,7 @@ getcolor() {
     local green=#c3e88d
     local yellow=#ffcb6b
     local red=#ff5370
-    local black=#0f111a
+    local black=#000000
     local white=#eeeeee
 
     case $opacity in
@@ -55,7 +55,7 @@ getcolor() {
 
 
 # Bar and item colors
-export BAR_COLOR=$(getcolor black 25)
+export BAR_COLOR=$(getcolor black 100)
 export BAR_BORDER_COLOR=$(getcolor black 50)
 export HIGHLIGHT=$(getcolor teal)
 export HIGHLIGHT_75=$(getcolor teal 75)
