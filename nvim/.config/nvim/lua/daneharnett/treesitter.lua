@@ -48,7 +48,9 @@ end
 M.setup_treesitter_context = function()
     local context_status_ok, tscontext = pcall(require, "treesitter-context")
     if context_status_ok then
-        tscontext.setup({})
+        tscontext.setup({
+            max_lines = 3,
+        })
     end
 end
 
