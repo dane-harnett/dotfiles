@@ -280,6 +280,11 @@ local plugins = {
             },
         },
     },
+    -- NOTE: this plugin highlights these types of comments.
+    {
+        "folke/todo-comments.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
