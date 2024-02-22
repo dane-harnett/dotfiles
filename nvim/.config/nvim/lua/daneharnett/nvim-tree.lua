@@ -36,11 +36,28 @@ function M.init()
     })
 
     local utils = require("daneharnett.utils")
-    utils.keymap("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
+    utils.keymap("n", "<leader>e", M.focus_or_toggle)
     utils.keymap("n", "<C-6>", "<cmd>NvimTreeResize " .. default_width .. "<cr>")
     utils.keymap("n", "<C-7>", "<cmd>NvimTreeResize 100<cr>")
     utils.keymap("n", "<C-8>", "<cmd>NvimTreeResize +5<cr>")
     utils.keymap("n", "<C-9>", "<cmd>NvimTreeResize -5<cr>")
+end
+
+function M.focus_or_toggle()
+    local status_ok, nvim_tree_api = pcall(require, "nvim-tree.api")
+    if not status_ok then
+        return
+    end
+    local buf = vim.api.nvim_get_current_buf()
+    local file_type = vim.api.nvim_get_option_value("filetype", { buf = buf })
+    if file_type == "NvimTree" then
+        nvim_tree_api.tree.toggle({
+            find_file = true,
+            focus = true,
+        })
+    else
+        nvim_tree_api.tree.focus()
+    end
 end
 
 return M
