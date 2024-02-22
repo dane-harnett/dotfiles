@@ -51,12 +51,12 @@ function M.focus_or_toggle()
     local buf = vim.api.nvim_get_current_buf()
     local file_type = vim.api.nvim_get_option_value("filetype", { buf = buf })
     if file_type == "NvimTree" then
-        nvim_tree_api.tree.toggle({
+        nvim_tree_api.tree.toggle()
+    else
+        nvim_tree_api.tree.focus({
             find_file = true,
             focus = true,
         })
-    else
-        nvim_tree_api.tree.focus()
     end
 end
 
