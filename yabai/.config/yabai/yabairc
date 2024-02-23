@@ -11,11 +11,11 @@
 
 yabai -m config layout                      bsp
 
-yabai -m config top_padding                 10
-yabai -m config bottom_padding              10
-yabai -m config left_padding                10
-yabai -m config right_padding               10
-yabai -m config window_gap                  10
+yabai -m config top_padding                 3
+yabai -m config bottom_padding              3
+yabai -m config left_padding                3
+yabai -m config right_padding               3
+yabai -m config window_gap                  8
 
 yabai -m config mouse_follows_focus         off
 yabai -m config focus_follows_mouse         off
@@ -38,7 +38,7 @@ yabai -m config auto_balance                off
 yabai -m config mouse_modifier              fn
 yabai -m config mouse_action1               move
 yabai -m config mouse_action2               resize
-yabai -m config external_bar 		    all:30:0
+yabai -m config external_bar 		    all:44:0
 # ===== Rules ==================================
 
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
