@@ -47,7 +47,7 @@ function M.init()
     utils.key_mapper("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>')
 end
 
-M.toggle = function()
+function M.toggle()
     local spectre_status_ok, spectre = pcall(require, "spectre")
     if not spectre_status_ok then
         return
@@ -56,6 +56,9 @@ M.toggle = function()
     if not spectre_state_status_ok then
         return
     end
+
+    M.ensure_nvim_tree_is_closed()
+
     if spectre_state.is_open then
         spectre.toggle()
     else
@@ -64,6 +67,15 @@ M.toggle = function()
             spectre.resume_last_search()
         end
     end
+end
+
+function M.ensure_nvim_tree_is_closed()
+    local status_ok, nvim_tree_api = pcall(require, "nvim-tree.api")
+    if not status_ok then
+        return
+    end
+
+    nvim_tree_api.tree.close_in_all_tabs()
 end
 
 return M

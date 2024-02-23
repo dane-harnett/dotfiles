@@ -48,6 +48,9 @@ function M.focus_or_toggle()
     if not status_ok then
         return
     end
+
+    M.ensure_spectre_is_closed()
+
     local buf = vim.api.nvim_get_current_buf()
     local file_type = vim.api.nvim_get_option_value("filetype", { buf = buf })
     if file_type == "NvimTree" then
@@ -57,6 +60,21 @@ function M.focus_or_toggle()
             find_file = true,
             focus = true,
         })
+    end
+end
+
+function M.ensure_spectre_is_closed()
+    local spectre_status_ok, spectre = pcall(require, "spectre")
+    if not spectre_status_ok then
+        return
+    end
+    local spectre_state_status_ok, spectre_state = pcall(require, "spectre.state")
+    if not spectre_state_status_ok then
+        return
+    end
+
+    if spectre_state.is_open then
+        spectre.toggle()
     end
 end
 
