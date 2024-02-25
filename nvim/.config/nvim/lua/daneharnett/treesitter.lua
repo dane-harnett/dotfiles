@@ -29,6 +29,7 @@ M.setup_treesitter_configs = function()
             "markdown_inline",
             "tsx",
             "typescript",
+            "vimdoc",
         },
         highlight = {
             enable = true,
