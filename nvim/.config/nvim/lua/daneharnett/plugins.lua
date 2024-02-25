@@ -161,6 +161,7 @@ local plugins = {
                 "saadparwaiz1/cmp_luasnip",
             },
         },
+        event = "InsertEnter",
     },
     -- file-tree sidebar explorer
     {
@@ -196,6 +197,7 @@ local plugins = {
                 build = "make",
             },
         },
+        event = "VeryLazy",
     },
     -- trouble
     {
