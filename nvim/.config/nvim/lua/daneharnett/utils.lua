@@ -1,17 +1,18 @@
 local M = {}
 
-M.keymap = function(mode, key, result)
-    vim.keymap.set(mode, key, result, { noremap = true, silent = true })
+M.keymap = function(mode, key, result, desc)
+    desc = desc or ""
+    vim.keymap.set(mode, key, result, {
+        desc = desc,
+        noremap = true,
+        silent = true,
+    })
 end
 M.current_buffer_keymap = function(mode, key, result)
     vim.keymap.set(mode, key, result, { buffer = true, noremap = true, silent = true })
 end
 M.buffer_keymap = function(bufnr, mode, key, result)
     vim.keymap.set(mode, key, result, { buffer = bufnr, noremap = true, silent = true })
-end
--- deprecated
-M.key_mapper = function(mode, key, result)
-    vim.keymap.set(mode, key, result, { noremap = true, silent = true })
 end
 
 M.create_format_on_save_autocmd = function(augroup_name, bufnr, timeout_ms)

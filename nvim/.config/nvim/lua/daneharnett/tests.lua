@@ -2,7 +2,7 @@ local M = {}
 
 function M.init()
     local utils = require("daneharnett.utils")
-    utils.key_mapper("n", "<leader>tf", ":TestFile<CR>")
+    utils.keymap("n", "<leader>tf", ":TestFile<CR>", "[T]est [f]ile")
 end
 
 return M

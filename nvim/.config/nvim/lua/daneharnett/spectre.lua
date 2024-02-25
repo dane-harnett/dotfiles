@@ -40,11 +40,25 @@ function M.init()
         },
     })
 
-    --utils.key_mapper("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>')
-    utils.key_mapper("n", "<leader>ss", M.toggle)
-    utils.key_mapper("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>')
-    utils.key_mapper("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>')
-    utils.key_mapper("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>')
+    utils.keymap("n", "<leader>ss", M.toggle, "Toggle [s]pectre [s]earch")
+    utils.keymap(
+        "n",
+        "<leader>sw",
+        '<cmd>lua require("spectre").open_visual({select_word=true})<CR>',
+        "[S]pectre search [w]ord"
+    )
+    utils.keymap(
+        "v",
+        "<leader>sw",
+        '<esc><cmd>lua require("spectre").open_visual()<CR>',
+        "[S]pectre search [w]ord (visual)"
+    )
+    utils.keymap(
+        "n",
+        "<leader>scf",
+        '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>',
+        "[S]pectre [c]urrent [f]ile"
+    )
 end
 
 function M.toggle()

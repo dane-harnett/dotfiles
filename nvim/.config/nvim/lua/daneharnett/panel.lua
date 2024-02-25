@@ -7,7 +7,7 @@ local M = {}
 function M.init()
     local utils = require("daneharnett.utils")
 
-    utils.key_mapper("n", "<leader>pc", M.close_panel)
+    utils.keymap("n", "<leader>pc", M.close_panel, "[P]anel [c]lose")
 end
 
 function M.close_panel()
