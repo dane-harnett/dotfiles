@@ -51,6 +51,12 @@ function M.on_attach(bufnr)
     end
     nvim_tree_api.config.mappings.default_on_attach(bufnr)
 
+    -- the following keymaps should only be attached to buffers of
+    -- `NvimTree` filetype.
+    local file_type = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+    if not file_type == "NvimTree" then
+        return
+    end
     local utils = require("daneharnett.utils")
     utils.keymap("n", "<leader>sf", M.spectre_find_in_folder)
 end
