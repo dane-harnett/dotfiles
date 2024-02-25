@@ -214,6 +214,9 @@ M.attach_keymaps_to_buffer = function(bufnr)
     local my_trouble = require("daneharnett.trouble")
     my_lspsaga.attach_keymaps_to_buffer(bufnr)
     my_trouble.attach_keymaps_to_buffer(bufnr)
+
+    utils.buffer_keymap(bufnr, { "n", "v" }, "<leader>ca", "")
+
     if vim.lsp.inlay_hint then
         utils.buffer_keymap(bufnr, "n", "<leader>uh", function()
             vim.lsp.inlay_hint(bufnr, nil)

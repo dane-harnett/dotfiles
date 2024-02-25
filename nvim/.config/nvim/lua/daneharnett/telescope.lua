@@ -88,6 +88,9 @@ function M.init()
                 override_file_sorter = true,
                 case_mode = "smart_case",
             },
+            ["ui-select"] = {
+                require("telescope.themes").get_dropdown(),
+            },
         },
         pickers = {
             buffers = buffers,
@@ -98,8 +101,10 @@ function M.init()
             oldfiles = oldfiles,
         },
     })
-    telescope.load_extension("fzf")
-    telescope.load_extension("harpoon")
+
+    pcall(require("telescope").load_extension, "fzf")
+    pcall(require("telescope").load_extension, "harpoon")
+    pcall(require("telescope").load_extension, "ui-select")
 
     vim.api.nvim_create_user_command("TelescopeFindFilesIncludingHidden", function()
         require("telescope.builtin").find_files(find_files_including_hidden)
