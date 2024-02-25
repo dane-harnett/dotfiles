@@ -61,6 +61,17 @@ function M.init()
     )
 end
 
+function is_empty(s)
+    return s == nil or s == ""
+end
+
+function is_query_empty(query)
+    if query == nil then
+        return true
+    end
+    return is_empty(query.search_query) and is_empty(query.replace_query) and is_empty(query.path)
+end
+
 function M.toggle()
     local spectre_status_ok, spectre = pcall(require, "spectre")
     if not spectre_status_ok then
@@ -74,12 +85,27 @@ function M.toggle()
     M.ensure_nvim_tree_is_closed()
 
     if spectre_state.is_open then
-        spectre.toggle()
-    else
-        spectre.toggle()
-        if spectre_state.query_backup then
-            spectre.resume_last_search()
+        local buf = vim.api.nvim_get_current_buf()
+        local file_type = vim.api.nvim_get_option_value("filetype", { buf = buf })
+        if file_type == "spectre_panel" then
+            -- close spectre panel
+            spectre.toggle()
+            return
         end
+
+        local wins = vim.fn.win_findbuf(spectre_state.bufnr)
+        if #wins >= 1 then
+            -- focus spectre panel
+            vim.api.nvim_set_current_win(wins[1])
+            return
+        end
+        return
+    end
+
+    -- spectre is not open, so open it and maybe resume the last search
+    spectre.toggle()
+    if not is_query_empty(spectre_state.query_backup) then
+        spectre.resume_last_search()
     end
 end
 
