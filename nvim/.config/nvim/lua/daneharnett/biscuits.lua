@@ -12,6 +12,11 @@ function M.init()
             "CursorHoldI",
             "InsertLeave",
         },
+        language_config = {
+            vimdoc = {
+                disabled = true,
+            },
+        },
     })
 end
 
