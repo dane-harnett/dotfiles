@@ -1,6 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "f3b3d3446bcbfa62d638b1903ff00a78b2b730a1" },
+  "better-ts-errors.nvim": { "branch": "main", "commit": "887b6993ca3ba4b82ac7abf087e2b32d9ada7891" },
   "blamer.nvim": { "branch": "master", "commit": "e0d43c11697300eb68f00d69df8b87deb0bf52dc" },
   "bufferline.nvim": { "branch": "main", "commit": "243893ba9d5d1049dd451a25cab32ec7f8f67bcf" },
   "catppuccin": { "branch": "main", "commit": "9703f227bfab20d04bcee62d2f08f1795723b4ae" },
@@ -20,6 +21,7 @@
   "mason-null-ls.nvim": { "branch": "main", "commit": "bfaa24b899233385c92364f95856e6280bddef30" },
   "mason.nvim": { "branch": "main", "commit": "c43eeb5614a09dc17c03a7fb49de2e05de203924" },
   "none-ls.nvim": { "branch": "main", "commit": "bb680d752cec37949faca7a1f509e2fe67ab418a" },
+  "nui.nvim": { "branch": "main", "commit": "c3c7fd618dcb5a89e443a2e1033e7d11fdb0596b" },
   "nvim-autopairs": { "branch": "master", "commit": "90f824d37c0cb079d2764927e73af77faa9ba0ef" },
   "nvim-biscuits": { "branch": "main", "commit": "0224be36b60588e88b21b8244a0bcd069699720e" },
   "nvim-cmp": { "branch": "main", "commit": "04e0ca376d6abdbfc8b52180f8ea236cbfddf782" },
