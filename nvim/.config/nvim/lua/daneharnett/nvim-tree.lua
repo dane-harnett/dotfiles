@@ -37,7 +37,7 @@ function M.init()
     })
 
     local utils = require("daneharnett.utils")
-    utils.keymap("n", "<leader>e", M.focus_or_toggle)
+    utils.keymap("n", "<leader>e", M.toggle)
     utils.keymap("n", "<C-6>", "<cmd>NvimTreeResize " .. default_width .. "<cr>")
     utils.keymap("n", "<C-7>", "<cmd>NvimTreeResize 100<cr>")
     utils.keymap("n", "<C-8>", "<cmd>NvimTreeResize +5<cr>")
@@ -61,7 +61,7 @@ function M.on_attach(bufnr)
     utils.keymap("n", "<leader>sf", M.spectre_find_in_folder)
 end
 
-function M.focus_or_toggle()
+function M.toggle()
     local status_ok, nvim_tree_api = pcall(require, "nvim-tree.api")
     if not status_ok then
         return
@@ -69,16 +69,7 @@ function M.focus_or_toggle()
 
     M.ensure_spectre_is_closed()
 
-    local buf = vim.api.nvim_get_current_buf()
-    local file_type = vim.api.nvim_get_option_value("filetype", { buf = buf })
-    if file_type == "NvimTree" then
-        nvim_tree_api.tree.toggle()
-    else
-        nvim_tree_api.tree.focus({
-            find_file = true,
-            focus = true,
-        })
-    end
+    nvim_tree_api.tree.toggle()
 end
 
 function M.ensure_spectre_is_closed()
