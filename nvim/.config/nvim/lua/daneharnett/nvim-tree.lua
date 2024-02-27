@@ -69,7 +69,9 @@ function M.toggle()
 
     M.ensure_spectre_is_closed()
 
-    nvim_tree_api.tree.toggle()
+    nvim_tree_api.tree.toggle({
+        find_file = true,
+    })
 end
 
 function M.ensure_spectre_is_closed()
