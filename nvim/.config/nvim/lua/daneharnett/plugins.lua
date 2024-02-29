@@ -302,7 +302,9 @@ local plugins = {
     },
     {
         "rmagatti/auto-session",
-        opts = {},
+        config = function()
+            require("daneharnett.autosession").init()
+        end,
     },
 }
 
