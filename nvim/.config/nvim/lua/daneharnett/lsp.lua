@@ -137,6 +137,10 @@ function M.init()
     if not mason_lspconfig_status_ok then
         return
     end
+    local mason_tool_installer_status_ok, mason_tool_installer = pcall(require, "mason-tool-installer")
+    if not mason_tool_installer_status_ok then
+        return
+    end
     local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
     if not cmp_nvim_lsp_status_ok then
         return
@@ -165,6 +169,16 @@ function M.init()
         function(server_name)
             lspconfig[server_name].setup(servers[server_name])
         end,
+    })
+    mason_tool_installer.setup({
+        ensure_installed = {
+            "prettierd",
+            "stylua",
+            "isort",
+            "black",
+            "pylint",
+            "eslint_d",
+        },
     })
 
     local fidget_status_ok, fidget = pcall(require, "fidget")

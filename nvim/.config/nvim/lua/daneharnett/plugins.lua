@@ -80,6 +80,7 @@ local plugins = {
             {
                 "williamboman/mason-lspconfig.nvim",
             },
+            { "WhoIsSethDaniel/mason-tool-installer.nvim" },
             {
                 "hrsh7th/cmp-nvim-lsp",
             },
@@ -93,15 +94,18 @@ local plugins = {
         },
     },
     {
-        "nvimtools/none-ls.nvim",
-        dependencies = {
-            {
-                "jay-babu/mason-null-ls.nvim",
-            },
-        },
+        "stevearc/conform.nvim",
         config = function()
-            require("daneharnett.null-ls").init()
+            require("daneharnett.formatting").init()
         end,
+        event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+    },
+    {
+        "mfussenegger/nvim-lint",
+        config = function()
+            require("daneharnett.linting").init()
+        end,
+        event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
     },
     -- Disabling via commenting this for now as it doesn't quite meet my needs,
     -- more tinkering required.
