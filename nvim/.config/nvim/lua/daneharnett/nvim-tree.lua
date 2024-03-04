@@ -18,10 +18,13 @@ function M.init()
             },
         },
         git = {
-            -- double the default timeout to handle large repos
+            -- increase timeout to handle large repos
             -- based on if git integration gets disabled I will progressively
             -- lower/raise this.
-            timeout = 800,
+            -- tried:
+            -- 400 (default) - got timeouts
+            -- 800 - still got timeouts
+            timeout = 1600,
         },
         on_attach = M.on_attach,
         renderer = {
