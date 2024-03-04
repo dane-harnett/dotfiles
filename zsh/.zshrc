@@ -46,6 +46,9 @@ fi
 
 # Initialize fast node manager (fnm)
 [[ $(command -v "fnm") ]] && eval "$(fnm env --use-on-cd --log-level=quiet)"
+# load my nvm to fnm shim
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # These additions to PATH cannot be in zshenv due to order of execution.
 export PATH="$(brew --prefix)/opt/util-linux/sbin:$(brew --prefix)/opt/util-linux/bin:$PATH"
@@ -67,10 +70,6 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 if [[ $(command -v "pyenv") ]]; then
   eval "$(pyenv init -)"
 fi
-
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
