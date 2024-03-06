@@ -1,3 +1,6 @@
 #!/bin/zsh
 
-alias nvm="fnm"
+nvm() {
+  fnm $@
+}
+
