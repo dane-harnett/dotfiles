@@ -15,6 +15,7 @@ function M.init()
         filters = {
             custom = {
                 "^\\.git$",
+                "node_modules",
             },
         },
         git = {
