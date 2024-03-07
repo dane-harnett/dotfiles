@@ -25,7 +25,7 @@ function M.init()
         format_on_save = {
             lsp_fallback = true,
             async = false,
-            timeout_ms = 1000,
+            timeout_ms = 10000,
         },
     })
 
@@ -33,7 +33,7 @@ function M.init()
         conform.format({
             lsp_fallback = true,
             async = false,
-            timeout_ms = 1000,
+            timeout_ms = 10000,
         })
     end, { desc = "Format file or range (in visual mode)" })
 end
