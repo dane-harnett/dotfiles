@@ -61,11 +61,11 @@ function M.init()
     )
 end
 
-function is_empty(s)
+local function is_empty(s)
     return s == nil or s == ""
 end
 
-function is_query_empty(query)
+local function is_query_empty(query)
     if query == nil then
         return true
     end
@@ -85,7 +85,7 @@ function M.toggle()
     M.ensure_nvim_tree_is_closed()
 
     spectre.toggle()
-    if not is_query_empty(spectre_state.query_backup) then
+    if spectre_state.is_open and not is_query_empty(spectre_state.query_backup) then
         spectre.resume_last_search()
     end
 end
