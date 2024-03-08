@@ -5,6 +5,27 @@ function M.init()
     if not conform_status_ok then
         return
     end
+    local conform_util_status_ok, conform_util = pcall(require, "conform.util")
+    if not conform_util_status_ok then
+        return
+    end
+    local conform_eslint_d_status_ok, conform_eslint_d = pcall(require, "conform.formatters.eslint_d")
+    if not conform_eslint_d_status_ok then
+        return
+    end
+    local conform_prettierd_status_ok, conform_prettierd = pcall(require, "conform.formatters.prettierd")
+    if not conform_prettierd_status_ok then
+        return
+    end
+
+    conform_eslint_d.cwd = conform_util.root_file({
+        "yarn.lock",
+        "package-lock.json",
+    })
+    conform_prettierd.cwd = conform_util.root_file({
+        "yarn.lock",
+        "package-lock.json",
+    })
 
     conform.setup({
         formatters_by_ft = {
