@@ -23,6 +23,11 @@ if [[ ! $(command -v "zoxide") ]]; then
 fi
 
 # install fzf via brew if its not already available
+if [[ ! $(command -v "fd") ]]; then
+  brew install fd
+fi
+
+# install fzf via brew if its not already available
 if [[ ! $(command -v "fzf") ]]; then
   brew install fzf
 fi

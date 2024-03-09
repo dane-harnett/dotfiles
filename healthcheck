@@ -31,6 +31,13 @@ else
   echo -e "zoxide installed."
 fi
 
+# check for fd
+if [[ ! $(command -v "fd") ]]; then
+  echo -e "fd not installed. run brew install fd"
+else
+  echo -e "fd installed."
+fi
+
 # check for fzf
 if [[ ! $(command -v "fzf") ]]; then
   echo -e "fzf not installed. run brew install fzf"
