@@ -317,6 +317,9 @@ M.insert_path_to_directory = function()
                 "-not",
                 "-iwholename",
                 "*.git*",
+                "-not",
+                "-iwholename",
+                "*node_modules*",
             },
         }
         require("telescope.builtin").find_files(opts)
