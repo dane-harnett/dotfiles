@@ -300,8 +300,7 @@ M.insert_path_to_directory = function()
         actions.select_default:replace(function()
             actions.close(prompt_bufnr)
             local selection = action_state.get_selected_entry()
-            -- strip the './' from the start of the result
-            vim.api.nvim_put({ string.sub(selection[1], 3) }, "c", true, true)
+            vim.api.nvim_put({ selection[1] }, "c", true, true)
         end)
         return true
     end
@@ -310,16 +309,11 @@ M.insert_path_to_directory = function()
         local opts = {
             attach_mappings = run_selection,
             find_command = {
-                "find",
-                ".",
-                "-type",
-                "d",
-                "-not",
-                "-iwholename",
-                "*.git*",
-                "-not",
-                "-iwholename",
-                "*node_modules*",
+                "fd",
+                "--type=d",
+                "--hidden",
+                "--exclude=.git",
+                "--exclude=node_modules",
             },
         }
         require("telescope.builtin").find_files(opts)
