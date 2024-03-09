@@ -273,6 +273,8 @@ function M.init()
             })
             :find()
     end, {})
+
+    M.insert_path_to_directory()
 end
 
 M.attach_keymaps = function()
@@ -287,6 +289,38 @@ M.attach_keymaps = function()
     utils.keymap("n", "<LEADER>lg", "<CMD>Telescope live_grep<CR>")
     utils.keymap("n", "<LEADER>tr", "<CMD>Telescope resume<CR>")
     utils.keymap("n", "<LEADER>ff", "<CMD>TelescopeLiveGrepWithGlobs<CR>")
+    utils.keymap("n", "<LEADER>fdp", "<CMD>TelescopeInsertPathToDirectory<CR>")
+end
+
+M.insert_path_to_directory = function()
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
+
+    local function run_selection(prompt_bufnr)
+        actions.select_default:replace(function()
+            actions.close(prompt_bufnr)
+            local selection = action_state.get_selected_entry()
+            -- strip the './' from the start of the result
+            vim.api.nvim_put({ string.sub(selection[1], 3) }, "c", true, true)
+        end)
+        return true
+    end
+
+    vim.api.nvim_create_user_command("TelescopeInsertPathToDirectory", function()
+        local opts = {
+            attach_mappings = run_selection,
+            find_command = {
+                "find",
+                ".",
+                "-type",
+                "d",
+                "-not",
+                "-iwholename",
+                "*.git*",
+            },
+        }
+        require("telescope.builtin").find_files(opts)
+    end, {})
 end
 
 return M
