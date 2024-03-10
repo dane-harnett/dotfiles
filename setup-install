@@ -22,9 +22,14 @@ if [[ ! $(command -v "zoxide") ]]; then
   brew install zoxide
 fi
 
-# install fzf via brew if its not already available
+# install fd via brew if its not already available
 if [[ ! $(command -v "fd") ]]; then
   brew install fd
+fi
+
+# install rg via brew if its not already available
+if [[ ! $(command -v "rg") ]]; then
+  brew install ripgrep
 fi
 
 # install fzf via brew if its not already available

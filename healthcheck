@@ -38,6 +38,13 @@ else
   echo -e "fd installed."
 fi
 
+# check for ripgrep
+if [[ ! $(command -v "rg") ]]; then
+  echo -e "rg not installed. run brew install ripgrep"
+else
+  echo -e "rg installed."
+fi
+
 # check for fzf
 if [[ ! $(command -v "fzf") ]]; then
   echo -e "fzf not installed. run brew install fzf"
