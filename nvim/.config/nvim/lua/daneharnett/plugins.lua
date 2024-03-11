@@ -324,6 +324,9 @@ local plugins = {
             end, { silent = true, desc = "Fuzzy complete directory path" })
         end,
     },
+    {
+        "sindrets/diffview.nvim",
+    },
 }
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
