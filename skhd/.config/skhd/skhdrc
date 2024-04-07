@@ -158,6 +158,9 @@ hyper - e : yabai -m space --balance
 hyper - m         : yabai -m window --toggle zoom-fullscreen
 # shift + alt - f : yabai -m window --toggle native-fullscreen
 
+hyper - b         : yabai -m config external_bar all:44:0
+hyper - n         : yabai -m config external_bar off:0:0
+
 .blacklist [
   "terminal"
 ]
