@@ -59,6 +59,7 @@ yabai -m rule --add label="Zoom" app="zoom.us" manage=off
 yabai -m rule --add label="Finder" app="Finder" manage=off
 yabai -m rule --add label="Cypress" app="Cypress" manage=off
 yabai -m rule --add label="Chrome Cypress" app="Chrome" title="cypress" manage=off
+yabai -m rule --add label="QuickTime Player" app="^QuickTime Player$" title=".*" manage=off
 
 # ===== Signals ================================
 
