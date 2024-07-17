@@ -52,7 +52,6 @@ local plugins = {
                 "nvim-tree/nvim-web-devicons",
             },
         },
-        version = "^3",
     },
     -- status line (bottom of buffer)
     {
