@@ -128,19 +128,26 @@ else
   echo -e "sketchybar installed."
 fi
 
-# check for yabai
-if [[ ! $(command -v "yabai") ]]; then
-  echo -e "yabai not installed. run: brew install koekeishiya/formulae/yabai"
+# check for aerospace
+if [[ ! $(command -v "aerospace") ]]; then
+  echo -e "aerospace not installed. run: brew install --cask nikitabobko/tap/aerospace"
 else
-  echo -e "yabai installed."
+  echo -e "aerospace installed."
 fi
 
+# check for yabai
+# if [[ ! $(command -v "yabai") ]]; then
+#   echo -e "yabai not installed. run: brew install koekeishiya/formulae/yabai"
+# else
+#   echo -e "yabai installed."
+# fi
+
 # check for skhd
-if [[ ! $(command -v "skhd") ]]; then
-  echo -e "skhd not installed. run: brew install koekeishiya/formulae/skhd"
-else
-  echo -e "skhd installed."
-fi
+# if [[ ! $(command -v "skhd") ]]; then
+#   echo -e "skhd not installed. run: brew install koekeishiya/formulae/skhd"
+# else
+#   echo -e "skhd installed."
+# fi
 
 # check for borders
 if [[ ! $(command -v "borders") ]]; then

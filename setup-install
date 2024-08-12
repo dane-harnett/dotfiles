@@ -74,15 +74,19 @@ if [[ ! $(command -v "sketchybar") ]]; then
   brew services start sketchybar
 fi
 
-if [[ ! $(command -v "yabai") ]]; then
-  brew install koekeishiya/formulae/yabai
-  yabai --start-service
+if [[ ! $(command -v "aerospace") ]]; then
+  brew install --cask nikitabobko/tap/aerospace
 fi
 
-if [[ ! $(command -v "skhd") ]]; then
-  brew install koekeishiya/formulae/skhd
-  skhd --start-service
-fi
+# if [[ ! $(command -v "yabai") ]]; then
+#   brew install koekeishiya/formulae/yabai
+#   yabai --start-service
+# fi
+
+# if [[ ! $(command -v "skhd") ]]; then
+#   brew install koekeishiya/formulae/skhd
+#   skhd --start-service
+# fi
 
 if [[ ! $(command -v "borders") ]]; then
   # install borders
