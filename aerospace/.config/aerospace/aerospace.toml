@@ -192,3 +192,8 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+# float zoom
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = ['layout floating']
