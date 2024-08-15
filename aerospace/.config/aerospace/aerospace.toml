@@ -103,6 +103,8 @@ alt-shift-l = 'move right'
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
+alt-cmd-ctrl-shift-b = 'balance-sizes'
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
