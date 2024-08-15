@@ -177,7 +177,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-cmd-ctrl-shift-f = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-shift-semicolon = 'mode service'
+alt-cmd-ctrl-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -193,7 +193,24 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+# resize mode
+alt-cmd-ctrl-shift-r = 'mode resize'
+
+[mode.resize.binding]
+h = 'resize width -50'
+j = 'resize height +50'
+k = 'resize height -50'
+l = 'resize width +50'
+b = 'balance-sizes'
+
+minus = 'resize smart -50'
+equal = 'resize smart +50'
+
+enter = 'mode main'
+esc = 'mode main'
+
 # float zoom
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
+check-further-callbacks = true
 run = ['layout floating']
