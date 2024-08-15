@@ -179,6 +179,8 @@ alt-cmd-ctrl-shift-f = 'fullscreen'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 alt-cmd-ctrl-shift-semicolon = 'mode service'
 
+alt-cmd-ctrl-shift-r = 'mode resize'
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -192,9 +194,6 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
-
-# resize mode
-alt-cmd-ctrl-shift-r = 'mode resize'
 
 [mode.resize.binding]
 h = 'resize width -50'
