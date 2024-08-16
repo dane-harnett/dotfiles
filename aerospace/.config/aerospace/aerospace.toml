@@ -210,6 +210,18 @@ equal = 'resize smart +50'
 enter = 'mode main'
 esc = 'mode main'
 
+# float finder
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+check-further-callbacks = true
+run = ['layout floating']
+
+# float Preview
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+check-further-callbacks = true
+run = ['layout floating']
+
 # float zoom
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
