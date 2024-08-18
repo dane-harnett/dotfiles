@@ -222,6 +222,12 @@ if.app-id = 'com.apple.Preview'
 check-further-callbacks = true
 run = ['layout floating']
 
+# float QuickTime
+[[on-window-detected]]
+if.app-id = 'com.apple.QuickTimePlayerX'
+check-further-callbacks = true
+run = ['layout floating']
+
 # float zoom
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
