@@ -228,6 +228,13 @@ if.app-id = 'com.apple.QuickTimePlayerX'
 check-further-callbacks = true
 run = ['layout floating']
 
+# float Slack huddles
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+if.window-title-regex-substring = 'Huddle'
+check-further-callbacks = true
+run = ['layout floating']
+
 # float zoom
 [[on-window-detected]]
 if.app-id = 'us.zoom.xos'
