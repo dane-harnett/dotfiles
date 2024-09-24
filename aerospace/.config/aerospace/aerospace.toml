@@ -106,8 +106,8 @@ alt-shift-equal = 'resize smart +50'
 alt-cmd-ctrl-shift-b = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1'
-alt-2 = 'workspace 2'
+alt-cmd-ctrl-shift-1 = 'workspace 1'
+alt-cmd-ctrl-shift-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
@@ -115,8 +115,8 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-alt-b = 'workspace B'
+alt-cmd-ctrl-shift-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
+alt-cmd-ctrl-shift-b = 'workspace B'
 alt-c = 'workspace C'
 alt-d = 'workspace D'
 alt-e = 'workspace E'
@@ -182,6 +182,7 @@ alt-cmd-ctrl-shift-f = 'fullscreen'
 alt-cmd-ctrl-shift-semicolon = 'mode service'
 
 alt-cmd-ctrl-shift-r = 'mode resize'
+alt-cmd-ctrl-shift-m = 'mode move'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -207,6 +208,13 @@ b = 'balance-sizes'
 minus = 'resize smart -50'
 equal = 'resize smart +50'
 
+enter = 'mode main'
+esc = 'mode main'
+
+[mode.move.binding]
+1 = ['move-node-to-workspace 1', 'mode main']
+a = ['move-node-to-workspace A', 'mode main']
+b = ['move-node-to-workspace B', 'mode main']
 enter = 'mode main'
 esc = 'mode main'
 
