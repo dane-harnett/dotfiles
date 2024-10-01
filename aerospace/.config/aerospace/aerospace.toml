@@ -108,7 +108,7 @@ alt-cmd-ctrl-shift-e = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-cmd-ctrl-shift-1 = 'workspace 1'
-alt-cmd-ctrl-shift-2 = 'workspace 2'
+alt-cmd-ctrl-shift-2 = 'workspace 10'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
@@ -141,7 +141,7 @@ alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
-alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-2 = 'move-node-to-workspace 10'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
@@ -214,7 +214,7 @@ esc = 'mode main'
 
 [mode.move.binding]
 1 = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
-2 = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
+2 = ['move-node-to-workspace 2', 'workspace 10', 'mode main']
 a = ['move-node-to-workspace A', 'workspace A', 'mode main']
 b = ['move-node-to-workspace B', 'workspace B', 'mode main']
 enter = 'mode main'
