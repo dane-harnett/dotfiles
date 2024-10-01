@@ -214,7 +214,7 @@ esc = 'mode main'
 
 [mode.move.binding]
 1 = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
-2 = ['move-node-to-workspace 2', 'workspace 10', 'mode main']
+2 = ['move-node-to-workspace 10', 'workspace 10', 'mode main']
 a = ['move-node-to-workspace A', 'workspace A', 'mode main']
 b = ['move-node-to-workspace B', 'workspace B', 'mode main']
 enter = 'mode main'
