@@ -1,18 +1,18 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.composer/vendor/bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config
 
-source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
-antidote load
-autoload -Uz promptinit && promptinit && prompt powerlevel10k
+# source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
+# antidote load
+# autoload -Uz promptinit && promptinit && prompt powerlevel10k
 
 # Ensure terminal colors work inside tmux
 if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
@@ -29,12 +29,12 @@ export KEYTIMEOUT=1
 # My custom configuration
 
 # Set keybinds to vi mappings
-bindkey -v
+# bindkey -v
 # Ctrl+space accepts the auto-suggestion
 bindkey '^ ' autosuggest-accept
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# bindkey '^[[A' history-substring-search-up
+# bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
@@ -51,7 +51,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # These additions to PATH cannot be in zshenv due to order of execution.
-export PATH="$(brew --prefix)/opt/util-linux/sbin:$(brew --prefix)/opt/util-linux/bin:$PATH"
+# export PATH="$(brew --prefix)/opt/util-linux/sbin:$(brew --prefix)/opt/util-linux/bin:$PATH"
 export PATH="$HOME/.jenv/bin:$PATH"
 if [[ $(command -v "jenv") ]]; then
   function jenv() {
@@ -72,21 +72,21 @@ if [[ $(command -v "pyenv") ]]; then
 fi
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # aliases
 
-alias ll="ls -lah"
+# alias ll="ls -lah"
 
-if [[ $(command -v "eza") ]]; then
-  alias ls="eza"
-fi
+# if [[ $(command -v "eza") ]]; then
+  # alias ls="eza"
+# fi
 
-if [[ $(command -v "zoxide") ]]; then
-  eval "$(zoxide init zsh)"
-  alias cd="z"
-  alias zz="z -"
-fi
+# if [[ $(command -v "zoxide") ]]; then
+  # eval "$(zoxide init zsh)"
+  # alias cd="z"
+  # alias zz="z -"
+# fi
 
 # Custom p10k prompt for git repository info
 # uses git-status-fly for improved performance in large repositories.
@@ -129,13 +129,13 @@ function prompt_my_gsf() {
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # If git-status-fly is available then use it to power the git prompt segment,
 # otherwise fallback to the p10k vcs segment.
-if [[ $(command -v "git-status-fly") ]]; then
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=my_gsf
-else
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=vcs
-fi
+# if [[ $(command -v "git-status-fly") ]]; then
+#   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=my_gsf
+# else
+#   POWERLEVEL9K_LEFT_PROMPT_ELEMENTS+=vcs
+# fi
 

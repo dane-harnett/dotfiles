@@ -1,0 +1,49 @@
+How to setup computer to use nix+nix-darwin
+
+Install nix
+
+sh <(curl -L https://nixos.org/nix/install)
+
+
+
+
+Command to initialise a new flake
+
+nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"
+
+
+
+
+
+First time building flake
+
+nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake "$(readlink -f ~/.config/nix)#i9mbp"
+
+
+
+Rebuilding flake
+
+darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#i9mbp"
+
+
+
+
+
+Todo
+
+* raycast
+** unbind spotlight keymap   # tried to do this - no solution found
+** unbind siri keymap        # tried to do this - no solution found
+** bind cmd+space to raycast # tried to do this - no solution found
+** install the raycast scripts automatically # not needed as they are for yabai and I'm not using it
+
+
+* arc, wezterm, bitwarden, slack, discord
+** setup dock icons - DONE
+
+
+* macos settings
+** dark mode - DONE
+** finder column view by default - DONE
+** hide menu and dock - DONE
+
