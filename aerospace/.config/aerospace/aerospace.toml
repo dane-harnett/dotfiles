@@ -59,6 +59,10 @@ outer.bottom =     8
 outer.top =        8
 outer.right =      8
 
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+10 = 'secondary'
+
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
