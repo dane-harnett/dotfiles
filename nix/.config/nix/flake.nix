@@ -4,11 +4,9 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    # nix-darwin
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # nix-homebrew
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     home-manager = {
@@ -53,8 +51,6 @@
 
           ./hosts/${host}.nix
 
-          # ./hosts/shared.nix
-
           ./modules/aerospace
           ./modules/antidote
           ./modules/arc-browser
@@ -94,41 +90,9 @@
       };
   in
   {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
-
     darwinConfigurations = {
       "personal-i9mbp" = mkDarwinConfig "personal-i9mbp" "x86_64-darwin" "dane";
-      # "work-m1mbp" = mkDarwinConfig ./hosts/personal-m1mbp.nix "aarch64-darwin" "dharnett";
+      # "work-m1mbp" = mkDarwinConfig "work-m1mbp" "aarch64-darwin" "dharnett";
     };
-
-    # personal intel i9 macbook pro
-    # darwinConfigurations."i9mbp" = nix-darwin.lib.darwinSystem {
-    #   modules = [
-    #     configuration
-
-    #   ];
-    # };
-
-    # work M1 macbook pro
-    # darwinConfigurations."work-m1mbp" = nix-darwin.lib.darwinSystem {
-    #   modules = [
-    #     configuration
-    #     nix-homebrew.darwinModules.nix-homebrew {
-    #       nix-homebrew = {
-    #         enable = true;
-    #         user = "dharnett";
-    #       };
-    #     }
-    #     home-manager.darwinModules.home-manager {
-    #       home-manager.useGlobalPkgs = true;
-    #       home-manager.useUserPackages = true;
-    #       home-manager.users.dharnett = import ./home.nix;
-    #     }
-    #   ];
-    # };
-
-    # Expose the package set, including overlays, for convenience.
-    # darwinPackages = self.darwinConfigurations."work-m1mbp".pkgs;
   };
 }
