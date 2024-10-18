@@ -17,31 +17,17 @@
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
+  outputs = inputs@{
+    self,
+    nix-darwin,
+    nixpkgs,
+    nix-homebrew,
+    home-manager
+  }:
   let
     configuration = { pkgs, ... }: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
-      environment.systemPackages =
-        [
-          pkgs.antidote
-          pkgs.arc-browser
-          pkgs.discord
-          pkgs.eza
-          pkgs.fd
-          pkgs.fnm
-          pkgs.fzf
-          pkgs.neovim
-          pkgs.oh-my-posh
-          pkgs.raycast
-          pkgs.ripgrep
-          pkgs.slack
-          # spotify times out when installing :(
-          # pkgs.spotify
-          pkgs.util-linux # TODO: define why I need/want this.
-          pkgs.vscode
-          pkgs.zoxide
-        ];
+      # Set Git commit hash for darwin-version.
+      system.configurationRevision = self.rev or self.dirtyRev or null;
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -50,107 +36,99 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      nixpkgs.config.allowUnfreePredicate =
-        pkg: builtins.elem (pkgs.lib.getName pkg) [
-          "arc-browser"
-          "discord"
-          "raycast"
-          "slack"
-          "spotify"
-          "vscode"
-        ];
+      nixpkgs.config.allowUnfree = true;
 
-      # Create /etc/zshrc that loads the nix-darwin environment.
-      programs.zsh.enable = true;  # default shell on catalina
-      programs.zsh.enableCompletion = true;
-
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = self.rev or self.dirtyRev or null;
-
-      system.defaults = {
-        NSGlobalDomain.AppleInterfaceStyle = "Dark";
-        NSGlobalDomain._HIHideMenuBar = true;
-
-        dock.autohide = true;
-        dock.persistent-apps = [
-          "/Applications/Nix Apps/Arc.app"
-          "/Applications/Nix Apps/Slack.app"
-          "/Applications/Nix Apps/Discord.app"
-          "/Applications/Bitwarden.app"
-          "/Applications/WezTerm.app"
-          "/Applications/Nix Apps/Visual Studio Code.app"
-        ];
-
-        finder.AppleShowAllExtensions = true;
-        finder.AppleShowAllFiles = true;
-        finder.FXPreferredViewStyle = "clmv";
-
-        spaces.spans-displays = true;
-      };
-
-      system.keyboard.enableKeyMapping = true;
-
-      system.keyboard.remapCapsLockToEscape = true;
-
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
       system.stateVersion = 5;
+    };
+    mkDarwinConfig = host: system: username: let
+      pkgs = import inputs.nixpkgs {inherit system;};
+      madeConfig = {
+        nixpkgs.hostPlatform = "${system}";
+      };
+    in
+      nix-darwin.lib.darwinSystem {
+        modules = [
+          madeConfig
+          configuration
 
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "x86_64-darwin";
+          ./hosts/${host}.nix
 
-      homebrew = {
-        enable = true;
-        brews = [
-          {
-            name = "FelixKratz/formulae/borders";
-            restart_service = true;
+          # ./hosts/shared.nix
+
+          ./modules/aerospace
+          ./modules/antidote
+          ./modules/arc-browser
+          ./modules/bitwarden
+          ./modules/borders
+          ./modules/discord
+          ./modules/eza
+          ./modules/fd
+          ./modules/fnm
+          ./modules/fzf
+          ./modules/gnu-sed
+          ./modules/neovim
+          ./modules/nix-tools
+          ./modules/oh-my-posh
+          ./modules/raycast
+          ./modules/ripgrep
+          ./modules/sketchybar
+          ./modules/slack
+          ./modules/util-linux
+          ./modules/vscode
+          ./modules/wezterm
+          ./modules/zoxide
+
+          nix-homebrew.darwinModules.nix-homebrew {
+            nix-homebrew = {
+              enable = true;
+              user = "${username}";
+            };
           }
-          "gnu-sed"
-          {
-            name = "FelixKratz/formulae/sketchybar";
-            restart_service = true;
+
+          home-manager.darwinModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home/${username}/${host}.nix;
           }
-        ];
-        casks = [
-          "bitwarden"
-          "font-hasklug-nerd-font"
-          "nikitabobko/tap/aerospace"
-          "wez/wezterm/wezterm"
-        ];
-        onActivation.cleanup = "zap";
-        taps = [
-          "FelixKratz/formulae"
-          "nikitabobko/tap"
-          "wez/wezterm"
         ];
       };
-
-      users.users.dane.home = "/Users/dane";
-      home-manager.backupFileExtension = "backup";
-    };
   in
   {
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#simple
-    darwinConfigurations."i9mbp" = nix-darwin.lib.darwinSystem {
-      modules = [
-        configuration
-        nix-homebrew.darwinModules.nix-homebrew {
-          nix-homebrew = {
-            enable = true;
-            user = "dane";
-          };
-        }
-        home-manager.darwinModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.dane = import ./home.nix;
-        }
-      ];
+
+    darwinConfigurations = {
+      "personal-i9mbp" = mkDarwinConfig "personal-i9mbp" "x86_64-darwin" "dane";
+      # "work-m1mbp" = mkDarwinConfig ./hosts/personal-m1mbp.nix "aarch64-darwin" "dharnett";
     };
 
+    # personal intel i9 macbook pro
+    # darwinConfigurations."i9mbp" = nix-darwin.lib.darwinSystem {
+    #   modules = [
+    #     configuration
+
+    #   ];
+    # };
+
+    # work M1 macbook pro
+    # darwinConfigurations."work-m1mbp" = nix-darwin.lib.darwinSystem {
+    #   modules = [
+    #     configuration
+    #     nix-homebrew.darwinModules.nix-homebrew {
+    #       nix-homebrew = {
+    #         enable = true;
+    #         user = "dharnett";
+    #       };
+    #     }
+    #     home-manager.darwinModules.home-manager {
+    #       home-manager.useGlobalPkgs = true;
+    #       home-manager.useUserPackages = true;
+    #       home-manager.users.dharnett = import ./home.nix;
+    #     }
+    #   ];
+    # };
+
     # Expose the package set, including overlays, for convenience.
-    darwinPackages = self.darwinConfigurations."i9mbp".pkgs;
+    # darwinPackages = self.darwinConfigurations."work-m1mbp".pkgs;
   };
 }

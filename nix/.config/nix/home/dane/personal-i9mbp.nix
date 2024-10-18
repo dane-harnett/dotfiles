@@ -16,13 +16,13 @@
   # plain files is through 'home.file'.
   home.file = {
     #".zshrc".source = ../../../zsh/.zshrc;
-    ".config/aerospace".source = ../../../aerospace/.config/aerospace;
-    ".config/borders".source = ../../../borders/.config/borders;
-    ".config/nvim".source = ../../../nvim/.config/nvim;
-    ".config/nvm".source = ../../../nvm/.config/nvm;
-    ".config/sketchybar".source = ../../../sketchybar/.config/sketchybar;
+    ".config/aerospace".source = ../../../../../aerospace/.config/aerospace;
+    ".config/borders".source = ../../../../../borders/.config/borders;
+    ".config/nvim".source = ../../../../../nvim/.config/nvim;
+    ".config/nvm".source = ../../../../../nvm/.config/nvm;
+    ".config/sketchybar".source = ../../../../../sketchybar/.config/sketchybar;
     # ".p10k.zsh".source = ../../../zsh/.p10k.zsh;
-    ".wezterm.lua".source = ../../../wezterm/.wezterm.lua;
+    ".wezterm.lua".source = ../../../../../wezterm/.wezterm.lua;
   };
 
   home.sessionVariables = {
@@ -36,11 +36,11 @@
   programs.fzf.enable = true;
   programs.oh-my-posh = {
     enable = true;
-    settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ../../../oh-my-posh/default.toml));
+    settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ../../../../../oh-my-posh/default.toml));
   };
   programs.zsh = {
     enable = true;
-    initExtra = builtins.readFile ../../../zsh/.zshrc;
+    initExtra = builtins.readFile ../../../../../zsh/.zshrc;
     antidote = {
       enable = true;
       plugins = [
