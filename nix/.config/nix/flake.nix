@@ -72,6 +72,7 @@
           ./modules/util-linux
           ./modules/vscode
           ./modules/wezterm
+          ./modules/wget
           ./modules/zoxide
 
           nix-homebrew.darwinModules.nix-homebrew {

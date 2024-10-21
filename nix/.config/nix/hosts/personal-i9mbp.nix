@@ -49,5 +49,6 @@
   util-linux.enable = true;
   vscode.enable = true;
   wezterm.enable = true;
+  wget.enable = true;
   zoxide.enable = true;
 }
