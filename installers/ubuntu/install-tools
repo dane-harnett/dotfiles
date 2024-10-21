@@ -60,3 +60,6 @@ fi
 # if [[ ! $(command -v "gsed") ]]; then
 #
 # fi
+
+
+# install oh-my-posh
