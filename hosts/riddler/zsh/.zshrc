@@ -26,10 +26,9 @@ unsetopt BEEP
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(zoxide init zsh)"
-
-eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.json)"
-
+if [[ $(command -v "oh-my-posh") ]]; then
+  eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/default.toml)"
+fi
 
 # aliases
 
