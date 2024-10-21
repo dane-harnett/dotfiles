@@ -3,4 +3,5 @@
 stow --target=$HOME fzf
 stow --target=$HOME nvim
 stow --target=$HOME tmux
+cd hosts/riddler
 stow --target=$HOME zsh

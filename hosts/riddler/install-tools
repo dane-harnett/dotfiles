@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p $HOME/local-tools
+
 # install stow if its not already available
 if [[ ! $(command -v "stow") ]]; then
   apt install -y stow
@@ -7,12 +9,14 @@ fi
 
 # install eza if its not already available
 if [[ ! $(command -v "eza") ]]; then
+  cd $HOME/local-tools
   wget -c https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz -O - | tar xz
   mv eza $HOME/.local/bin/eza
 fi
 
 # install zoxide if its not already available
 if [[ ! $(command -v "zoxide") ]]; then
+  cd $HOME/local-tools
   mkdir zoxide
   cd zoxide
   wget -c https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.6/zoxide-0.9.6-x86_64-unknown-linux-musl.tar.gz -O - | tar xz
@@ -22,6 +26,7 @@ fi
 
 # install fd if its not already available
 if [[ ! $(command -v "fd") ]]; then
+  cd $HOME/local-tools
   wget -c https://github.com/sharkdp/fd/releases/download/v10.2.0/fd-v10.2.0-x86_64-unknown-linux-musl.tar.gz -O - | tar xz
   cd fd-v10.2.0-x86_64-unknown-linux-musl
   mv fd $HOME/.local/bin/fd
@@ -30,6 +35,7 @@ fi
 
 # install rg if its not already available
 if [[ ! $(command -v "rg") ]]; then
+  cd $HOME/local-tools
   wget -c https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz -O - | tar xz
   cd ripgrep-14.1.1-x86_64-unknown-linux-musl
   mv rg $HOME/.local/bin/rg
@@ -38,14 +44,16 @@ fi
 
 # install fzf if its not already available
 if [[ ! $(command -v "fzf") ]]; then
+  cd $HOME/local-tools
   wget -c https://github.com/junegunn/fzf/releases/download/v0.55.0/fzf-0.55.0-linux_amd64.tar.gz -O - | tar xz
   mv fzf $HOME/.local/bin/fzf
 fi
 
 if [[ ! $(command -v "nvim") ]]; then
+  cd $HOME/local-tools
   wget -O nvim-linux64.tar.gz https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz
   tar xzvf nvim-linux64.tar.gz
-  stow --target=$HOME/.local/bin ./nvim-linux64/bin
+  ln -s $HOME/local-tools/nvim-linux64/bin/nvim $HOME/.local/bin/nvim
 fi
 
 # if [[ ! $(command -v "tmux") ]]; then
