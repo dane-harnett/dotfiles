@@ -69,6 +69,7 @@
           ./modules/ripgrep
           ./modules/sketchybar
           ./modules/slack
+          ./modules/stow
           ./modules/util-linux
           ./modules/vscode
           ./modules/wezterm

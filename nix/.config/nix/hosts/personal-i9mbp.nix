@@ -46,6 +46,7 @@
   ripgrep.enable = true;
   sketchybar.enable = true;
   slack.enable = true;
+  stow.enable = true;
   util-linux.enable = true;
   vscode.enable = true;
   wezterm.enable = true;
