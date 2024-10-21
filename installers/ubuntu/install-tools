@@ -31,6 +31,9 @@ fi
 # install rg if its not already available
 if [[ ! $(command -v "rg") ]]; then
   wget -c https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz -O - | tar xz
+  cd ripgrep-14.1.1-x86_64-unknown-linux-musl
+  mv rg $HOME/.local/bin/rg
+  cd ..
 fi
 
 # install fzf if its not already available
@@ -42,8 +45,7 @@ fi
 if [[ ! $(command -v "nvim") ]]; then
   wget -O nvim-linux64.tar.gz https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz
   tar xzvf nvim-linux64.tar.gz
-  # use stow to link `./nvim-linux64/bin/nvim` to
-  # $HOME/.local/bin/nvim
+  stow --target=$HOME/.local/bin ./nvim-linux64/bin
 fi
 
 # if [[ ! $(command -v "tmux") ]]; then
