@@ -28,8 +28,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Disable that annoying beep.
 unsetopt BEEP
 
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ $(command -v "oh-my-posh") ]]; then
+  source <(fzf --zsh)
+fi
 
 if [[ $(command -v "oh-my-posh") ]]; then
   eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/default.toml)"
