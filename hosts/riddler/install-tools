@@ -4,7 +4,7 @@ mkdir -p $HOME/local-tools
 
 # install stow if its not already available
 if [[ ! $(command -v "stow") ]]; then
-  apt install -y stow
+  sudo apt install -y stow
 fi
 
 # install eza if its not already available
@@ -57,19 +57,28 @@ if [[ ! $(command -v "nvim") ]]; then
   cd $HOME/local-tools
 fi
 
-# if [[ ! $(command -v "tmux") ]]; then
-#
-# fi
+if [ ! -d "$HOME/.antidote" ]; then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ${HOME}/.antidote
+fi
+
+if [[ ! $(command -v "tmux") ]]; then
+  sudo apt install -y tmux
+fi
 
 # check for tmux plugin manager (tpm)
-# if [[ ! -f ~/.tmux/plugins/tpm/README.md ]]; then
-#   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# fi
+if [[ ! -d ~/.tmux/plugins/tpm ]]; then
+  git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
+fi
 
 # if [[ ! $(command -v "gsed") ]]; then
 #
 # fi
 
-
 # install oh-my-posh
 curl -s https://ohmyposh.dev/install.sh | bash -s
+
+# add git aliases
+git config --global alias.ci "commit"
+git config --global alias.co "checkout"
+git config --global alias.br "branch"
+git config --global alias.st "status"

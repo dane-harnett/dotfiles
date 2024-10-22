@@ -6,8 +6,10 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 export XDG_CONFIG_HOME=$HOME/.config
 
-# source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
-# antidote load
+if [ -d "$HOME/.antidote" ]; then
+  source "$HOME/.antidote/antidote.zsh"
+  antidote load
+fi
 
 # Ensure terminal colors work inside tmux
 if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
