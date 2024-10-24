@@ -2,7 +2,6 @@
 
 stow --target=$HOME aerospace
 stow --target=$HOME borders
-stow --target=$HOME fzf
 stow --target=$HOME nvim
 stow --target=$HOME nvm
 stow --target=$HOME oh-my-posh
