@@ -30,7 +30,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Disable that annoying beep.
 unsetopt BEEP
 
-if [[ $(command -v "oh-my-posh") ]]; then
+if [[ $(command -v "fzf") ]]; then
   source <(fzf --zsh)
 fi
 
