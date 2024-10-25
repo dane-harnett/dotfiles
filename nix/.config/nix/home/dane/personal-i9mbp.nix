@@ -36,7 +36,7 @@
   programs.fzf.enable = true;
   programs.oh-my-posh = {
     enable = true;
-    settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ../../../../../oh-my-posh/default.toml));
+    settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ../../../../../oh-my-posh/.config/oh-my-posh/default.toml));
   };
   programs.zsh = {
     enable = true;
