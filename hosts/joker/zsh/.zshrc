@@ -27,6 +27,15 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+# copy current input on command-prompt to clipboard:
+copy-prompt-to-clipboard() {
+  zle kill-buffer
+  print -rn -- "$CUTBUFFER" | pbcopy
+}
+
+zle -N copy-prompt-to-clipboard
+bindkey -M viins '^]' copy-prompt-to-clipboard
+
 # Disable that annoying beep.
 unsetopt BEEP
 
