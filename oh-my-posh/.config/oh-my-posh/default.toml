@@ -47,7 +47,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     powerline_symbol = ''
     template = '  '
     background = 'p:yellow'
-    foreground = 'p:white'
+    foreground = 'p:black'
 
   [[blocks.segments]]
     type = 'status'
@@ -57,7 +57,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
     trailing_diamond = ''
     template = ' {{ if gt .Code 0 }}{{ else }}{{ end }} '
     background = 'p:blue'
-    foreground = 'p:white'
+    foreground = 'p:black'
 
     [blocks.segments.properties]
       always_enabled = true
@@ -121,7 +121,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   trailing_diamond = ''
   template = '  {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} '
   background = 'p:orange'
-  foreground = 'p:white'
+  foreground = 'p:black'
 
   [tooltips.properties]
     display_default = true
@@ -134,7 +134,7 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
   trailing_diamond = ''
   template = '  {{ .Name }} '
   background = 'p:blue'
-  foreground = 'p:white'
+  foreground = 'p:black'
 
   [tooltips.properties]
     display_default = true
