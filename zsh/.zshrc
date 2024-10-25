@@ -40,15 +40,12 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # copy current input on command-prompt to clipboard:
 copy-prompt-to-clipboard() {
-  zle end-of-line
-  zle beginning-of-line
-  print -rn -- "$LBUFFER" | pbcopy
-  LBUFFER=''
+  zle kill-buffer
+  print -rn -- "$CUTBUFFER" | pbcopy
 }
 
 zle -N copy-prompt-to-clipboard
-bindkey '^]' copy-prompt-to-clipboard
-#bind '"\C-]":"\C-e\C-u pbcopy <<"EOF"\n\C-y\nEOF\n"'
+bindkey -M viins '^]' copy-prompt-to-clipboard
 
 # If my personal github ssh key exists then configure ssh-agent to use it
 if [ -f "$HOME/.ssh/github" ]; then
