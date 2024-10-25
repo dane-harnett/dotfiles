@@ -38,6 +38,9 @@ bindkey '^ ' autosuggest-accept
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+# copy current input on command-prompt to clipboard:
+bind '"\C-]":"\C-e\C-u pbcopy <<"EOF"\n\C-y\nEOF\n"'
+
 # If my personal github ssh key exists then configure ssh-agent to use it
 if [ -f "$HOME/.ssh/github" ]; then
   ssh-agent | source /dev/stdin > /dev/null
