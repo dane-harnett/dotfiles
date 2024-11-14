@@ -37,6 +37,7 @@
   eza.enable = true;
   fd.enable = true;
   fnm.enable = true;
+  font-jetbrains-mono-nerd-font.enable = true;
   fzf.enable = true;
   gnu-sed.enable = true;
   neovim.enable = true;

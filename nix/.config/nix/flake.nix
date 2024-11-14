@@ -60,6 +60,7 @@
           ./modules/eza
           ./modules/fd
           ./modules/fnm
+          ./modules/font-jetbrains-mono-nerd-font
           ./modules/fzf
           ./modules/gnu-sed
           ./modules/neovim
