@@ -7,7 +7,7 @@ TODO: document these commands
 
 ## How to apply configuration
 
-Run `darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#personal-i9mbp"`
+Run `darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#personal-m4mbp"`
 
 ## How to update
 
