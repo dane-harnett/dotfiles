@@ -34,6 +34,16 @@
   ];
   programs.home-manager.enable = true;
   programs.fzf.enable = true;
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+    userName = "Dane Harnett";
+    userEmail = "2585257+dane-harnett@users.noreply.github.com";
+    aliases = {
+      co = "checkout";
+      st = "status";
+    };
+  };
   programs.oh-my-posh = {
     enable = true;
     settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile ../../../../../oh-my-posh/.config/oh-my-posh/default.toml));
