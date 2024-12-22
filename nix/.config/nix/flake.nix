@@ -65,6 +65,7 @@
           ./modules/gnu-sed
           ./modules/neovim
           ./modules/nix-tools
+          ./modules/obs
           ./modules/oh-my-posh
           ./modules/raycast
           ./modules/ripgrep

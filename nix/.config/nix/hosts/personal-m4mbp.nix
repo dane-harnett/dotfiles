@@ -42,6 +42,7 @@
   gnu-sed.enable = true;
   neovim.enable = true;
   nix-tools.enable = true;
+  obs.enable = true;
   oh-my-posh.enable = true;
   raycast.enable = true;
   ripgrep.enable = true;
