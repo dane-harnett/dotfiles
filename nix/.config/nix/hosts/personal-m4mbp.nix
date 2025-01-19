@@ -53,5 +53,6 @@
   vscode.enable = true;
   wezterm.enable = true;
   wget.enable = true;
+  yt-dlp.enable = true;
   zoxide.enable = true;
 }

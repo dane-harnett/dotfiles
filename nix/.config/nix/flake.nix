@@ -76,6 +76,7 @@
           ./modules/vscode
           ./modules/wezterm
           ./modules/wget
+          ./modules/yt-dlp
           ./modules/zoxide
 
           nix-homebrew.darwinModules.nix-homebrew {
