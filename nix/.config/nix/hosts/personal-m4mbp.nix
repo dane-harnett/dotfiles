@@ -30,7 +30,6 @@
   # home.homeDirectory = "/Users/${userSettings.userName}";
   aerospace.enable = true;
   antidote.enable = true;
-  arc-browser.enable = true;
   bitwarden.enable = true;
   borders.enable = true;
   discord.enable = true;
