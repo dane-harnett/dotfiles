@@ -15,13 +15,10 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    #".zshrc".source = ../../../zsh/.zshrc;
     ".config/aerospace".source = ../../../aerospace/.config/aerospace;
     ".config/borders".source = ../../../borders/.config/borders;
     ".config/nvim".source = ../../../nvim/.config/nvim;
     ".config/nvm".source = ../../../nvm/.config/nvm;
-    ".config/sketchybar".source = ../../../sketchybar/.config/sketchybar;
-    # ".p10k.zsh".source = ../../../zsh/.p10k.zsh;
     ".wezterm.lua".source = ../../../wezterm/.wezterm.lua;
   };
 

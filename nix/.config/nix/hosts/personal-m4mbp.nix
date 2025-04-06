@@ -49,7 +49,6 @@
   oh-my-posh.enable = true;
   raycast.enable = true;
   ripgrep.enable = true;
-  sketchybar.enable = false;
   slack.enable = true;
   stow.enable = true;
   util-linux.enable = true;
