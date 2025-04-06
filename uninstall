@@ -5,7 +5,6 @@ stow --delete --target=$HOME borders
 stow --delete --target=$HOME fzf
 stow --delete --target=$HOME nvim
 stow --delete --target=$HOME nvm
-stow --delete --target=$HOME sketchybar
 stow --delete --target=$HOME skhd
 stow --delete --target=$HOME tmux
 stow --delete --target=$HOME wezterm

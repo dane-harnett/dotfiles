@@ -121,13 +121,6 @@ else
   echo -e "antidote plugins bundled."
 fi
 
-# check for sketchybar
-if [[ ! $(command -v "sketchybar") ]]; then
-  echo -e "sketchybar not installed. run: brew install FelixKratz/formulae/sketchybar && brew services start sketchybar"
-else
-  echo -e "sketchybar installed."
-fi
-
 # check for aerospace
 if [[ ! $(command -v "aerospace") ]]; then
   echo -e "aerospace not installed. run: brew install --cask nikitabobko/tap/aerospace"

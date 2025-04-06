@@ -41,9 +41,6 @@ Used for text replacement in nvim-spectre
 ## Node.js version management
 I use both Fast Node Manager (`fnm`) and Node Version Manager (`nvm`) (for reasons).
 
-## Menubar
-I am trying out sketchybar.
-
 # Install
 Clone this repository somewhere on the machine you want to be configured.
 

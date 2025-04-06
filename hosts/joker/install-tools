@@ -60,17 +60,6 @@ if [[ ! $(command -v "node") ]]; then
   fnm install v16.19.0
 fi
 
-if [[ ! $(command -v "sketchybar") ]]; then
-  # @todo: download and install SF symbols pkg: https://developer.apple.com/sf-symbols/
-  # install the font
-  brew tap homebrew/cask-fonts
-  brew install --cask homebrew/cask-fonts/font-hasklug-nerd-font
-  # install sketchybar
-  brew install FelixKratz/formulae/sketchybar
-  # run automatically at startup
-  brew services start sketchybar
-fi
-
 if [[ ! $(command -v "aerospace") ]]; then
   brew install --cask nikitabobko/tap/aerospace
 fi

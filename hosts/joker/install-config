@@ -5,7 +5,6 @@ stow --target=$HOME borders
 stow --target=$HOME nvim
 stow --target=$HOME nvm
 stow --target=$HOME oh-my-posh
-stow --target=$HOME sketchybar
 stow --target=$HOME tmux
 stow --target=$HOME wezterm
 cd hosts/joker

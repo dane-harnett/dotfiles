@@ -82,8 +82,7 @@ focus < cmd - 8 : yabai -m space --focus 8
 focus < cmd - 9 : yabai -m space --focus 9
 
 # create a space
-# hyper - n : yabai -m space --create; \
-#		sketchybar --update
+# hyper - n : yabai -m space --create;
 
 # destroy current space
 # hyper - d : yabai -m space --destroy
@@ -127,13 +126,11 @@ hyper - e : yabai -m space --balance
 # Enable / Disable gaps in current workspace
 # lcmd - i : yabai -m space --toggle padding; \
 # 	  yabai -m space --toggle gap; \
-# 	  yabai -m config external_bar off:0:0; \
-# 	  sketchybar --bar hidden=true;
+# 	  yabai -m config external_bar off:0:0;
 
 # rcmd - i : yabai -m space --toggle padding; \
 # 	 yabai -m space --toggle gap; \
-# 	 yabai -m config external_bar all:30:0;\
-# 	 sketchybar --bar hidden=false;
+# 	 yabai -m config external_bar all:30:0;
 
 # Rotate windows clockwise and anticlockwise
 # alt - r         : yabai -m space --rotate 270
