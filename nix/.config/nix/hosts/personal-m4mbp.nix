@@ -21,7 +21,11 @@
 
   homebrew = {
     enable = true;
-    onActivation.cleanup = "zap";
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "uninstall";
+      upgrade = true;
+    };
   };
 
   home-manager.backupFileExtension = "backup";
