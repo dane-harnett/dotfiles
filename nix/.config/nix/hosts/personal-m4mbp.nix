@@ -4,7 +4,7 @@
 
   system.defaults = {
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
-    NSGlobalDomain._HIHideMenuBar = true;
+    NSGlobalDomain._HIHideMenuBar = false;
 
     dock.autohide = true;
 
