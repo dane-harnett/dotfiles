@@ -103,13 +103,13 @@ local server_configs = {
             -- otherwise, fallback to the location where the tsconfig.json lives
             -- otherwise, it's not a typescript project we want to use this lsp
             -- with.
-            root_dir = function(filepath)
-                local tsconfig_ancestor = lspconfig_util.root_pattern("tsconfig.json")(filepath)
+            root_dir = function(startpath)
+                local tsconfig_ancestor = lspconfig_util.root_pattern("tsconfig.json")(startpath)
                 if not tsconfig_ancestor then
                     return nil
                 end
 
-                local git_ancestor = lspconfig_util.find_git_ancestor(filepath)
+                local git_ancestor = vim.fs.dirname(vim.fs.find(".git", { path = startpath, upward = true })[1])
                 if not git_ancestor then
                     return tsconfig_ancestor
                 end
@@ -171,6 +171,7 @@ function M.init()
 
     mason.setup()
     mason_lspconfig.setup({
+        automatic_installation = false,
         ensure_installed = vim.tbl_keys(servers),
     })
     mason_lspconfig.setup_handlers({
