@@ -3,25 +3,7 @@ local M = {}
 function M.init()
     M.attach_keymaps()
 
-    local telescope_actions_set = require("telescope.actions.set")
-    -- FileType event doesn't fire when opening from telescope
-    -- https://github.com/nvim-telescope/telescope.nvim/issues/699
-    -- workaround from:
-    -- https://github.com/David-Kunz/vim/blob/master/init.lua#L205-L232
-    local fixfolds = {
-        file_ignore_patterns = { ".git/" },
-        hidden = true,
-        attach_mappings = function(_)
-            telescope_actions_set.select:enhance({
-                post = function()
-                    vim.cmd(":normal! zx")
-                end,
-            })
-            return true
-        end,
-    }
-
-    local buffers = vim.tbl_extend("force", fixfolds, { preview = true })
+    local buffers = { preview = true }
     local base_find_command = {
         "rg",
         "--files",
@@ -37,23 +19,23 @@ function M.init()
             preview_width = 0,
         },
     }
-    local find_files = vim.tbl_extend("force", fixfolds, {
+    local find_files = {
         find_command = base_find_command,
         layout_config = find_layout_config,
-    })
-    local find_files_including_hidden = vim.tbl_extend("force", fixfolds, {
+    }
+    local find_files_including_hidden = {
         find_command = vim.tbl_extend("force", base_find_command, { "--hidden" }),
         layout_config = find_layout_config,
-    })
-    local git_files = fixfolds
-    local grep_string = vim.tbl_extend("force", fixfolds, { preview = true })
-    local live_grep = vim.tbl_extend("force", fixfolds, {
+    }
+    local git_files = {}
+    local grep_string = { preview = true }
+    local live_grep = {
         additional_args = function()
             return { "--hidden" }
         end,
         -- find_command = base_find_command,
-    })
-    local oldfiles = fixfolds
+    }
+    local oldfiles = {}
 
     local telescope = require("telescope")
     local telescope_actions = require("telescope.actions")
