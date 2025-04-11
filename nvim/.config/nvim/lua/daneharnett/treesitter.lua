@@ -31,6 +31,10 @@ M.setup_treesitter_configs = function()
             "typescript",
             "vimdoc",
         },
+        modules = {},
+        sync_install = false,
+        auto_install = false,
+        ignore_install = {},
         highlight = {
             enable = true,
         },

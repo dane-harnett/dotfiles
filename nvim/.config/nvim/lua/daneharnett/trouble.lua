@@ -1,7 +1,7 @@
 local M = {}
 
 function M.init()
-    require("trouble").setup({})
+    require("trouble").setup()
 end
 
 function M.attach_keymaps_to_buffer(bufnr)
