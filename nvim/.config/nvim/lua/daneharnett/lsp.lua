@@ -149,14 +149,18 @@ function M.init()
     if not mason_tool_installer_status_ok then
         return
     end
-    local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    if not cmp_nvim_lsp_status_ok then
+    -- local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+    -- if not cmp_nvim_lsp_status_ok then
+    --     return
+    -- end
+    local blink_cmp_status_ok, blink_cmp = pcall(require, "blink.cmp")
+    if not blink_cmp_status_ok then
         return
     end
 
     local client_capabilities = vim.lsp.protocol.make_client_capabilities()
-    local capabilities =
-        vim.tbl_deep_extend("force", client_capabilities, cmp_nvim_lsp.default_capabilities(client_capabilities))
+    local blink_cmp_capabilities = blink_cmp.get_lsp_capabilities()
+    local capabilities = vim.tbl_deep_extend("force", client_capabilities, blink_cmp_capabilities)
 
     local servers = {}
     for server_name, make_server_config in pairs(server_configs) do
@@ -173,11 +177,11 @@ function M.init()
     mason_lspconfig.setup({
         automatic_installation = false,
         ensure_installed = vim.tbl_keys(servers),
-    })
-    mason_lspconfig.setup_handlers({
-        function(server_name)
-            lspconfig[server_name].setup(servers[server_name])
-        end,
+        handlers = {
+            function(server_name)
+                lspconfig[server_name].setup(servers[server_name])
+            end,
+        },
     })
     mason_tool_installer.setup({
         ensure_installed = {
