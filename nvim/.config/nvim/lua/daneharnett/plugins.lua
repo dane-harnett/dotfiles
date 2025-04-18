@@ -80,9 +80,6 @@ local plugins = {
                 "williamboman/mason-lspconfig.nvim",
             },
             { "WhoIsSethDaniel/mason-tool-installer.nvim" },
-            -- {
-            --     "hrsh7th/cmp-nvim-lsp",
-            -- },
             {
                 "j-hui/fidget.nvim",
                 tag = "legacy",
@@ -242,31 +239,6 @@ local plugins = {
         },
         event = "LspAttach",
     },
-    -- completion
-    -- {
-    --     "hrsh7th/nvim-cmp",
-    --     config = function()
-    --         require("daneharnett.completion").init()
-    --     end,
-    --     dependencies = {
-    --         {
-    --             "hrsh7th/cmp-nvim-lsp",
-    --         },
-    --         {
-    --             "hrsh7th/cmp-buffer",
-    --         },
-    --         {
-    --             "onsails/lspkind-nvim",
-    --         },
-    --         {
-    --             "L3MON4D3/LuaSnip",
-    --         },
-    --         {
-    --             "saadparwaiz1/cmp_luasnip",
-    --         },
-    --     },
-    --     event = "InsertEnter",
-    -- },
     -- file-tree sidebar explorer
     {
         "nvim-tree/nvim-tree.lua",

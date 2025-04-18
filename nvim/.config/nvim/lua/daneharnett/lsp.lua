@@ -149,10 +149,6 @@ function M.init()
     if not mason_tool_installer_status_ok then
         return
     end
-    -- local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-    -- if not cmp_nvim_lsp_status_ok then
-    --     return
-    -- end
     local blink_cmp_status_ok, blink_cmp = pcall(require, "blink.cmp")
     if not blink_cmp_status_ok then
         return
