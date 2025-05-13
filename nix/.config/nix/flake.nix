@@ -71,6 +71,7 @@
           ./modules/slack
           ./modules/stow
           ./modules/util-linux
+          ./modules/vlc
           ./modules/vscode
           ./modules/wezterm
           ./modules/wget
