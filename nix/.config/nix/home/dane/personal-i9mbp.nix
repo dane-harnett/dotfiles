@@ -39,7 +39,7 @@
   };
   programs.zsh = {
     enable = true;
-    initExtra = builtins.readFile ../../../../../zsh/.zshrc;
+    initContent = builtins.readFile ../../../../../zsh/.zshrc;
     antidote = {
       enable = true;
       plugins = [
