@@ -59,6 +59,7 @@
           ./modules/fd
           ./modules/fnm
           ./modules/font-jetbrains-mono-nerd-font
+          ./modules/fx-cast-bridge
           ./modules/fzf
           ./modules/gnu-sed
           ./modules/neovim
