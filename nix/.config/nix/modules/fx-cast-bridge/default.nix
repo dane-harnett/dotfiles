@@ -6,7 +6,7 @@
   cfg = config.fx-cast-bridge;
 in {
   options = {
-    sketchybar = {
+    fx-cast-bridge = {
       enable = lib.mkEnableOption "Enable fx-cast-bridge";
     };
   };
