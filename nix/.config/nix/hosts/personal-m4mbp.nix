@@ -41,6 +41,7 @@
   fd.enable = true;
   fnm.enable = true;
   font-jetbrains-mono-nerd-font.enable = true;
+  fx-cast-bridge.enable = true;
   fzf.enable = true;
   gnu-sed.enable = true;
   neovim.enable = true;
