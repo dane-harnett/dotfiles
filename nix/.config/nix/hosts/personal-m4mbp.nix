@@ -1,4 +1,6 @@
 { pkgs, inputs, self, ...}: {
+  system.primaryUser = "dane";
+
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = true;
 
