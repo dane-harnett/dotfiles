@@ -34,7 +34,7 @@
 
   users.users.dane.home = "/Users/dane";
   # home.homeDirectory = "/Users/${userSettings.userName}";
-  aerospace.enable = true;
+  aerospace.enable = false;
   antidote.enable = true;
   bitwarden.enable = true;
   borders.enable = true;
