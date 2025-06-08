@@ -51,7 +51,6 @@
 
           ./modules/aerospace
           ./modules/antidote
-          ./modules/arc-browser
           ./modules/bitwarden
           ./modules/borders
           ./modules/discord
