@@ -16,10 +16,5 @@ in {
     environment.systemPackages = [
       pkgs.arc-browser
     ];
-    system.defaults = {
-      dock.persistent-apps = [
-        "/Applications/Nix Apps/Arc.app"
-      ];
-    };
   };
 }

@@ -21,10 +21,5 @@ in {
         "wez/wezterm"
       ];
     };
-    system.defaults = {
-      dock.persistent-apps = [
-        "/Applications/WezTerm.app"
-      ];
-    };
   };
 }

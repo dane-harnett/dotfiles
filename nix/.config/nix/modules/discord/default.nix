@@ -16,10 +16,5 @@ in {
     environment.systemPackages = [
       pkgs.discord
     ];
-    system.defaults = {
-      dock.persistent-apps = [
-        "/Applications/Nix Apps/Discord.app"
-      ];
-    };
   };
 }

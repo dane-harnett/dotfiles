@@ -18,10 +18,5 @@ in {
         "bitwarden"
       ];
     };
-    system.defaults = {
-      dock.persistent-apps = [
-        "/Applications/Bitwarden.app"
-      ];
-    };
   };
 }

@@ -18,10 +18,5 @@ in {
         "obs"
       ];
     };
-    system.defaults = {
-      dock.persistent-apps = [
-        "/Applications/OBS.app"
-      ];
-    };
   };
 }

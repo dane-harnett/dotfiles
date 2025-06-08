@@ -16,10 +16,5 @@ in {
     environment.systemPackages = [
       pkgs.vscode
     ];
-    system.defaults = {
-      dock.persistent-apps = [
-        "/Applications/Nix Apps/Visual Studio Code.app"
-      ];
-    };
   };
 }

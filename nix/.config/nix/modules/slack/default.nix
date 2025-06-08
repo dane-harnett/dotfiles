@@ -16,10 +16,5 @@ in {
     environment.systemPackages = [
       pkgs.slack
     ];
-    system.defaults = {
-      dock.persistent-apps = [
-        "/Applications/Nix Apps/Slack.app"
-      ];
-    };
   };
 }
