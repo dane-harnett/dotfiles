@@ -6,5 +6,4 @@ stow --delete --target=$HOME nvim
 stow --delete --target=$HOME nvm
 stow --delete --target=$HOME tmux
 stow --delete --target=$HOME wezterm
-stow --delete --target=$HOME yabai
 stow --delete --target=$HOME zsh

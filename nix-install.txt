@@ -35,7 +35,6 @@ Todo
 ** unbind spotlight keymap   # tried to do this - no solution found
 ** unbind siri keymap        # tried to do this - no solution found
 ** bind cmd+space to raycast # tried to do this - no solution found
-** install the raycast scripts automatically # not needed as they are for yabai and I'm not using it
 
 
 * arc, wezterm, bitwarden, slack, discord

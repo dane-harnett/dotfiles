@@ -128,13 +128,6 @@ else
   echo -e "aerospace installed."
 fi
 
-# check for yabai
-# if [[ ! $(command -v "yabai") ]]; then
-#   echo -e "yabai not installed. run: brew install koekeishiya/formulae/yabai"
-# else
-#   echo -e "yabai installed."
-# fi
-
 # check for borders
 if [[ ! $(command -v "borders") ]]; then
   echo -e "borders not installed. run: brew install FelixKratz/formulae/borders"
