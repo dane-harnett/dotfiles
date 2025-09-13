@@ -21,7 +21,7 @@
     ".config/nvim".source = ../../../../../nvim/.config/nvim;
     ".config/nvm".source = ../../../../../nvm/.config/nvm;
     # ".p10k.zsh".source = ../../../zsh/.p10k.zsh;
-    ".wezterm.lua".source = ../../../../../wezterm/.wezterm.lua;
+    ".config/wezterm".source = ../../../../../wezterm/.config/wezterm;
   };
 
   home.sessionVariables = {
