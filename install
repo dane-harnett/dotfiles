@@ -1,7 +1,6 @@
 #!/bin/bash
 
 stow --target=$HOME aerospace
-stow --target=$HOME alacritty
 stow --target=$HOME borders
 stow --target=$HOME fzf
 stow --target=$HOME nvim
