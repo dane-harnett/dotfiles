@@ -135,13 +135,6 @@ fi
 #   echo -e "yabai installed."
 # fi
 
-# check for skhd
-# if [[ ! $(command -v "skhd") ]]; then
-#   echo -e "skhd not installed. run: brew install koekeishiya/formulae/skhd"
-# else
-#   echo -e "skhd installed."
-# fi
-
 # check for borders
 if [[ ! $(command -v "borders") ]]; then
   echo -e "borders not installed. run: brew install FelixKratz/formulae/borders"

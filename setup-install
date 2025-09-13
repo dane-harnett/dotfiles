@@ -72,11 +72,6 @@ fi
 #   yabai --start-service
 # fi
 
-# if [[ ! $(command -v "skhd") ]]; then
-#   brew install koekeishiya/formulae/skhd
-#   skhd --start-service
-# fi
-
 if [[ ! $(command -v "borders") ]]; then
   # install borders
   brew install FelixKratz/formulae/borders
