@@ -95,9 +95,7 @@
   in
   {
     darwinConfigurations = {
-      "personal-i9mbp" = mkDarwinConfig "personal-i9mbp" "x86_64-darwin" "dane";
       "personal-m4mbp" = mkDarwinConfig "personal-m4mbp" "aarch64-darwin" "dane";
-      # "work-m1mbp" = mkDarwinConfig "work-m1mbp" "aarch64-darwin" "dharnett";
     };
   };
 }

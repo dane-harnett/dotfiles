@@ -17,13 +17,13 @@ nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"
 
 First time building flake
 
-nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake "$(readlink -f ~/.config/nix)#i9mbp"
+nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake "$(readlink -f ~/.config/nix)#personal-m4mbp"
 
 
 
 Rebuilding flake
 
-darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#i9mbp"
+darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#personal-m4mbp"
 
 
 
