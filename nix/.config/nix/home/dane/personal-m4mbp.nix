@@ -20,7 +20,6 @@
     ".config/borders".source = ../../../../../borders/.config/borders;
     ".config/nvim".source = ../../../../../nvim/.config/nvim;
     ".config/nvm".source = ../../../../../nvm/.config/nvm;
-    # ".p10k.zsh".source = ../../../zsh/.p10k.zsh;
     ".config/wezterm".source = ../../../../../wezterm/.config/wezterm;
   };
 
