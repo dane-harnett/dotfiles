@@ -38,6 +38,7 @@
   antidote.enable = true;
   bitwarden.enable = true;
   borders.enable = true;
+  carapace.enable = true;
   discord.enable = true;
   eza.enable = true;
   fd.enable = true;

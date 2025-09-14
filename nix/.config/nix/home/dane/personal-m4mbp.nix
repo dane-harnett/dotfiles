@@ -52,10 +52,10 @@
       enable = true;
       plugins = [
         "jimhester/per-directory-history"
-        "mattmc3/zephyr path:plugins/completion"
+        #"mattmc3/zephyr path:plugins/completion"
         "zdharma-continuum/fast-syntax-highlighting kind:defer"
-        "chrisands/zsh-yarn-completions"
-        "chitoku-k/fzf-zsh-completions"
+        #"chrisands/zsh-yarn-completions"
+        #"chitoku-k/fzf-zsh-completions"
       ];
     };
     autosuggestion.enable = true;

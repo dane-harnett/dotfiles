@@ -53,6 +53,7 @@
           ./modules/antidote
           ./modules/bitwarden
           ./modules/borders
+          ./modules/carapace
           ./modules/discord
           ./modules/eza
           ./modules/fd
