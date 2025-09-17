@@ -51,7 +51,7 @@
   nix-tools.enable = true;
   obs.enable = true;
   oh-my-posh.enable = true;
-  raycast.enable = true;
+  raycast.enable = false;
   ripgrep.enable = true;
   slack.enable = true;
   stow.enable = true;
