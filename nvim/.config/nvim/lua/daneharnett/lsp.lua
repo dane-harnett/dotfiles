@@ -76,6 +76,9 @@ local server_configs = {
             }),
         }
     end,
+    nil_ls = function()
+        return {}
+    end,
     ts_ls = function()
         local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
         if not lspconfig_util_status_ok then
