@@ -54,6 +54,7 @@
           ./modules/bitwarden
           ./modules/borders
           ./modules/carapace
+          ./modules/cargo
           ./modules/discord
           ./modules/eza
           ./modules/fd

@@ -39,6 +39,7 @@
   bitwarden.enable = true;
   borders.enable = true;
   carapace.enable = true;
+  cargo.enable = true;
   discord.enable = true;
   eza.enable = true;
   fd.enable = true;
