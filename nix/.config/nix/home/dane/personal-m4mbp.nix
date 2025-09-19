@@ -18,7 +18,7 @@
     ".config/aerospace".source = ../../../../../aerospace/.config/aerospace;
     ".config/borders".source = ../../../../../borders/.config/borders;
     #".config/nvim".source = ../../../../../nvim/.config/nvim;
-    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "../../../../../nvim/.config/nvim";
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ../../../../../nvim/.config/nvim;
     ".config/nvm".source = ../../../../../nvm/.config/nvm;
     ".config/wezterm".source = ../../../../../wezterm/.config/wezterm;
   };
