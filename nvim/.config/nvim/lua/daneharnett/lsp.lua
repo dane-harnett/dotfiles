@@ -67,14 +67,7 @@ local server_configs = {
         }
     end,
     rust_analyzer = function()
-        return {
-            on_attach = M.make_on_attach({
-                on_after = function(_, bufnr)
-                    local utils = require("daneharnett.utils")
-                    utils.create_format_on_save_autocmd("Rust", bufnr)
-                end,
-            }),
-        }
+        return {}
     end,
     nil_ls = function()
         return {}
@@ -93,13 +86,6 @@ local server_configs = {
                     importModuleSpecifierPreference = "relative",
                 },
             },
-            on_attach = M.make_on_attach({
-                on_after = function(client)
-                    -- Need to disable formatting because we will use eslint or prettier instead
-                    client.server_capabilities.documentFormattingProvider = false
-                    client.server_capabilities.documentRangeFormattingProvider = false
-                end,
-            }),
             -- if the project is a typescript project (has a tsconfig.json)
             -- configure for use in monorepos, spawn one process at the root of
             -- the project (the directory with `.git`).
@@ -167,7 +153,6 @@ function M.init()
         if server_config then
             servers[server_name] = vim.tbl_extend("keep", server_config, {
                 capabilities = capabilities,
-                on_attach = M.make_on_attach(),
             })
         end
     end
@@ -197,8 +182,31 @@ function M.init()
         return
     end
     fidget.setup({})
-end
 
+    M.create_lspattach_autocmd()
+end
+M.create_lspattach_autocmd = function()
+    local group = vim.api.nvim_create_augroup("daneharnett-lsp-attach", { clear = true })
+    vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(event)
+            local client = vim.lsp.get_client_by_id(event.data.client_id)
+            local bufnr = event.buf
+            M.setup_diagnostics()
+            M.attach_keymaps_to_buffer(bufnr)
+
+            if client and client.name == "rust_analyzer" then
+                local utils = require("daneharnett.utils")
+                utils.create_format_on_save_autocmd("Rust", bufnr)
+            end
+            if client and client.name == "ts_ls" then
+                -- Need to disable formatting because we will use eslint or prettier instead
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentRangeFormattingProvider = false
+            end
+        end,
+        group = group,
+    })
+end
 M.setup_diagnostics = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
@@ -246,19 +254,6 @@ M.attach_keymaps_to_buffer = function(bufnr)
         utils.buffer_keymap(bufnr, "n", "<leader>uh", function()
             vim.lsp.inlay_hint(bufnr, nil)
         end)
-    end
-end
-
-M.make_on_attach = function(opts)
-    opts = opts or {}
-
-    return function(client, bufnr)
-        M.setup_diagnostics()
-        M.attach_keymaps_to_buffer(bufnr)
-
-        if opts.on_after and type(opts.on_after) == "function" then
-            opts.on_after(client, bufnr)
-        end
     end
 end
 
