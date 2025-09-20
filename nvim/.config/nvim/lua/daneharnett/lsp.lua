@@ -92,18 +92,20 @@ local server_configs = {
             -- otherwise, fallback to the location where the tsconfig.json lives
             -- otherwise, it's not a typescript project we want to use this lsp
             -- with.
-            root_dir = function(startpath)
-                local tsconfig_ancestor = lspconfig_util.root_pattern("tsconfig.json")(startpath)
+            root_dir = function(bufnr, on_dir)
+                local fname = vim.api.nvim_buf_get_name(bufnr)
+
+                local tsconfig_ancestor = lspconfig_util.root_pattern("tsconfig.json")(fname)
                 if not tsconfig_ancestor then
                     return nil
                 end
 
-                local git_ancestor = vim.fs.dirname(vim.fs.find(".git", { path = startpath, upward = true })[1])
+                local git_ancestor = vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
                 if not git_ancestor then
-                    return tsconfig_ancestor
+                    on_dir(tsconfig_ancestor)
                 end
 
-                return git_ancestor
+                on_dir(git_ancestor)
             end,
             single_file_support = false,
             typescript = {
@@ -145,15 +147,21 @@ function M.init()
 
     local client_capabilities = vim.lsp.protocol.make_client_capabilities()
     local blink_cmp_capabilities = blink_cmp.get_lsp_capabilities()
-    local capabilities = vim.tbl_deep_extend("force", client_capabilities, blink_cmp_capabilities)
+    local capabilities = {}
+    capabilities = vim.tbl_extend("force", {}, client_capabilities)
+    capabilities = vim.tbl_extend("force", capabilities, blink_cmp_capabilities)
 
     local servers = {}
     for server_name, make_server_config in pairs(server_configs) do
         local server_config = make_server_config()
         if server_config then
-            servers[server_name] = vim.tbl_extend("keep", server_config, {
+            local server_config_built = {}
+            server_config_built = vim.tbl_extend("force", server_config_built, server_config)
+            server_config_built = vim.tbl_extend("force", server_config_built, {
                 capabilities = capabilities,
             })
+            vim.lsp.config(server_name, server_config_built)
+            servers[server_name] = server_config_built
         end
     end
 
@@ -161,11 +169,6 @@ function M.init()
     mason_lspconfig.setup({
         automatic_installation = false,
         ensure_installed = vim.tbl_keys(servers),
-        handlers = {
-            function(server_name)
-                lspconfig[server_name].setup(servers[server_name])
-            end,
-        },
     })
     mason_tool_installer.setup({
         ensure_installed = {
