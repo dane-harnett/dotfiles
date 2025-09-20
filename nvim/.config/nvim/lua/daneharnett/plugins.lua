@@ -213,6 +213,9 @@ local plugins = {
         end,
         event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
     },
+    {
+        "rshkarin/mason-nvim-lint",
+    },
     -- Disabling via commenting this for now as it doesn't quite meet my needs,
     -- more tinkering required.
     -- {

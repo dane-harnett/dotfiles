@@ -28,4 +28,40 @@ M.create_format_on_save_autocmd = function(augroup_name, bufnr, timeout_ms)
     })
 end
 
+M.get_typescript_filetypes = function()
+    return { "typescript", "typescriptreact", "typescript.tsx" }
+end
+
+M.has_deno_config = function(fname)
+    local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
+    if not lspconfig_util_status_ok then
+        return false
+    end
+    return lspconfig_util.root_pattern("deno.json", "deno.jsonc")(fname)
+end
+
+M.has_eslint_config = function(fname)
+    local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
+    if not lspconfig_util_status_ok then
+        return false
+    end
+    return lspconfig_util.root_pattern("eslintrc.js", "eslint.config.js", "eslint.config.mjs")(fname)
+end
+
+M.has_tsconfig = function(fname)
+    local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
+    if not lspconfig_util_status_ok then
+        return false
+    end
+    return lspconfig_util.root_pattern("tsconfig.json")(fname)
+end
+
+M.is_git_repo = function(fname)
+    local git_ancestor = vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
+    if git_ancestor then
+        return git_ancestor
+    end
+    return false
+end
+
 return M

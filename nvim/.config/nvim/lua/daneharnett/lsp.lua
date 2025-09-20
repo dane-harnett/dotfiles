@@ -2,25 +2,31 @@ local M = {}
 
 local server_configs = {
     denols = function()
-        local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
-        if not lspconfig_util_status_ok then
-            return
-        end
+        local utils = require("daneharnett.utils")
 
         return {
-            filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-            root_dir = lspconfig_util.root_pattern("deno.json", "deno.jsonc"),
+            filetypes = utils.get_typescript_filetypes(),
+            root_dir = function(bufnr, on_dir)
+                local fname = vim.api.nvim_buf_get_name(bufnr)
+                local matchesRootPattern = utils.has_deno_config(fname)
+                if matchesRootPattern then
+                    on_dir(matchesRootPattern)
+                end
+            end,
         }
     end,
     eslint = function()
-        local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
-        if not lspconfig_util_status_ok then
-            return
-        end
+        local utils = require("daneharnett.utils")
 
         return {
-            filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-            root_dir = lspconfig_util.root_pattern("eslintrc.js"),
+            filetypes = utils.get_typescript_filetypes(),
+            root_dir = function(bufnr, on_dir)
+                local fname = vim.api.nvim_buf_get_name(bufnr)
+                local matchesRootPattern = utils.has_eslint_config(fname)
+                if matchesRootPattern then
+                    on_dir(matchesRootPattern)
+                end
+            end,
         }
     end,
     jsonls = function()
@@ -73,13 +79,10 @@ local server_configs = {
         return {}
     end,
     ts_ls = function()
-        local lspconfig_util_status_ok, lspconfig_util = pcall(require, "lspconfig.util")
-        if not lspconfig_util_status_ok then
-            return
-        end
+        local utils = require("daneharnett.utils")
 
         return {
-            filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+            filetypes = utils.get_typescript_filetypes(),
             init_options = {
                 maxTsServerMemory = 12288,
                 preferences = {
@@ -95,12 +98,12 @@ local server_configs = {
             root_dir = function(bufnr, on_dir)
                 local fname = vim.api.nvim_buf_get_name(bufnr)
 
-                local tsconfig_ancestor = lspconfig_util.root_pattern("tsconfig.json")(fname)
+                local tsconfig_ancestor = utils.has_tsconfig(fname)
                 if not tsconfig_ancestor then
                     return nil
                 end
 
-                local git_ancestor = vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
+                local git_ancestor = utils.is_git_repo(fname)
                 if not git_ancestor then
                     on_dir(tsconfig_ancestor)
                 end
