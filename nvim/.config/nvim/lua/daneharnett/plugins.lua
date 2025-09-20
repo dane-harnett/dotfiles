@@ -384,12 +384,12 @@ local plugins = {
             require("daneharnett.better-ts-errors").init()
         end,
     },
-    {
-        "rmagatti/auto-session",
-        config = function()
-            require("daneharnett.autosession").init()
-        end,
-    },
+    -- {
+    --     "rmagatti/auto-session",
+    --     config = function()
+    --         require("daneharnett.autosession").init()
+    --     end,
+    -- },
     -- trialling fzf-lua because telescope can be slow for my large repos
     {
         "ibhagwan/fzf-lua",
