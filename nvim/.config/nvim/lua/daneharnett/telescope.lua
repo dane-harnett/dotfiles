@@ -23,8 +23,10 @@ function M.init()
         find_command = base_find_command,
         layout_config = find_layout_config,
     }
+    local find_command_with_hidden = vim.list_extend({}, base_find_command)
+    vim.list_extend(find_command_with_hidden, { "--hidden", "--glob=!.git/" })
     local find_files_including_hidden = {
-        find_command = vim.tbl_extend("force", base_find_command, { "--hidden" }),
+        find_command = find_command_with_hidden,
         layout_config = find_layout_config,
     }
     local git_files = {}
