@@ -31,13 +31,14 @@ function M.init()
         },
     })
 
-    local function set_terminal_keymaps()
-        utils.current_buffer_keymap("t", "<esc>", [[<C-\><C-n>]])
-        utils.current_buffer_keymap("t", "jk", [[<C-\><C-n>]])
-        utils.current_buffer_keymap("t", "<C-h>", [[<C-\><C-n><C-W>h]])
-        utils.current_buffer_keymap("t", "<C-j>", [[<C-\><C-n><C-W>j]])
-        utils.current_buffer_keymap("t", "<C-k>", [[<C-\><C-n><C-W>k]])
-        utils.current_buffer_keymap("t", "<C-l>", [[<C-\><C-n><C-W>l]])
+    local function set_terminal_keymaps(event)
+        local bufnr = event.buf
+        utils.buffer_keymap(bufnr, "t", "<esc>", [[<C-\><C-n>]])
+        utils.buffer_keymap(bufnr, "t", "jk", [[<C-\><C-n>]])
+        utils.buffer_keymap(bufnr, "t", "<C-h>", [[<C-\><C-n><C-W>h]])
+        utils.buffer_keymap(bufnr, "t", "<C-j>", [[<C-\><C-n><C-W>j]])
+        utils.buffer_keymap(bufnr, "t", "<C-k>", [[<C-\><C-n><C-W>k]])
+        utils.buffer_keymap(bufnr, "t", "<C-l>", [[<C-\><C-n><C-W>l]])
     end
 
     local group = vim.api.nvim_create_augroup("ToggleTerm", { clear = true })
