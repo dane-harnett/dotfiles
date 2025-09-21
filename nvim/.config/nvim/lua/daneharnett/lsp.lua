@@ -126,6 +126,22 @@ local server_configs = {
     end,
 }
 
+local client_on_attach_config = {
+    rust_analyzer = function(event)
+        local utils = require("daneharnett.utils")
+        utils.create_format_on_save_autocmd("Rust", event.buf)
+    end,
+    ts_ls = function(event)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        -- Need to disable formatting because we will use eslint or prettier instead
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+
+        local bte = require("daneharnett.better-ts-errors")
+        bte.attach_keymaps_to_buffer(event.buf)
+    end,
+}
+
 function M.init()
     local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
     if not lspconfig_status_ok then
@@ -200,14 +216,8 @@ M.create_lspattach_autocmd = function()
             M.setup_diagnostics()
             M.attach_keymaps_to_buffer(bufnr)
 
-            if client and client.name == "rust_analyzer" then
-                local utils = require("daneharnett.utils")
-                utils.create_format_on_save_autocmd("Rust", bufnr)
-            end
-            if client and client.name == "ts_ls" then
-                -- Need to disable formatting because we will use eslint or prettier instead
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentRangeFormattingProvider = false
+            if client and client_on_attach_config[client.name] then
+                client_on_attach_config[client.name](event)
             end
         end,
         group = group,

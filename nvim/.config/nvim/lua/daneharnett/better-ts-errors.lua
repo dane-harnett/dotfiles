@@ -7,10 +7,12 @@ function M.init()
     end
 
     bte.setup()
+end
 
+function M.attach_keymaps_to_buffer(bufnr)
     local utils = require("daneharnett.utils")
-    utils.keymap("n", "]a", M.next)
-    utils.keymap("n", "[a", M.previous)
+    utils.buffer_keymap(bufnr, "n", "]a", M.next)
+    utils.buffer_keymap(bufnr, "n", "[a", M.previous)
 end
 
 function M.next()
