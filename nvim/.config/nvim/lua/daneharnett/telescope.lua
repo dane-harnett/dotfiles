@@ -303,8 +303,8 @@ M.get_find_files = function()
         attach_mappings = function(_, map)
             -- press ctrl+h to toggle hidden files
             map("i", "<C-h>", function(_prompt_bufnr)
-                -- TODO: get the current prompt text and pass through
-                M.find_files_including_hidden()
+                local state = require("telescope.actions.state")
+                M.find_files_including_hidden(state.get_current_line())
             end)
             return true
         end,
@@ -313,7 +313,8 @@ M.get_find_files = function()
     }
 end
 
-M.find_files_including_hidden = function()
+M.find_files_including_hidden = function(default_text_arg)
+    local default_text = default_text_arg or ""
     local base_find_command = M.get_base_find_command()
     local find_command_with_hidden = vim.list_extend({}, base_find_command)
     vim.list_extend(find_command_with_hidden, { "--hidden", "--glob=!.git/" })
@@ -321,14 +322,17 @@ M.find_files_including_hidden = function()
         attach_mappings = function(_, map)
             -- press ctrl+h to toggle hidden files
             map("i", "<C-h>", function(_prompt_bufnr)
-                -- TODO: get the current prompt text and pass through
-                require("telescope.builtin").find_files()
+                local state = require("telescope.actions.state")
+                require("telescope.builtin").find_files({
+                    default_text = state.get_current_line(),
+                })
             end)
             return true
         end,
         find_command = find_command_with_hidden,
         layout_config = M.get_base_find_layout_config(),
         prompt_title = "Find Files (including hidden)",
+        default_text = default_text,
     }
     require("telescope.builtin").find_files(find_files_including_hidden)
 end
