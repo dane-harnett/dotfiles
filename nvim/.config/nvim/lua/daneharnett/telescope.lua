@@ -4,43 +4,18 @@ function M.init()
     M.attach_keymaps()
 
     local buffers = { preview = true }
-    local base_find_command = {
-        "rg",
-        "--files",
-        "--color=never",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-    }
-    local find_layout_config = {
-        horizontal = {
-            preview_width = 0,
-        },
-    }
-    local find_files = {
-        find_command = base_find_command,
-        layout_config = find_layout_config,
-    }
-    local find_command_with_hidden = vim.list_extend({}, base_find_command)
-    vim.list_extend(find_command_with_hidden, { "--hidden", "--glob=!.git/" })
-    local find_files_including_hidden = {
-        find_command = find_command_with_hidden,
-        layout_config = find_layout_config,
-    }
     local git_files = {}
     local grep_string = { preview = true }
     local live_grep = {
         additional_args = function()
             return { "--hidden" }
         end,
-        -- find_command = base_find_command,
     }
     local oldfiles = {}
 
     local telescope = require("telescope")
     local telescope_actions = require("telescope.actions")
+
     telescope.setup({
         defaults = {
             file_sorter = require("telescope.sorters").get_fzy_sorter,
@@ -78,7 +53,7 @@ function M.init()
         },
         pickers = {
             buffers = buffers,
-            find_files = find_files,
+            find_files = M.get_find_files(),
             git_files = git_files,
             grep_string = grep_string,
             live_grep = live_grep,
@@ -90,9 +65,7 @@ function M.init()
     pcall(require("telescope").load_extension, "harpoon")
     pcall(require("telescope").load_extension, "ui-select")
 
-    vim.api.nvim_create_user_command("TelescopeFindFilesIncludingHidden", function()
-        require("telescope.builtin").find_files(find_files_including_hidden)
-    end, {})
+    vim.api.nvim_create_user_command("TelescopeFindFilesIncludingHidden", M.find_files_including_hidden, {})
 
     local conf = require("telescope.config").values
     local finders = require("telescope.finders")
@@ -302,6 +275,62 @@ M.insert_path_to_directory = function()
         }
         require("telescope.builtin").find_files(opts)
     end, {})
+end
+
+M.get_base_find_command = function()
+    return {
+        "rg",
+        "--files",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+    }
+end
+
+M.get_base_find_layout_config = function()
+    return {
+        horizontal = {
+            preview_width = 0,
+        },
+    }
+end
+
+M.get_find_files = function()
+    return {
+        attach_mappings = function(_, map)
+            -- press ctrl+h to toggle hidden files
+            map("i", "<C-h>", function(_prompt_bufnr)
+                -- TODO: get the current prompt text and pass through
+                M.find_files_including_hidden()
+            end)
+            return true
+        end,
+        find_command = M.get_base_find_command(),
+        layout_config = M.get_base_find_layout_config(),
+    }
+end
+
+M.find_files_including_hidden = function()
+    local base_find_command = M.get_base_find_command()
+    local find_command_with_hidden = vim.list_extend({}, base_find_command)
+    vim.list_extend(find_command_with_hidden, { "--hidden", "--glob=!.git/" })
+    local find_files_including_hidden = {
+        attach_mappings = function(_, map)
+            -- press ctrl+h to toggle hidden files
+            map("i", "<C-h>", function(_prompt_bufnr)
+                -- TODO: get the current prompt text and pass through
+                require("telescope.builtin").find_files()
+            end)
+            return true
+        end,
+        find_command = find_command_with_hidden,
+        layout_config = M.get_base_find_layout_config(),
+        prompt_title = "Find Files (including hidden)",
+    }
+    require("telescope.builtin").find_files(find_files_including_hidden)
 end
 
 return M
