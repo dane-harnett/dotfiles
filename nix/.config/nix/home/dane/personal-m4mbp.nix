@@ -17,7 +17,6 @@
   home.file = {
     ".config/aerospace".source = ../../../../../aerospace/.config/aerospace;
     ".config/borders".source = ../../../../../borders/.config/borders;
-    #".config/nvim".source = ../../../../../nvim/.config/nvim;
     ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/nvim/.config/nvim";
     ".config/nvm".source = ../../../../../nvm/.config/nvm;
     ".config/wezterm".source = ../../../../../wezterm/.config/wezterm;
@@ -53,10 +52,7 @@
       enable = true;
       plugins = [
         "jimhester/per-directory-history"
-        #"mattmc3/zephyr path:plugins/completion"
         "zdharma-continuum/fast-syntax-highlighting kind:defer"
-        #"chrisands/zsh-yarn-completions"
-        #"chitoku-k/fzf-zsh-completions"
       ];
     };
     autosuggestion.enable = true;
