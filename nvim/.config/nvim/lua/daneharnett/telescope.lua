@@ -36,6 +36,7 @@ M.get_defaults = function()
         file_previewer = previewers.vim_buffer_cat.new,
         grep_previewer = previewers.vim_buffer_vimgrep.new,
         qflist_previewer = previewers.vim_buffer_qflist.new,
+        layout_strategy = "flex",
         layout_config = {
             horizontal = {
                 size = {
@@ -313,6 +314,7 @@ M.get_find_files = function()
             return true
         end,
         find_command = M.get_base_find_command(),
+        layout_strategy = "horizontal",
         layout_config = M.get_base_find_layout_config(),
     }
 end
@@ -334,6 +336,7 @@ M.find_files_including_hidden = function(default_text_arg)
             return true
         end,
         find_command = find_command_with_hidden,
+        layout_strategy = "horizontal",
         layout_config = M.get_base_find_layout_config(),
         prompt_title = "Find Files (including hidden)",
         default_text = default_text,
