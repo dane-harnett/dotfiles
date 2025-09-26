@@ -2,63 +2,76 @@ local M = {}
 
 function M.init()
     local telescope = require("telescope")
-    local actions = require("telescope.actions")
-    local previewers = require("telescope.previewers")
-    local sorters = require("telescope.sorters")
-    local themes = require("telescope.themes")
 
     telescope.setup({
-        defaults = {
-            file_sorter = sorters.get_fzy_sorter,
-            path_display = {
-                truncate = true,
-            },
-            prompt_prefix = " >",
-            color_devicons = true,
-            layout_config = {
-                horizontal = {
-                    preview_width = 40,
-                    width = 0.9,
-                },
-            },
-            mappings = {
-                i = {
-                    ["<C-D>"] = actions.cycle_history_next,
-                    ["<C-U>"] = actions.cycle_history_prev,
-                },
-            },
-            file_previewer = previewers.vim_buffer_cat.new,
-            grep_previewer = previewers.vim_buffer_vimgrep.new,
-            qflist_previewer = previewers.vim_buffer_qflist.new,
-        },
-        extensions = {
-            fzf = {
-                fuzzy = true,
-                override_generic_sorter = true,
-                override_file_sorter = true,
-                case_mode = "smart_case",
-            },
-            ["ui-select"] = {
-                themes.get_dropdown(),
-            },
-        },
-        pickers = {
-            buffers = { preview = true },
-            find_files = M.get_find_files(),
-            git_files = {},
-            grep_string = { preview = true },
-            live_grep = {
-                additional_args = function()
-                    return { "--hidden" }
-                end,
-            },
-            oldfiles = {},
-        },
+        defaults = M.get_defaults(),
+        extensions = M.get_extensions(),
+        pickers = M.get_pickers(),
     })
 
     M.load_extensions()
     M.create_user_commands()
     M.attach_keymaps()
+end
+
+M.get_defaults = function()
+    local actions = require("telescope.actions")
+    local previewers = require("telescope.previewers")
+    local sorters = require("telescope.sorters")
+
+    return {
+        file_sorter = sorters.get_fzy_sorter,
+        path_display = {
+            truncate = true,
+        },
+        prompt_prefix = " >",
+        color_devicons = true,
+        layout_config = {
+            horizontal = {
+                preview_width = 40,
+                width = 0.9,
+            },
+        },
+        mappings = {
+            i = {
+                ["<C-D>"] = actions.cycle_history_next,
+                ["<C-U>"] = actions.cycle_history_prev,
+            },
+        },
+        file_previewer = previewers.vim_buffer_cat.new,
+        grep_previewer = previewers.vim_buffer_vimgrep.new,
+        qflist_previewer = previewers.vim_buffer_qflist.new,
+    }
+end
+
+M.get_extensions = function()
+    local themes = require("telescope.themes")
+    return {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        },
+        ["ui-select"] = {
+            themes.get_dropdown(),
+        },
+    }
+end
+
+M.get_pickers = function()
+    return {
+        buffers = { preview = true },
+        find_files = M.get_find_files(),
+        git_files = {},
+        grep_string = { preview = true },
+        live_grep = {
+            additional_args = function()
+                return { "--hidden" }
+            end,
+        },
+        oldfiles = {},
+    }
 end
 
 M.load_extensions = function()
