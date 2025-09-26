@@ -18,6 +18,7 @@ M.get_defaults = function()
     local actions = require("telescope.actions")
     local previewers = require("telescope.previewers")
     local sorters = require("telescope.sorters")
+    local fused_layout = require("daneharnett.telescope-fused-layout")
 
     return {
         file_sorter = sorters.get_fzy_sorter,
@@ -26,12 +27,6 @@ M.get_defaults = function()
         },
         prompt_prefix = " >",
         color_devicons = true,
-        layout_config = {
-            horizontal = {
-                preview_width = 40,
-                width = 0.9,
-            },
-        },
         mappings = {
             i = {
                 ["<C-D>"] = actions.cycle_history_next,
@@ -41,6 +36,21 @@ M.get_defaults = function()
         file_previewer = previewers.vim_buffer_cat.new,
         grep_previewer = previewers.vim_buffer_vimgrep.new,
         qflist_previewer = previewers.vim_buffer_qflist.new,
+        layout_config = {
+            horizontal = {
+                size = {
+                    width = "90%",
+                    height = "60%",
+                },
+            },
+            vertical = {
+                size = {
+                    width = "90%",
+                    height = "90%",
+                },
+            },
+        },
+        create_layout = fused_layout.get_create_layout(),
     }
 end
 
