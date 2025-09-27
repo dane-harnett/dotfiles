@@ -188,6 +188,7 @@ alt-cmd-ctrl-shift-semicolon = 'mode service'
 
 alt-cmd-ctrl-shift-r = 'mode resize'
 alt-cmd-ctrl-shift-m = 'mode move'
+alt-cmd-ctrl-shift-j = 'mode appswitcher'
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -221,6 +222,18 @@ esc = 'mode main'
 2 = ['move-node-to-workspace 10', 'workspace 10', 'mode main']
 a = ['move-node-to-workspace A', 'workspace A', 'mode main']
 b = ['move-node-to-workspace B', 'workspace B', 'mode main']
+enter = 'mode main'
+esc = 'mode main'
+
+[mode.appswitcher.binding]
+b = [
+  'exec-and-forget ~/.config/aerospace/scripts/open-app-in-fullscreen.sh "Zen Browser"',
+  'mode main'
+]
+t = [
+  'exec-and-forget ~/.config/aerospace/scripts/open-app-in-fullscreen.sh "WezTerm"',
+  'mode main'
+]
 enter = 'mode main'
 esc = 'mode main'
 
