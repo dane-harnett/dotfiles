@@ -31,12 +31,6 @@ darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#personal-m4mbp"
 
 Todo
 
-* raycast
-** unbind spotlight keymap   # tried to do this - no solution found
-** unbind siri keymap        # tried to do this - no solution found
-** bind cmd+space to raycast # tried to do this - no solution found
-
-
 * arc, wezterm, bitwarden, slack, discord
 ** setup dock icons - DONE
 

@@ -78,8 +78,4 @@ if [[ ! $(command -v "gsed") ]]; then
   brew install gnu-sed
 fi
 
-if [[ ! -d /Applications/Raycast.app ]]; then
-  brew install --cask raycast
-fi
-
 echo -e "Setup complete. Now run ./install to apply the config"
