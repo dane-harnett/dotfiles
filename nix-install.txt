@@ -25,18 +25,3 @@ Rebuilding flake
 
 darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#personal-m4mbp"
 
-
-
-
-
-Todo
-
-* arc, wezterm, bitwarden, slack, discord
-** setup dock icons - DONE
-
-
-* macos settings
-** dark mode - DONE
-** finder column view by default - DONE
-** hide menu and dock - DONE
-
