@@ -4,7 +4,7 @@
     {
       "key": "t",
       "type": "application",
-      "value": "/System/Applications/Utilities/Terminal.app"
+      "value": "/Applications/WezTerm.app"
     },
     {
       "key": "o",
