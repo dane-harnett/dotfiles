@@ -18,6 +18,8 @@
     ".config/aerospace".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/aerospace/.config/aerospace";
     ".config/borders".source = ../../../../../borders/.config/borders;
+    ".config/leader-key".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/leader-key/.config/leader-key";
     ".config/nvim".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/nvim/.config/nvim";
     ".config/nvm".source = ../../../../../nvm/.config/nvm;
