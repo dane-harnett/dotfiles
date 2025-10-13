@@ -1,4 +1,10 @@
-{ pkgs, inputs, self, ...}: {
+{
+  pkgs,
+  inputs,
+  self,
+  ...
+}:
+{
   system.primaryUser = "dane";
 
   programs.zsh.enable = true;
