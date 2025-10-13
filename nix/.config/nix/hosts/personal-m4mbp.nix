@@ -54,6 +54,7 @@
   fx-cast-bridge.enable = true;
   fzf.enable = true;
   gnu-sed.enable = true;
+  leader-key.enable = true;
   neovim.enable = true;
   nix-tools.enable = true;
   obs.enable = true;
