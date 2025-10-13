@@ -16,7 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     homebrew = {
       enable = true;
-      brews = [
+      casks = [
         "leader-key"
       ];
     };
