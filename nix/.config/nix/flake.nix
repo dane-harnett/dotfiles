@@ -68,6 +68,7 @@
             ./modules/fx-cast-bridge
             ./modules/fzf
             ./modules/gnu-sed
+            ./modules/leader-key
             ./modules/neovim
             ./modules/nix-tools
             ./modules/obs
