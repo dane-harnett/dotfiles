@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# helium-open: focus existing Helium tab for URL, else open new.
+# Usage:
+#   helium-open "https://example.com"          # quiet mode
+#   DEBUG=1 helium-open "https://example.com"  # debug mode -> /tmp/helium-open-debug.log
+set -euo pipefail
+if [[ $# -lt 1 ]]; then
+  echo "Usage: helium-open <url>" >&2
+  exit 1
+fi
+
+url="$1"
+
+apple_script='
+on run argv
+  set theURL to item 1 of argv
+  log "[AppleScript] Starting Helium check for URL: " & theURL
+  tell application "Helium"
+    activate
+    set foundTab to false
+    set windowIndex to 0
+    repeat with w in windows
+      set windowIndex to windowIndex + 1
+      log "[AppleScript] Checking window " & windowIndex
+      set tabIndex to 0
+      repeat with t in tabs of w
+        set tabIndex to tabIndex + 1
+        try
+          set thisURL to URL of t as text
+          log "[AppleScript]   Tab " & tabIndex & " has URL: " & thisURL
+          if thisURL is theURL then
+            log "[AppleScript] ✅ Found matching tab: window " & windowIndex & ", tab " & tabIndex
+            set active tab index of w to tabIndex
+            set index of w to 1
+            set foundTab to true
+            exit repeat
+          end if
+        on error errMsg
+          log "[AppleScript] ⚠️ Error reading tab " & tabIndex & ": " & errMsg
+        end try
+      end repeat
+      if foundTab then exit repeat
+    end repeat
+
+    if not foundTab then
+      log "[AppleScript] No matching tab found, opening new one..."
+      if (count of windows) is 0 then
+        make new window
+      end if
+      tell window 1 to make new tab with properties {URL:theURL}
+      set index of window 1 to 1
+    end if
+  end tell
+  log "[AppleScript] Done."
+end run
+'
+
+if [[ "${DEBUG:-0}" == "1" ]]; then
+  echo "[bash] Target URL: $url"
+  osascript -e "$apple_script" "$url" 2>&1 | tee /tmp/helium-open-debug.log
+  echo "[bash] Debug log: /tmp/helium-open-debug.log"
+else
+  # Keep the *same* AppleScript (and thus the working behavior),
+  # but suppress its noisy stderr output.
+  osascript -e "$apple_script" "$url" 2>/dev/null
+fi
+

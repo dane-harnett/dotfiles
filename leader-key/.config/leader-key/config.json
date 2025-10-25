@@ -48,6 +48,24 @@
           "value": "raycast://extensions/raycast/system/open-camera"
         }
       ]
+    },
+    {
+      "key": "b",
+      "type": "group",
+      "actions": [
+        {
+          "key": "m",
+          "label": "Open Mail in Browser",
+          "type": "command",
+          "value": "~/projects/personal/dotfiles/scripts/helium-focus-or-open 'https://mail.google.com/mail/u/0/#inbox'"
+        },
+        {
+          "key": "y",
+          "label": "Open YouTube in Browser",
+          "type": "command",
+          "value": "~/projects/personal/dotfiles/scripts/helium-focus-or-open 'https://www.youtube.com/'"
+        }
+      ]
     }
   ]
 }
