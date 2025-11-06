@@ -38,11 +38,14 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "Dane Harnett";
-    userEmail = "2585257+dane-harnett@users.noreply.github.com";
-    aliases = {
+    settings = {
+    alias = {
       co = "checkout";
       st = "status";
+    };
+    user = {
+      email = "2585257+dane-harnett@users.noreply.github.com";
+      name = "Dane Harnett";
     };
   };
   programs.oh-my-posh = {
