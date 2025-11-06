@@ -78,6 +78,7 @@
             ./modules/sketchybar
             ./modules/slack
             ./modules/stow
+            ./modules/there
             ./modules/util-linux
             ./modules/vlc
             ./modules/vscode
