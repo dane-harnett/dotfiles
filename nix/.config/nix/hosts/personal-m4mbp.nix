@@ -49,6 +49,7 @@
   discord.enable = true;
   eza.enable = true;
   fd.enable = true;
+  ffmpeg.enable = true;
   fnm.enable = true;
   font-jetbrains-mono-nerd-font.enable = true;
   fx-cast-bridge.enable = true;

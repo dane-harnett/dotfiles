@@ -63,6 +63,7 @@
             ./modules/discord
             ./modules/eza
             ./modules/fd
+            ./modules/ffmpeg
             ./modules/fnm
             ./modules/font-jetbrains-mono-nerd-font
             ./modules/fx-cast-bridge
