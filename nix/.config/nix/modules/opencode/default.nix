@@ -20,7 +20,7 @@ in
         "anomalyco/tap/opencode"
       ];
       taps = [
-        "anomalyco/top"
+        "anomalyco/tap"
       ];
     };
   };
