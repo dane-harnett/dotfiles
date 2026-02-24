@@ -75,6 +75,7 @@
             ./modules/nix-tools
             ./modules/obs
             ./modules/oh-my-posh
+            ./modules/opencode
             ./modules/raycast
             ./modules/ripgrep
             ./modules/sketchybar
