@@ -16,6 +16,9 @@ local plugins = {
     -- treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        build = ":TSUpdate",
+        branch = "main",
         config = function()
             require("daneharnett.treesitter").init()
         end,
@@ -26,17 +29,14 @@ local plugins = {
     {
         "nvim-treesitter/nvim-treesitter-context",
     },
-    {
-        "nvim-treesitter/playground",
-    },
     -- nvim-biscuits
-    {
-        "code-biscuits/nvim-biscuits",
-        cond = not vim.g.vscode,
-        config = function()
-            require("daneharnett.biscuits").init()
-        end,
-    },
+    -- {
+    --     "code-biscuits/nvim-biscuits",
+    --     cond = not vim.g.vscode,
+    --     config = function()
+    --         require("daneharnett.biscuits").init()
+    --     end,
+    -- },
     -- A collection of language packs for Vim.
     {
         "sheerun/vim-polyglot",

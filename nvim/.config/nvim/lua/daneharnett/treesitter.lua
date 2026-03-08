@@ -1,53 +1,54 @@
 local M = {}
 
 function M.init()
-    local ts_configs_setup_status_ok = M.setup_treesitter_configs()
-    if not ts_configs_setup_status_ok then
+    local ts_status_ok, ts = pcall(require, "nvim-treesitter")
+    if not ts_status_ok then
         return
     end
 
-    M.setup_treesitter_context()
-    M.setup_treesitter_folds()
-end
+    local parsers = {
+        "bash",
+        "css",
+        "html",
+        "java",
+        "javascript",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "tsx",
+        "typescript",
+        "vimdoc",
+    }
 
-M.setup_treesitter_configs = function()
-    local ts_configs_status_ok, ts_configs = pcall(require, "nvim-treesitter.configs")
-    if not ts_configs_status_ok then
-        return false
-    end
+    ts.install(parsers)
+    vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+            local buf, filetype = args.buf, args.match
 
-    ts_configs.setup({
-        ensure_installed = {
-            "bash",
-            "css",
-            "html",
-            "java",
-            "javascript",
-            "json",
-            "lua",
-            "markdown",
-            "markdown_inline",
-            "tsx",
-            "typescript",
-            "vimdoc",
-        },
-        modules = {},
-        sync_install = false,
-        auto_install = false,
-        ignore_install = {},
-        highlight = {
-            enable = true,
-        },
-        indent = {
-            enable = true,
-        },
-        playground = {
-            enable = true,
-            updatetime = 25,
-        },
+            local language = vim.treesitter.language.get_lang(filetype)
+            if not language then
+                return
+            end
+
+            -- check if parser exists and load it
+            if not vim.treesitter.language.add(language) then
+                return
+            end
+            -- enables syntax highlighting and other treesitter features
+            vim.treesitter.start(buf, language)
+
+            -- enables treesitter based folds
+            -- for more info on folds see `:help folds`
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.wo.foldmethod = "expr"
+
+            -- enables treesitter based indentation
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
     })
 
-    return true
+    M.setup_treesitter_context()
 end
 
 M.setup_treesitter_context = function()
@@ -55,38 +56,6 @@ M.setup_treesitter_context = function()
     if context_status_ok then
         tscontext.setup({
             max_lines = 3,
-        })
-    end
-end
-
-M.setup_treesitter_folds = function()
-    local ts_parsers_status_ok, ts_parsers = pcall(require, "nvim-treesitter.parsers")
-    if not ts_parsers_status_ok then
-        return
-    end
-
-    local group = vim.api.nvim_create_augroup("FoldsWithTreesitter", { clear = true })
-    local additional_file_types = {
-        "typescriptreact",
-    }
-    local all_file_types = {}
-
-    local parsers = ts_parsers.available_parsers()
-    for _, filetype in ipairs(parsers) do
-        table.insert(all_file_types, filetype)
-    end
-    for _, filetype in ipairs(additional_file_types) do
-        table.insert(all_file_types, filetype)
-    end
-
-    for _, filetype in ipairs(all_file_types) do
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = filetype,
-            callback = function()
-                vim.wo.foldmethod = "expr"
-                vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
-            end,
-            group = group,
         })
     end
 end
