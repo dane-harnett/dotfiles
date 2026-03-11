@@ -24,9 +24,6 @@ local plugins = {
         end,
     },
     {
-        "nvim-treesitter/completion-treesitter",
-    },
-    {
         "nvim-treesitter/nvim-treesitter-context",
     },
     -- nvim-biscuits
