@@ -82,7 +82,7 @@
             ./modules/slack
             ./modules/stow
             ./modules/there
-            ./modules/tree-sitter
+            ./modules/tree-sitter-cli
             ./modules/util-linux
             ./modules/vlc
             ./modules/vscode

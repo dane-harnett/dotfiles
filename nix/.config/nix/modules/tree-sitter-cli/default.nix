@@ -4,12 +4,12 @@
   ...
 }:
 let
-  cfg = config.tree-sitter;
+  cfg = config.tree-sitter-cli;
 in
 {
   options = {
-    tree-sitter = {
-      enable = lib.mkEnableOption "Enable tree-sitter";
+    tree-sitter-cli = {
+      enable = lib.mkEnableOption "Enable tree-sitter-cli";
     };
   };
 
@@ -17,7 +17,7 @@ in
     homebrew = {
       enable = true;
       brews = [
-        "tree-sitter"
+        "tree-sitter-cli"
       ];
     };
   };
