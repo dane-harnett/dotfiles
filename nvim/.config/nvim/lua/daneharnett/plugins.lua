@@ -34,10 +34,6 @@ local plugins = {
     --         require("daneharnett.biscuits").init()
     --     end,
     -- },
-    -- A collection of language packs for Vim.
-    {
-        "sheerun/vim-polyglot",
-    },
     -- buffer line (top of buffer)
     {
         "akinsho/bufferline.nvim",
