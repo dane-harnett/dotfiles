@@ -82,6 +82,7 @@
             ./modules/slack
             ./modules/stow
             ./modules/there
+            ./modules/tree-sitter
             ./modules/util-linux
             ./modules/vlc
             ./modules/vscode

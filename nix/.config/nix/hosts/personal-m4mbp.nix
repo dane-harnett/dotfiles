@@ -67,6 +67,7 @@
   slack.enable = true;
   stow.enable = true;
   there.enable = true;
+  tree-sitter.enable = true;
   util-linux.enable = true;
   vlc.enable = true;
   vscode.enable = true;
