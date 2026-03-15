@@ -70,6 +70,7 @@
             ./modules/fzf
             ./modules/gnu-sed
             ./modules/helium-browser
+            ./modules/karabiner-elements
             ./modules/leader-key
             ./modules/neovim
             ./modules/nix-tools
