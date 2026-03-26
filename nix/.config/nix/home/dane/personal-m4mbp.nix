@@ -49,6 +49,7 @@
         name = "Dane Harnett";
       };
     };
+    signing.format = "openpgp";
   };
   programs.oh-my-posh = {
     enable = true;
