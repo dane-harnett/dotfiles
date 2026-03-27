@@ -108,7 +108,7 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # e for equalize
-alt-cmd-ctrl-shift-e = 'balance-sizes'
+alt-cmd-ctrl-shift-equal = 'balance-sizes'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-cmd-ctrl-shift-1 = 'workspace 1'
@@ -124,6 +124,8 @@ alt-cmd-ctrl-shift-a = 'workspace A' # In your config, you can drop workspace bi
 alt-cmd-ctrl-shift-b = 'workspace B'
 alt-c = 'workspace C'
 alt-d = 'workspace D'
+alt-cmd-ctrl-shift-e = 'workspace E'
+alt-cmd-ctrl-shift-t = 'workspace T'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -139,6 +141,7 @@ alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
 alt-shift-d = 'move-node-to-workspace D'
+alt-shift-e = 'move-node-to-workspace E'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -186,6 +189,7 @@ esc = 'mode main'
 2 = ['move-node-to-workspace 10', 'workspace 10', 'mode main']
 a = ['move-node-to-workspace A', 'workspace A', 'mode main']
 b = ['move-node-to-workspace B', 'workspace B', 'mode main']
+e = ['move-node-to-workspace E', 'workspace E', 'mode main']
 enter = 'mode main'
 esc = 'mode main'
 
@@ -231,3 +235,23 @@ run = ['layout floating']
 if.app-id = 'us.zoom.xos'
 check-further-callbacks = true
 run = ['layout floating']
+
+# Put browser on workspace 1
+[[on-window-detected]]
+if.app-id = 'net.imput.helium'
+check-further-callbacks = true
+run = ['move-node-to-workspace 1']
+
+# Put browser email on workspace E
+[[on-window-detected]]
+if.app-id = 'net.imput.helium'
+if.window-title-regex-substring = 'Dane Harnett Mail'
+check-further-callbacks = true
+run = ['move-node-to-workspace E']
+
+# Put WezTerm on workspace T
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+check-further-callbacks = true
+run = ['move-node-to-workspace T']
+
