@@ -255,3 +255,9 @@ if.app-id = 'com.github.wez.wezterm'
 check-further-callbacks = true
 run = ['move-node-to-workspace T']
 
+# Put Bitwarden on workspace B
+[[on-window-detected]]
+if.app-id = 'com.bitwarden.desktop'
+check-further-callbacks = true
+run = ['move-node-to-workspace B']
+
