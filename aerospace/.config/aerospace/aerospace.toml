@@ -122,8 +122,8 @@ alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-cmd-ctrl-shift-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
 alt-cmd-ctrl-shift-b = 'workspace B'
-alt-c = 'workspace C'
-alt-d = 'workspace D'
+alt-cmd-ctrl-shift-c = 'workspace C'
+alt-cmd-ctrl-shift-d = 'workspace D'
 alt-cmd-ctrl-shift-e = 'workspace E'
 alt-cmd-ctrl-shift-t = 'workspace T'
 
@@ -260,4 +260,10 @@ run = ['move-node-to-workspace T']
 if.app-id = 'com.bitwarden.desktop'
 check-further-callbacks = true
 run = ['move-node-to-workspace B']
+
+# Put Discord on workspace D
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+check-further-callbacks = true
+run = ['move-node-to-workspace D']
 
