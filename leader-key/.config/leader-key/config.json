@@ -2,6 +2,42 @@
   "type": "group",
   "actions": [
     {
+      "key": "a",
+      "type": "group",
+      "actions": [
+        {
+          "key": "=",
+          "label": "Aerospace > Balance sizes",
+          "type": "command",
+          "value": "/opt/homebrew/bin/aerospace balance-sizes"
+        },
+        {
+          "key": "1",
+          "label": "Aerospance > Switch to workspace 1",
+          "type": "command",
+          "value": "/opt/homebrew/bin/aerospace workspace 1"
+        },
+        {
+          "key": "b",
+          "label": "Aerospance > Switch to workspace B",
+          "type": "command",
+          "value": "/opt/homebrew/bin/aerospace workspace B"
+        },
+        {
+          "key": "e",
+          "label": "Aerospance > Switch to workspace E",
+          "type": "command",
+          "value": "/opt/homebrew/bin/aerospace workspace E"
+        },
+        {
+          "key": "t",
+          "label": "Aerospance > Switch to workspace T",
+          "type": "command",
+          "value": "/opt/homebrew/bin/aerospace workspace T"
+        }
+      ]
+    },
+    {
       "key": "t",
       "type": "application",
       "value": "/Applications/WezTerm.app"
