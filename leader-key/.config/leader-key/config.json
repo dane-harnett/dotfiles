@@ -13,25 +13,31 @@
         },
         {
           "key": "1",
-          "label": "Aerospance > Switch to workspace 1",
+          "label": "Aerospace > Switch to workspace 1",
           "type": "command",
           "value": "/opt/homebrew/bin/aerospace workspace 1"
         },
         {
           "key": "b",
-          "label": "Aerospance > Switch to workspace B",
+          "label": "Aerospace > Switch to workspace B",
           "type": "command",
           "value": "/opt/homebrew/bin/aerospace workspace B"
         },
         {
+          "key": "d",
+          "label": "Aerospace > Switch to workspace D",
+          "type": "command",
+          "value": "/opt/homebrew/bin/aerospace workspace D"
+        },
+        {
           "key": "e",
-          "label": "Aerospance > Switch to workspace E",
+          "label": "Aerospace > Switch to workspace E",
           "type": "command",
           "value": "/opt/homebrew/bin/aerospace workspace E"
         },
         {
           "key": "t",
-          "label": "Aerospance > Switch to workspace T",
+          "label": "Aerospace > Switch to workspace T",
           "type": "command",
           "value": "/opt/homebrew/bin/aerospace workspace T"
         }
