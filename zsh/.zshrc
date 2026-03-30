@@ -44,17 +44,6 @@ fi
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# These additions to PATH cannot be in zshenv due to order of execution.
-# export PATH="$(brew --prefix)/opt/util-linux/sbin:$(brew --prefix)/opt/util-linux/bin:$PATH"
-export PATH="$HOME/.jenv/bin:$PATH"
-if [[ $(command -v "jenv") ]]; then
-  function jenv() {
-    unset -f jenv
-    eval "$(command jenv init -)"
-    jenv "$@"
-  }
-fi
-
 # Disable that annoying beep.
 unsetopt BEEP
 
