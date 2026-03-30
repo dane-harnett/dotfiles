@@ -1,6 +1,4 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/.composer/vendor/bin:$PATH
-export PATH=$HOME/.deno/bin:$PATH
 export XDG_CONFIG_HOME=$HOME/.config
 
 # Ensure terminal colors work inside tmux
@@ -8,14 +6,6 @@ if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
 
 # Make vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
-
-# Conditionally prepare environment variables for cargo/rust
-[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-
-# Conditionally add cabal and .ghcup to the path for haskell
-[[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env"
-
-# My custom configuration
 
 # Ctrl+space accepts the auto-suggestion
 bindkey '^ ' autosuggest-accept
