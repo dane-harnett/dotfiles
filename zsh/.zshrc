@@ -47,13 +47,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # Disable that annoying beep.
 unsetopt BEEP
 
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-if [[ $(command -v "pyenv") ]]; then
-  eval "$(pyenv init -)"
-fi
-
 if [[ $(command -v "carapace") ]]; then
   # export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
   zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
