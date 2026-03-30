@@ -30,9 +30,6 @@ fi
 
 # Initialize fast node manager (fnm)
 [[ $(command -v "fnm") ]] && eval "$(fnm env --use-on-cd --log-level=quiet)"
-# load my nvm to fnm shim
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Disable that annoying beep.
 unsetopt BEEP

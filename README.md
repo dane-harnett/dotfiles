@@ -48,7 +48,7 @@ Used for text replacement in nvim-spectre
 
 ## Node.js version management
 
-I use both Fast Node Manager (`fnm`) and Node Version Manager (`nvm`) (for reasons).
+I use Fast Node Manager (`fnm`)
 
 # Install
 
