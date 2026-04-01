@@ -59,6 +59,7 @@
   karabiner-elements.enable = true;
   leader-key.enable = true;
   neovim.enable = true;
+  neovim.packageSource = "brew";
   nix-tools.enable = true;
   obs.enable = true;
   oh-my-posh.enable = true;
