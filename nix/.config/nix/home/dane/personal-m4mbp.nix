@@ -43,6 +43,7 @@
         co = "checkout";
         st = "status";
       };
+      core.editor = "nvim";
       user = {
         email = "2585257+dane-harnett@users.noreply.github.com";
         name = "Dane Harnett";
