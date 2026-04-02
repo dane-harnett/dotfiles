@@ -77,77 +77,10 @@ require("daneharnett.spectre").init()
 require("daneharnett.better-ts-errors").init()
 require("daneharnett.telescope").init()
 
-local conform_group = vim.api.nvim_create_augroup("ConformLoader", { clear = true })
-vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
-    group = conform_group,
-    once = true,
-    callback = function()
-        require("daneharnett.formatting").init()
-    end,
-})
-local nvimlint_group = vim.api.nvim_create_augroup("NvimLintLoader", { clear = true })
-vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
-    group = nvimlint_group,
-    once = true,
-    callback = function()
-        require("daneharnett.linting").init()
-    end,
-})
+require("daneharnett.formatting").autocmd()
+require("daneharnett.linting").autocmd()
+require("daneharnett.lspsaga").autocmd()
+require("daneharnett.lazydev").autocmd()
 
-vim.api.nvim_create_autocmd("LspAttach", {
-    desc = "Load Lspsaga and dependencies when LSP attaches",
-    once = true,
-    callback = function()
-        require("daneharnett.lspsaga").init()
-    end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "lua",
-    once = true,
-    callback = function()
-        require("lazydev").setup({
-            library = {
-                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            },
-        })
-    end,
-})
-
--- TODO: put this in a fzf.init()
-require("fzf-lua").setup({})
-
-vim.keymap.set({ "n", "v", "i" }, "<C-x><C-f>", function()
-    require("fzf-lua").complete_path()
-end, { silent = true, desc = "Fuzzy complete path" })
-
-vim.keymap.set({ "n", "v", "i" }, "<C-x><C-x>", function()
-    require("fzf-lua").complete_path({
-        cmd = "fd --type=d --hidden --exclude=.git --exclude=node_modules",
-    })
-end, { silent = true, desc = "Fuzzy complete directory path" })
-
-
--- TODO: put this in a blink-cmp.init()
-require("luasnip.loaders.from_vscode").lazy_load()
-
-require("blink.cmp").setup({
-    keymap = {
-        preset = "default",
-    },
-    appearance = {
-        nerd_font_variant = "mono",
-    },
-    completion = {
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
-    },
-    sources = {
-        default = { "lsp", "path", "snippets", "lazydev" },
-        providers = {
-            lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
-        },
-    },
-    snippets = { preset = "luasnip" },
-    fuzzy = { implementation = "prefer_rust" },
-    signature = { enabled = true },
-})
+require("daneharnett.fzf").init()
+require("daneharnett.blink-cmp").init()

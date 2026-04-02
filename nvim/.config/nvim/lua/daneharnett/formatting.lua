@@ -59,4 +59,15 @@ function M.init()
     end, { desc = "Format file or range (in visual mode)" })
 end
 
+function M.autocmd()
+    local conform_group = vim.api.nvim_create_augroup("ConformLoader", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+        group = conform_group,
+        once = true,
+        callback = function()
+            M.init()
+        end,
+    })
+end
+
 return M

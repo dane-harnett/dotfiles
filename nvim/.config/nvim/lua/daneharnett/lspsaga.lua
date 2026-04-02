@@ -68,4 +68,14 @@ function M.attach_keymaps_to_buffer(bufnr)
     utils.buffer_keymap(bufnr, { "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 end
 
+function M.autocmd()
+    vim.api.nvim_create_autocmd("LspAttach", {
+        desc = "Load Lspsaga and dependencies when LSP attaches",
+        once = true,
+        callback = function()
+            M.init()
+        end,
+    })
+end
+
 return M

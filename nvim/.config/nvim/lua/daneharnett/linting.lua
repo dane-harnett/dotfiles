@@ -45,4 +45,15 @@ function M.init()
     end, { desc = "Trigger linting for current file" })
 end
 
+function M.autocmd()
+    local nvimlint_group = vim.api.nvim_create_augroup("NvimLintLoader", { clear = true })
+    vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+        group = nvimlint_group,
+        once = true,
+        callback = function()
+            M.init()
+        end,
+    })
+end
+
 return M
