@@ -31,7 +31,7 @@ vim.pack.add({
     "https://github.com/windwp/nvim-autopairs",
     "https://github.com/akinsho/toggleterm.nvim",
     "https://github.com/vim-test/vim-test",
-    "https://github.com/norcalli/nvim-colorizer.lua",
+    "https://github.com/brenoprata10/nvim-highlight-colors",
     "https://github.com/lewis6991/gitsigns.nvim",
     "https://github.com/tpope/vim-fugitive",
     "https://github.com/APZelos/blamer.nvim",
@@ -70,7 +70,7 @@ require("daneharnett.comment").init()
 require("daneharnett.autopairs").init()
 require("daneharnett.toggleterm").init()
 require("daneharnett.tests").init()
-require("daneharnett.colorizer").init()
+require("daneharnett.highlight-colors").init()
 require("daneharnett.gitsigns").init()
 require("daneharnett.blamer").init()
 require("daneharnett.spectre").init()
