@@ -8,7 +8,7 @@ function M.init()
 
     vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
     catppuccin.setup()
-    vim.cmd("colorscheme catppuccin")
+    vim.cmd.colorscheme("catppuccin")
 end
 
 return M
