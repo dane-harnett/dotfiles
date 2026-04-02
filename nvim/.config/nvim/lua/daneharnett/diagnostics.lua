@@ -1,11 +1,6 @@
 local M = {}
 
 function M.init()
-    -- Exclude this from vscode
-    if vim.g.vscode then
-        return
-    end
-
     -- configure diagnostics
     -- don't try to put this in the lsp on_attach because it causes both folds and
     -- blamer virtual text to break.

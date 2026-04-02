@@ -1,10 +1,7 @@
 -- these settings need to be set before the plugins are loaded
 require("daneharnett.pre-plugins").init()
 
--- Exclude these plugins from vscode
-if not vim.g.vscode then
-    require("daneharnett.plugins")
-end
+require("daneharnett.plugins")
 
 -- load these settings after the plugins
 require("daneharnett.options").init()
