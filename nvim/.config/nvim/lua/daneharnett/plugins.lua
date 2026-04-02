@@ -15,6 +15,11 @@ vim.pack.add({
         version = "legacy",
     },
     "https://github.com/b0o/schemastore.nvim",
+    "https://github.com/rafamadriz/friendly-snippets",
+    {
+        src = "https://github.com/L3MON4D3/LuaSnip",
+        version = "v2.4.1",
+    },
     {
         src = "https://github.com/saghen/blink.cmp",
         version = "v1.10.1",
@@ -48,15 +53,6 @@ vim.pack.add({
     "https://github.com/stevearc/conform.nvim",
     "https://github.com/mfussenegger/nvim-lint",
     "https://github.com/nvimdev/lspsaga.nvim",
-    "https://github.com/rafamadriz/friendly-snippets",
-    {
-        src = "https://github.com/L3MON4D3/LuaSnip",
-        version = "v2.4.1",
-    },
-    {
-        src = "https://github.com/saghen/blink.cmp",
-        version = "v1.10.1",
-    },
 })
 
 require("daneharnett.catppuccin").init()
