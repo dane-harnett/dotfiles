@@ -159,7 +159,7 @@ M.live_grep_with_globs = function()
                 table.insert(args, "--fixed-strings")
             end
 
-            local command = vim.tbl_flatten({
+            local command = vim.iter({
                 args,
                 {
                     "--color=never",
@@ -171,6 +171,8 @@ M.live_grep_with_globs = function()
                     "--hidden",
                 },
             })
+                :flatten()
+                :totable()
 
             if not is_regex_query then
                 table.insert(command, query)
@@ -221,7 +223,7 @@ M.custom_live_grep = function()
                 table.insert(args, "--fixed-strings")
             end
 
-            local command = vim.tbl_flatten({
+            local command = vim.iter({
                 args,
                 {
                     "--color=never",
@@ -233,6 +235,8 @@ M.custom_live_grep = function()
                     "--hidden",
                 },
             })
+                :flatten()
+                :totable()
 
             if not is_regex_query then
                 table.insert(command, query)
