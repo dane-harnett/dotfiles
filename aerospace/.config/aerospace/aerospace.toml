@@ -151,25 +151,23 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-cmd-ctrl-shift-f = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-alt-cmd-ctrl-shift-semicolon = 'mode service'
-
-alt-cmd-ctrl-shift-r = 'mode resize'
-alt-cmd-ctrl-shift-m = 'mode move'
-alt-cmd-ctrl-shift-j = 'mode appswitcher'
+alt-cmd-ctrl-shift-semicolon = ['mode service', 'exec-and-forget ~/.config/borders/altbordersrc']
+alt-cmd-ctrl-shift-r = ['mode resize', 'exec-and-forget ~/.config/borders/altbordersrc']
+alt-cmd-ctrl-shift-m = ['mode move', 'exec-and-forget ~/.config/borders/altbordersrc']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
+esc = ['reload-config', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+r = ['flatten-workspace-tree', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc'] # reset layout
 #s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+f = ['layout floating tiling', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc'] # Toggle between floating and tiling layout
+backspace = ['close-all-windows-but-current', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
 
-h = ['join-with left', 'mode main']
-j = ['join-with down', 'mode main']
-k = ['join-with up', 'mode main']
-l = ['join-with right', 'mode main']
+h = ['join-with left', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+j = ['join-with down', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+k = ['join-with up', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+l = ['join-with right', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -181,29 +179,17 @@ b = 'balance-sizes'
 minus = 'resize smart -50'
 equal = 'resize smart +50'
 
-enter = 'mode main'
-esc = 'mode main'
+enter = ['mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+esc = ['mode main', 'exec-and-forget ~/.config/borders/bordersrc']
 
 [mode.move.binding]
-1 = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
-2 = ['move-node-to-workspace 10', 'workspace 10', 'mode main']
-a = ['move-node-to-workspace A', 'workspace A', 'mode main']
-b = ['move-node-to-workspace B', 'workspace B', 'mode main']
-e = ['move-node-to-workspace E', 'workspace E', 'mode main']
-enter = 'mode main'
-esc = 'mode main'
-
-[mode.appswitcher.binding]
-b = [
-  'exec-and-forget ~/.config/aerospace/scripts/open-app-in-fullscreen.sh "Zen Browser"',
-  'mode main'
-]
-t = [
-  'exec-and-forget ~/.config/aerospace/scripts/open-app-in-fullscreen.sh "WezTerm"',
-  'mode main'
-]
-enter = 'mode main'
-esc = 'mode main'
+1 = ['move-node-to-workspace 1', 'workspace 1', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+2 = ['move-node-to-workspace 10', 'workspace 10', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+a = ['move-node-to-workspace A', 'workspace A', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+b = ['move-node-to-workspace B', 'workspace B', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+e = ['move-node-to-workspace E', 'workspace E', 'mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+enter = ['mode main', 'exec-and-forget ~/.config/borders/bordersrc']
+esc = ['mode main', 'exec-and-forget ~/.config/borders/bordersrc']
 
 # float finder
 [[on-window-detected]]

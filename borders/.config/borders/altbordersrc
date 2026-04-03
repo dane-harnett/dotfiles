@@ -1,0 +1,12 @@
+#!/bin/bash
+
+options=(
+	style=round
+	width=6.0
+	hidpi=on
+	active_color=0xffff0000
+	inactive_color=0xffff0000
+	blacklist="Loom,iPhone Mirroring,Kommodo Screen Recorder"
+)
+
+borders "${options[@]}"
