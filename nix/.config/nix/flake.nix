@@ -77,6 +77,7 @@
             ./modules/obs
             ./modules/oh-my-posh
             ./modules/opencode
+            ./modules/pi-coding-agent
             ./modules/raycast
             ./modules/ripgrep
             ./modules/sketchybar

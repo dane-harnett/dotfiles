@@ -64,6 +64,7 @@
   obs.enable = true;
   oh-my-posh.enable = true;
   opencode.enable = true;
+  pi-coding-agent.enable = true;
   raycast.enable = false;
   ripgrep.enable = true;
   slack.enable = true;
