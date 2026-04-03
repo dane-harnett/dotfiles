@@ -1,3 +1,5 @@
+require("daneharnett.treesitter").packchanged_autocmd()
+
 vim.pack.add({
     "https://github.com/catppuccin/nvim",
     "https://github.com/rcarriga/nvim-notify",
