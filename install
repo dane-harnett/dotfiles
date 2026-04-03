@@ -1,9 +1,0 @@
-#!/bin/bash
-
-stow --target=$HOME aerospace
-stow --target=$HOME borders
-stow --target=$HOME fzf
-stow --target=$HOME nvim
-stow --target=$HOME tmux
-stow --target=$HOME wezterm
-stow --target=$HOME zsh

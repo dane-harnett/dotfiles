@@ -2,61 +2,83 @@
 
 Welcome to my dotfiles repository. This is where I keep the configuration
 for my personal computer setup.
-I use or have used the following software:
 
-## Package management
+## How to setup computer to use nix+nix-darwin
 
-brew
+### Install nix
 
-## Configuration management
+```bash
+sh <(curl -L https://nixos.org/nix/install)
+```
 
-I use `stow` to install the configuration from this repository into my home directory.
+### Command to initialise a new flake
 
-## Terminal emulator
+```bash
+nix flake init -t nix-darwin --extra-experimental-features "nix-command flakes"
+```
+
+### Ensure nix symlink
+
+`~/.config/nix` should be symlinked to `nix/.config/nix` in this project
+
+### First time building flake
+
+```bash
+nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake "$(readlink -f ~/.config/nix)#personal-m4mbp"
+```
+
+### Updating flake
+
+This updates the inputs so the next time the flake is rebuilt it will install the most up to date packages.
+
+```bash
+cd nix/.config/nix
+nix flake update
+cd ../../..
+```
+
+### Rebuilding flake
+
+```bash
+sudo darwin-rebuild switch --flake "$(readlink -f ~/.config/nix)#personal-m4mbp"
+```
+
+## Applications that are configured in this repository
+
+### Terminal emulator
 
 I currently use wezterm but have used alacritty and iterm2 in the past.
 
-## Terminal multiplexer
+### Terminal multiplexer
 
 I use tmux. tmux is a terminal multiplexer: it enables a number of terminals to be created, accessed, and controlled from a single screen.
 
-## Shell environment
+### Shell environment
 
 zsh is my preferred shell environment. I use the antidote plugin manager for zsh.
 
-## Text editor
+### Text editor
 
 I use neovim.
 
-## Shell utilities
+### Shell utilities
 
-### eza
+#### eza
 
 A better `ls`
 
-### fzf
+#### fzf
 
 A fuzzy-finder.
 
-### zoxide
+#### zoxide
 
 A better `cd`
 
-### gnu-sed
+#### gnu-sed
 
 Used for text replacement in nvim-spectre
 
-## Node.js version management
+### Node.js version management
 
 I use Fast Node Manager (`fnm`)
-
-# Install
-
-Clone this repository somewhere on the machine you want to be configured.
-
-Run the `./setup-install` script to install all the required software.
-Run the `./install` script to apply the configuration.
-
-# Uninstall
-
-Run the `./uninstall` script to remove the configuration.
