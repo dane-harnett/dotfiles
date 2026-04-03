@@ -46,6 +46,8 @@
           madeConfig = {
             nixpkgs.hostPlatform = "${system}";
           };
+          moduleFiles = builtins.attrNames (builtins.readDir ./modules);
+          modules = map (name: ./modules + "/${name}") moduleFiles;
         in
         nix-darwin.lib.darwinSystem {
           modules = [
@@ -53,45 +55,6 @@
             configuration
 
             ./hosts/${host}.nix
-
-            ./modules/aerospace
-            ./modules/antidote
-            ./modules/bitwarden
-            ./modules/borders
-            ./modules/carapace
-            ./modules/cargo
-            ./modules/discord
-            ./modules/eza
-            ./modules/fd
-            ./modules/ffmpeg
-            ./modules/fnm
-            ./modules/font-jetbrains-mono-nerd-font
-            ./modules/fx-cast-bridge
-            ./modules/fzf
-            ./modules/gnu-sed
-            ./modules/helium-browser
-            ./modules/karabiner-elements
-            ./modules/leader-key
-            ./modules/neovim
-            ./modules/nix-tools
-            ./modules/obs
-            ./modules/oh-my-posh
-            ./modules/opencode
-            ./modules/pi-coding-agent
-            ./modules/raycast
-            ./modules/ripgrep
-            ./modules/sketchybar
-            ./modules/slack
-            ./modules/stow
-            ./modules/there
-            ./modules/tree-sitter-cli
-            ./modules/util-linux
-            ./modules/vlc
-            ./modules/vscode
-            ./modules/wezterm
-            ./modules/wget
-            ./modules/yt-dlp
-            ./modules/zoxide
 
             nix-homebrew.darwinModules.nix-homebrew
             {
@@ -107,7 +70,8 @@
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home/${username}/${host}.nix;
             }
-          ];
+          ]
+          ++ modules;
         };
     in
     {
