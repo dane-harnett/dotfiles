@@ -14,7 +14,7 @@ vim.pack.add({
     "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
     {
         src = "https://github.com/j-hui/fidget.nvim",
-        version = "legacy",
+        version = "v1.6.1",
     },
     "https://github.com/b0o/schemastore.nvim",
     "https://github.com/rafamadriz/friendly-snippets",
