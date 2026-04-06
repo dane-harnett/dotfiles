@@ -274,7 +274,8 @@ M.attach_keymaps_to_buffer = function(bufnr)
 
     if vim.lsp.inlay_hint then
         utils.buffer_keymap(bufnr, "n", "<leader>uh", function()
-            vim.lsp.inlay_hint(bufnr, nil)
+            local filter = { bufnr = bufnr }
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
         end)
     end
 end
