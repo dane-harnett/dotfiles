@@ -23,6 +23,8 @@
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/leader-key/.config/leader-key";
     ".config/nvim".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/nvim/.config/nvim";
+    ".tmux.conf".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/tmux/.tmux.conf";
     ".config/wezterm".source = ../../../../../wezterm/.config/wezterm;
   };
 
