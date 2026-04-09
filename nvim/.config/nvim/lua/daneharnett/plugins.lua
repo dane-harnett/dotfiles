@@ -55,6 +55,7 @@ vim.pack.add({
     "https://github.com/stevearc/conform.nvim",
     "https://github.com/mfussenegger/nvim-lint",
     "https://github.com/nvimdev/lspsaga.nvim",
+    "https://github.com/nvim-mini/mini.nvim",
 })
 
 require("daneharnett.catppuccin").init()
@@ -82,3 +83,4 @@ require("daneharnett.lazydev").autocmd()
 
 require("daneharnett.fzf").init()
 require("daneharnett.blink-cmp").init()
+require("daneharnett.mini").init()
