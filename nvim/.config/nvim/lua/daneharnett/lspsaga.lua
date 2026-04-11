@@ -13,7 +13,7 @@ function M.attach_keymaps_to_buffer(bufnr)
     local utils = require("daneharnett.utils")
 
     -- lsp provider to find the cursor word definition and reference
-    utils.buffer_keymap(bufnr, "n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+    utils.buffer_keymap(bufnr, "n", "gh", "<cmd>Lspsaga finder<CR>")
 
     -- code action
     utils.buffer_keymap(bufnr, { "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
@@ -24,15 +24,6 @@ function M.attach_keymaps_to_buffer(bufnr)
     -- Call hierarchy
     utils.buffer_keymap(bufnr, "n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
     utils.buffer_keymap(bufnr, "n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-
-    -- scroll down hover doc or scroll in definition preview
-    utils.buffer_keymap(bufnr, "n", "<C-f>", ':lua require"lspsaga.action".smart_scroll_with_saga(1)<CR>')
-
-    -- scroll up hover doc
-    utils.buffer_keymap(bufnr, "n", "<C-b>", ':lua require"lspsaga.action".smart_scroll_with_saga(-1)<CR>')
-
-    -- show signature help
-    -- utils.("n", "gs", ':lua require"lspsaga.signaturehelp".signature_help()<CR>')
 
     -- rename
     utils.buffer_keymap(bufnr, "n", "gr", function()
@@ -88,9 +79,6 @@ function M.attach_keymaps_to_buffer(bufnr)
             on_jump = on_jump_open_float,
         })
     end)
-
-    -- floating terminal
-    utils.buffer_keymap(bufnr, { "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
 end
 
 function M.autocmd()
