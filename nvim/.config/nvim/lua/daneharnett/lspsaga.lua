@@ -35,13 +35,17 @@ function M.attach_keymaps_to_buffer(bufnr)
     -- utils.("n", "gs", ':lua require"lspsaga.signaturehelp".signature_help()<CR>')
 
     -- rename
-    utils.buffer_keymap(bufnr, "n", "gr", "<cmd>Lspsaga rename<CR>")
+    utils.buffer_keymap(bufnr, "n", "gr", function()
+        vim.lsp.buf.rename()
+    end)
 
     -- peek definition
     utils.buffer_keymap(bufnr, "n", "gp", "<cmd>Lspsaga peek_definition<CR>")
 
     -- go to definition
-    utils.buffer_keymap(bufnr, "n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+    utils.buffer_keymap(bufnr, "n", "gd", function()
+        vim.lsp.buf.definition()
+    end)
 
     -- show line diagnostics
     utils.buffer_keymap(bufnr, "n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
@@ -52,16 +56,37 @@ function M.attach_keymaps_to_buffer(bufnr)
     -- Show buffer diagnostics
     utils.buffer_keymap(bufnr, "n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
 
-    -- jump to diagnostic
-    utils.buffer_keymap(bufnr, "n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-    utils.buffer_keymap(bufnr, "n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+    local on_jump_open_float = function()
+        vim.diagnostic.open_float()
+    end
 
+    -- jump to diagnostic
+    utils.buffer_keymap(bufnr, "n", "[e", function()
+        vim.diagnostic.jump({
+            count = -1,
+            on_jump = on_jump_open_float,
+        })
+    end)
+    utils.buffer_keymap(bufnr, "n", "]e", function()
+        vim.diagnostic.jump({
+            count = 1,
+            on_jump = on_jump_open_float,
+        })
+    end)
     -- Diagnostic jump with filter like Only jump to error
     utils.buffer_keymap(bufnr, "n", "[E", function()
-        require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+        vim.diagnostic.jump({
+            count = -1,
+            severity = vim.diagnostic.severity.ERROR,
+            on_jump = on_jump_open_float,
+        })
     end)
     utils.buffer_keymap(bufnr, "n", "]E", function()
-        require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+        vim.diagnostic.jump({
+            count = 1,
+            severity = vim.diagnostic.severity.ERROR,
+            on_jump = on_jump_open_float,
+        })
     end)
 
     -- floating terminal
