@@ -2,12 +2,19 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.wezterm;
-in {
+in
+{
   options = {
     wezterm = {
       enable = lib.mkEnableOption "Enable wezterm";
+      nightly = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Use nightly build of wezterm";
+      };
     };
   };
 
@@ -15,7 +22,7 @@ in {
     homebrew = {
       enable = true;
       casks = [
-        "wez/wezterm/wezterm"
+        (if cfg.nightly then "wez/wezterm/wezterm@nightly" else "wez/wezterm/wezterm")
       ];
       taps = [
         "wez/wezterm"

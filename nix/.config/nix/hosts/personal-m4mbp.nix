@@ -76,6 +76,7 @@
   vlc.enable = true;
   # vscode.enable = true;
   wezterm.enable = true;
+  wezterm.nightly = true;
   wget.enable = true;
   yt-dlp.enable = true;
   zoxide.enable = true;
