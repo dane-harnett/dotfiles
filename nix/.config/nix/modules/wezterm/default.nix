@@ -22,7 +22,7 @@ in
     homebrew = {
       enable = true;
       casks = [
-        (if cfg.nightly then "wez/wezterm/wezterm@nightly" else "wez/wezterm/wezterm")
+        (if cfg.nightly then "wez/wezterm/wezterm-nightly" else "wez/wezterm/wezterm")
       ];
       taps = [
         "wez/wezterm"
