@@ -74,7 +74,7 @@
   tree-sitter-cli.enable = true;
   util-linux.enable = true;
   vlc.enable = true;
-  # vscode.enable = true;
+  vscode.enable = true;
   wezterm.enable = true;
   wezterm.nightly = true;
   wget.enable = true;
