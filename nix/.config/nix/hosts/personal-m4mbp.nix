@@ -78,6 +78,7 @@
   wezterm.enable = true;
   wezterm.nightly = true;
   wget.enable = true;
+  yazi.enable = true;
   yt-dlp.enable = true;
   zoxide.enable = true;
 }
