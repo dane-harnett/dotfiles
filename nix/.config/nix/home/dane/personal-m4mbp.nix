@@ -74,9 +74,6 @@
     };
     autosuggestion.enable = true;
     defaultKeymap = "viins";
-    historySubstringSearch = {
-      enable = true;
-    };
     shellAliases = {
       ll = "ls -lah";
       ls = "eza";
