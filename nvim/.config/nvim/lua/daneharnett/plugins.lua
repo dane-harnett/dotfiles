@@ -1,4 +1,5 @@
 require("daneharnett.treesitter").packchanged_autocmd()
+require("daneharnett.fff").packchanged_autocmd()
 
 vim.pack.add({
     "https://github.com/catppuccin/nvim",
@@ -56,6 +57,7 @@ vim.pack.add({
     "https://github.com/mfussenegger/nvim-lint",
     "https://github.com/nvimdev/lspsaga.nvim",
     "https://github.com/nvim-mini/mini.nvim",
+    "https://github.com/dmtrKovalenko/fff.nvim",
 })
 
 require("daneharnett.catppuccin").init()
@@ -75,6 +77,7 @@ require("daneharnett.blamer").init()
 require("daneharnett.spectre").init()
 require("daneharnett.better-ts-errors").init()
 require("daneharnett.telescope").init()
+require("daneharnett.fff").init()
 
 require("daneharnett.formatting").autocmd()
 require("daneharnett.linting").autocmd()

@@ -38,6 +38,10 @@
       "rev": "c0227885a06b155d5aa5465e08b9800e8c939f70",
       "src": "https://github.com/editorconfig/editorconfig-vim"
     },
+    "fff.nvim": {
+      "rev": "6645a68ebc1f1a0dc98c1669a7e3f6d91625f79f",
+      "src": "https://github.com/dmtrKovalenko/fff.nvim"
+    },
     "fidget.nvim": {
       "rev": "b61e8af9b8b68ee0ec7da5fb7a8c203aae854f2e",
       "src": "https://github.com/j-hui/fidget.nvim",
