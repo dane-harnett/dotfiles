@@ -9,7 +9,7 @@ let
 in
 {
   options = {
-    antidote = {
+    atuin = {
       enable = lib.mkEnableOption "Enable atuin";
     };
   };
