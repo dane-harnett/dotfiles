@@ -42,6 +42,7 @@
   # home.homeDirectory = "/Users/${userSettings.userName}";
   aerospace.enable = true;
   antidote.enable = true;
+  atuin.enable = true;
   bitwarden.enable = true;
   borders.enable = true;
   carapace.enable = true;
