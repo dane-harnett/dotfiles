@@ -68,7 +68,7 @@
     antidote = {
       enable = true;
       plugins = [
-        "jimhester/per-directory-history"
+        "atuinsh/atuin"
         "zdharma-continuum/fast-syntax-highlighting kind:defer"
       ];
     };
