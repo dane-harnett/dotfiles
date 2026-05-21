@@ -15,6 +15,7 @@ function M.packchanged_autocmd()
 end
 
 function M.init()
+    local utils = require("daneharnett.utils")
     local status_ok, fff = pcall(require, "fff")
     if not status_ok then
         return
@@ -25,21 +26,25 @@ function M.init()
         debug = { enabled = true, show_scores = true },
     }
 
-    vim.keymap.set("n", "ff", function()
+    utils.keymap("n", "<C-p>", function()
         fff.find_files()
-    end, { desc = "FFFind files" })
+    end, "FFF find files")
 
-    vim.keymap.set("n", "fg", function()
+    utils.keymap("n", "<leader>ff", function()
+        fff.find_files()
+    end, "[F]FF find [f]iles")
+
+    utils.keymap("n", "<leader>fg", function()
         fff.live_grep()
-    end, { desc = "LiFFFe grep" })
+    end, "[F]FF live [g]rep")
 
-    vim.keymap.set("n", "fz", function()
+    utils.keymap("n", "<leader>fz", function()
         fff.live_grep({ grep = { modes = { "fuzzy", "plain" } } })
-    end, { desc = "Live FFFuzzy grep" })
+    end, "[F]FF live fu[z]zy grep")
 
-    vim.keymap.set("n", "fc", function()
+    utils.keymap("n", "<leader>fc", function()
         fff.live_grep({ query = vim.fn.expand("<cword>") })
-    end, { desc = "FFFind current word" })
+    end, "[F]FF find [c]urrent word")
 end
 
 return M
