@@ -62,4 +62,18 @@ M.is_git_repo = function(fname)
     return false
 end
 
+M.command_exists = function(cmd)
+    local check_cmd = "command -v " .. cmd
+    local null_device = "/dev/null"
+
+    local result = os.execute(check_cmd .. " > " .. null_device .. " 2>&1")
+
+    -- Handle Lua version differences for os.execute's return value
+    if type(result) == "boolean" then
+        return result -- Lua 5.2+ returns true on success
+    else
+        return result == 0 -- Lua 5.1 returns a status code (0 = success)
+    end
+end
+
 return M

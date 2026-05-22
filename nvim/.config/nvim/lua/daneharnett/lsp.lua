@@ -73,10 +73,16 @@ local server_configs = {
         }
     end,
     rust_analyzer = function()
-        return {}
+        local utils = require("daneharnett.utils")
+        if utils.command_exists("cargo") then
+            return {}
+        end
     end,
     nil_ls = function()
-        return {}
+        local utils = require("daneharnett.utils")
+        if utils.command_exists("nix") then
+            return {}
+        end
     end,
     ts_ls = function()
         local utils = require("daneharnett.utils")
