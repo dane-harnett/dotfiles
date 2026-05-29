@@ -55,6 +55,7 @@
   font-jetbrains-mono-nerd-font.enable = true;
   fx-cast-bridge.enable = true;
   fzf.enable = true;
+  ghostty.enable = true;
   gnu-sed.enable = true;
   helium-browser.enable = true;
   karabiner-elements.enable = true;
