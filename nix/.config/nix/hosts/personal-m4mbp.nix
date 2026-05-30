@@ -47,6 +47,7 @@
   borders.enable = true;
   carapace.enable = true;
   cargo.enable = true;
+  cmux.enable = true;
   discord.enable = true;
   eza.enable = true;
   fd.enable = true;
