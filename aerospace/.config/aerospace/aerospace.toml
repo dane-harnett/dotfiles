@@ -247,6 +247,12 @@ if.app-id = 'com.mitchellh.ghostty'
 check-further-callbacks = true
 run = ['move-node-to-workspace T']
 
+# Put cmux on workspace T
+[[on-window-detected]]
+if.app-id = 'com.cmuxterm.app'
+check-further-callbacks = true
+run = ['move-node-to-workspace T']
+
 # Put Bitwarden on workspace B
 [[on-window-detected]]
 if.app-id = 'com.bitwarden.desktop'
