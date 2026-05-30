@@ -19,6 +19,10 @@
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/aerospace/.config/aerospace";
     ".config/borders".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/borders/.config/borders";
+    ".config/cmux".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/cmux/.config/cmux";
+    ".config/ghostty".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/ghostty/.config/ghostty";
     ".config/leader-key".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/leader-key/.config/leader-key";
     ".config/nvim".source =
