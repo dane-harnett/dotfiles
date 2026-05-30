@@ -8,36 +8,36 @@
   // cmux creates this template on launch when ~/.config/cmux/cmux.json is missing.
   // Legacy settings.json files are read only as fallback for keys not present here.
 
-  //   "app" : {
-  //     "reorderOnNotification" : true,
-  //     "workspaceInheritWorkingDirectory" : true,
-  //     "openMarkdownInCmuxViewer" : false,
-  //     "sendAnonymousTelemetry" : true,
-  //     "language" : "system",
-  //     "appIcon" : "automatic",
-  //     "newWorkspacePlacement" : "afterCurrent",
-  //     "menuBarOnly" : false,
-  //     "minimalMode" : false,
-  //     "focusPaneOnFirstClick" : false,
-  //     "warnBeforeClosingTab" : true,
-  //     "keepWorkspaceOpenWhenClosingLastSurface" : false,
-  //     "iMessageMode" : false,
-  //     "openSupportedFilesInCmux" : true,
-  //     "confirmQuit" : "always",
-  //     "warnBeforeClosingTabXButton" : false,
-  //     "preferredEditor" : "",
-  //     "hideTabCloseButton" : false,
-  //     "renameSelectsExistingName" : true,
-  //     "appearance" : "system",
-  //     "commandPaletteSearchesAllSurfaces" : false
-  //   },
+  "app": {
+    //     "reorderOnNotification" : true,
+    //     "workspaceInheritWorkingDirectory" : true,
+    //     "openMarkdownInCmuxViewer" : false,
+    //     "sendAnonymousTelemetry" : true,
+    //     "language" : "system",
+    //     "appIcon" : "automatic",
+    //     "newWorkspacePlacement" : "afterCurrent",
+    //     "menuBarOnly" : false,
+    "minimalMode": true
+    //     "focusPaneOnFirstClick" : false,
+    //     "warnBeforeClosingTab" : true,
+    //     "keepWorkspaceOpenWhenClosingLastSurface" : false,
+    //     "iMessageMode" : false,
+    //     "openSupportedFilesInCmux" : true,
+    //     "confirmQuit" : "always",
+    //     "warnBeforeClosingTabXButton" : false,
+    //     "preferredEditor" : "",
+    //     "hideTabCloseButton" : false,
+    //     "renameSelectsExistingName" : true,
+    //     "appearance" : "system",
+    //     "commandPaletteSearchesAllSurfaces" : false
+  }
 
   //   "terminal" : {
   //     "autoResumeAgentSessions" : true,
   //     "textBoxMaxLines" : 10,
   //     "copyOnSelect" : false,
   //     "resumeCommands" : [
-  // 
+  //
   //     ],
   //     "showScrollBar" : true
   //   },
@@ -48,7 +48,7 @@
   //     "paneFlash" : true,
   //     "command" : "",
   //     "hooks" : [
-  // 
+  //
   //     ],
   //     "dockBadge" : true,
   //     "customSoundFilePath" : "",
@@ -122,12 +122,12 @@
   //   "browser" : {
   //     "openTerminalLinksInCmuxBrowser" : true,
   //     "hostsToOpenInEmbeddedBrowser" : [
-  // 
+  //
   //     ],
   //     "theme" : "system",
   //     "discardHiddenWebViews" : true,
   //     "urlsToAlwaysOpenExternally" : [
-  // 
+  //
   //     ],
   //     "insecureHttpHostsAllowedInEmbeddedBrowser" : [
   //       "localhost",
