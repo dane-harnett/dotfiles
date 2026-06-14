@@ -32,6 +32,9 @@
     onActivation = {
       autoUpdate = true;
       cleanup = "uninstall";
+      extraEnv = {
+        HOMEBREW_NO_REQUIRE_TAP_TRUST = "1";
+      };
       upgrade = true;
     };
   };
