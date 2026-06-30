@@ -47,7 +47,7 @@
   antidote.enable = true;
   atuin.enable = true;
   bitwarden.enable = true;
-  borders.enable = true;
+  # borders.enable = true;
   carapace.enable = true;
   cargo.enable = true;
   cmux.enable = true;
