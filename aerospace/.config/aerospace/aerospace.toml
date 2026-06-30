@@ -226,14 +226,14 @@ run = ['layout floating']
 [[on-window-detected]]
 if.app-id = 'net.imput.helium'
 check-further-callbacks = true
-run = ['move-node-to-workspace 1']
+run = ['move-node-to-workspace 1', 'layout tiling']
 
 # Put browser email on workspace E
 [[on-window-detected]]
 if.app-id = 'net.imput.helium'
 if.window-title-regex-substring = 'Dane Harnett Mail'
 check-further-callbacks = true
-run = ['move-node-to-workspace E']
+run = ['move-node-to-workspace E', 'layout tiling']
 
 # Put WezTerm on workspace T
 [[on-window-detected]]
