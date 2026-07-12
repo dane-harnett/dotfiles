@@ -28,8 +28,8 @@ if [ -f "$HOME/.ssh/github" ]; then
   ssh-add -q --apple-use-keychain ~/.ssh/github
 fi
 
-# Initialize fast node manager (fnm)
-[[ $(command -v "fnm") ]] && eval "$(fnm env --use-on-cd --log-level=quiet)"
+# Initialize fast node manager (fnm) interactive hooks.
+[[ $(command -v "fnm") ]] && eval "$(fnm env --shell zsh --use-on-cd --log-level=quiet)"
 
 # Disable that annoying beep.
 unsetopt BEEP
@@ -39,4 +39,3 @@ if [[ $(command -v "carapace") ]]; then
   zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
   source <(carapace _carapace)
 fi
-

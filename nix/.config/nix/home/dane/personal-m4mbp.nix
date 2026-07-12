@@ -69,6 +69,10 @@
   };
   programs.zsh = {
     enable = true;
+    envExtra = ''
+      # Make node and npm available in non-interactive zsh shells.
+      [[ $(command -v "fnm") ]] && eval "$(fnm env --shell zsh --log-level=quiet)"
+    '';
     initContent = builtins.readFile ../../../../../zsh/.zshrc;
     antidote = {
       enable = true;
