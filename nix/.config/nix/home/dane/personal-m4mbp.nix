@@ -43,6 +43,7 @@
   programs.home-manager.enable = true;
   programs.atuin.enable = true;
   programs.fzf.enable = true;
+  programs.fzf.historyWidget.command = "";
   programs.git = {
     enable = true;
     lfs.enable = true;
