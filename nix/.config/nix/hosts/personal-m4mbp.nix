@@ -56,6 +56,7 @@
   eza.enable = true;
   fd.enable = true;
   ffmpeg.enable = true;
+  fluidvoice.enable = true;
   fnm.enable = true;
   font-jetbrains-mono-nerd-font.enable = true;
   fx-cast-bridge.enable = true;
