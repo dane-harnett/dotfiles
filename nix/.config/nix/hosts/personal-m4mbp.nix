@@ -63,6 +63,7 @@
   fzf.enable = true;
   ghostty.enable = true;
   gnu-sed.enable = true;
+  harper.enable = true;
   helium-browser.enable = true;
   karabiner-elements.enable = true;
   leader-key.enable = true;
