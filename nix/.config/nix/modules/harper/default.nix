@@ -16,8 +16,8 @@ in
   config = lib.mkIf cfg.enable {
     homebrew = {
       enable = true;
-      brews = [
-        "harper"
+      casks = [
+        "harper-desktop"
       ];
     };
   };
