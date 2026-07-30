@@ -63,6 +63,7 @@
   fzf.enable = true;
   ghostty.enable = true;
   gnu-sed.enable = true;
+  godot.enable = true;
   harper.enable = true;
   helium-browser.enable = true;
   karabiner-elements.enable = true;
