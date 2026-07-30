@@ -7,7 +7,15 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    brew-src = {
+      url = "github:Homebrew/brew/2eaef66d2d3d45b15c0d1fd703134f9dadb5c54e";
+      flake = false;
+    };
+
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+      inputs.brew-src.follows = "brew-src";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -18,6 +26,7 @@
   outputs =
     inputs@{
       self,
+      brew-src,
       nix-darwin,
       nixpkgs,
       nix-homebrew,
