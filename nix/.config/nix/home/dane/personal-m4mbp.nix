@@ -15,6 +15,15 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    ".codex/AGENTS.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/agent-instructions/global-agent-instructions.md";
+    ".codex/AGENTS.md".force = true;
+    ".claude/CLAUDE.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/agent-instructions/claude.md";
+    ".claude/CLAUDE.md".force = true;
+    ".gemini/GEMINI.md".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/agent-instructions/gemini.md";
+    ".gemini/GEMINI.md".force = true;
     ".config/aerospace".source =
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/projects/personal/dotfiles/aerospace/.config/aerospace";
     ".config/borders".source =

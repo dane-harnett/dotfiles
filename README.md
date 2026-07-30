@@ -61,6 +61,13 @@ zsh is my preferred shell environment. I use the antidote plugin manager for zsh
 
 I use neovim.
 
+### Agent harnesses
+
+`agent-instructions/global-agent-instructions.md` is the canonical composition
+root for general personal agent instructions and enabled integrations. Home
+Manager links Codex directly to it and links the Claude Code and Gemini CLI
+user-global files to their tracked adapter files in the same directory.
+
 ### Shell utilities
 
 #### eza
