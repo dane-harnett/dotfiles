@@ -5,7 +5,7 @@ projects and agent harnesses.
 
 ## General instructions
 
-No additional general instructions are currently configured.
+Only report to me in ASD-STE100 Simplified Technical English.
 
 ## Enabled integrations
 
