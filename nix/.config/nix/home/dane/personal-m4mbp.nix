@@ -111,6 +111,10 @@
       cd = "z";
       zz = "z -";
     };
+    completionInit = ''
+      autoload -Uz compinit
+      compinit -C
+    '';
   };
 
   programs.zoxide = {
