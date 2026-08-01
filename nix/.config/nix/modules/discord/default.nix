@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.discord;
-in {
+in
+{
   options = {
     discord = {
       enable = lib.mkEnableOption "Enable discord";

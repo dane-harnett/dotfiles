@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.vlc;
-in {
+in
+{
   options = {
     vlc = {
       enable = lib.mkEnableOption "Enable vlc";

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.bitwarden;
-in {
+in
+{
   options = {
     bitwarden = {
       enable = lib.mkEnableOption "Enable bitwarden";

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.fd;
-in {
+in
+{
   options = {
     fd = {
       enable = lib.mkEnableOption "Enable fd";

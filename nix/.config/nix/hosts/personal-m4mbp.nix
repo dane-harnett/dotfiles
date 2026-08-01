@@ -1,11 +1,27 @@
-{
-  pkgs,
-  inputs,
-  self,
-  ...
-}:
-{
-  system.primaryUser = "dane";
+_: {
+  system = {
+    primaryUser = "dane";
+
+    defaults = {
+      NSGlobalDomain.AppleInterfaceStyle = "Dark";
+      NSGlobalDomain._HIHideMenuBar = false;
+
+      dock.autohide = true;
+
+      finder = {
+        AppleShowAllExtensions = true;
+        AppleShowAllFiles = true;
+        FXPreferredViewStyle = "clmv";
+      };
+
+      spaces.spans-displays = true;
+    };
+
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    };
+  };
 
   programs.zsh = {
     enable = true;
@@ -14,23 +30,6 @@
     enableBashCompletion = false;
     promptInit = "";
   };
-
-  system.defaults = {
-    NSGlobalDomain.AppleInterfaceStyle = "Dark";
-    NSGlobalDomain._HIHideMenuBar = false;
-
-    dock.autohide = true;
-
-    finder.AppleShowAllExtensions = true;
-    finder.AppleShowAllFiles = true;
-    finder.FXPreferredViewStyle = "clmv";
-
-    spaces.spans-displays = true;
-  };
-
-  system.keyboard.enableKeyMapping = true;
-
-  system.keyboard.remapCapsLockToEscape = true;
 
   security.pam.services.sudo_local = {
     touchIdAuth = true;

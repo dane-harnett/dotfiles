@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.eza;
-in {
+in
+{
   options = {
     eza = {
       enable = lib.mkEnableOption "Enable eza";

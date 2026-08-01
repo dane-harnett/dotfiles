@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.fnm;
-in {
+in
+{
   options = {
     fnm = {
       enable = lib.mkEnableOption "Enable fnm";

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.nix-tools;
-in {
+in
+{
   options = {
     nix-tools = {
       enable = lib.mkEnableOption "Enable nix-tools";

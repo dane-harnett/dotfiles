@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.yt-dlp;
-in {
+in
+{
   options = {
     yt-dlp = {
       enable = lib.mkEnableOption "Enable yt-dlp";

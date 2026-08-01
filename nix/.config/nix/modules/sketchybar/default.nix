@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.sketchybar;
-in {
+in
+{
   options = {
     sketchybar = {
       enable = lib.mkEnableOption "Enable sketchybar";

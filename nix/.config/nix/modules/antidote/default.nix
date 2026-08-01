@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.antidote;
-in {
+in
+{
   options = {
     antidote = {
       enable = lib.mkEnableOption "Enable antidote";

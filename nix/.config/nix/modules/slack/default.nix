@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.slack;
-in {
+in
+{
   options = {
     slack = {
       enable = lib.mkEnableOption "Enable slack";

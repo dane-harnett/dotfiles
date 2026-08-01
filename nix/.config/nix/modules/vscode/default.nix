@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.vscode;
-in {
+in
+{
   options = {
     vscode = {
       enable = lib.mkEnableOption "Enable vscode";

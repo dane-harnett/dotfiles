@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.stow;
-in {
+in
+{
   options = {
     stow = {
       enable = lib.mkEnableOption "Enable stow";

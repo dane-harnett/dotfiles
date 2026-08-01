@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.gnu-sed;
-in {
+in
+{
   options = {
     gnu-sed = {
       enable = lib.mkEnableOption "Enable gnu-sed";

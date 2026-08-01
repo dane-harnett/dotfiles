@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.raycast;
-in {
+in
+{
   options = {
     raycast = {
       enable = lib.mkEnableOption "Enable raycast";

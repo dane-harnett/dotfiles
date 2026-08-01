@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.font-jetbrains-mono-nerd-font;
-in {
+in
+{
   options = {
     font-jetbrains-mono-nerd-font = {
       enable = lib.mkEnableOption "Enable font-jetbrains-mono-nerd-font";

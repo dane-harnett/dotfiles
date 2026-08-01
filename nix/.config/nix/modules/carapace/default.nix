@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.carapace;
-in {
+in
+{
   options = {
     carapace = {
       enable = lib.mkEnableOption "Enable carapace";

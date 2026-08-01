@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.oh-my-posh;
-in {
+in
+{
   options = {
     oh-my-posh = {
       enable = lib.mkEnableOption "Enable oh-my-posh";

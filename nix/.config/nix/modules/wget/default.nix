@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.wget;
-in {
+in
+{
   options = {
     wget = {
       enable = lib.mkEnableOption "Enable wget";

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.fx-cast-bridge;
-in {
+in
+{
   options = {
     fx-cast-bridge = {
       enable = lib.mkEnableOption "Enable fx-cast-bridge";

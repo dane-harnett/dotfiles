@@ -24,40 +24,58 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
-      brew-src,
       nix-darwin,
       nixpkgs,
       nix-homebrew,
       home-manager,
+      ...
     }:
     let
-      configuration =
-        { pkgs, ... }:
+      darwinSystem = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${darwinSystem};
+      mkSourceCheck =
         {
-          # Set Git commit hash for darwin-version.
-          system.configurationRevision = self.rev or self.dirtyRev or null;
+          name,
+          nativeBuildInputs,
+          command,
+        }:
+        pkgs.runCommand name
+          {
+            inherit nativeBuildInputs;
+            src = ./.;
+          }
+          ''
+            cp -r "$src" source
+            chmod -R u+w source
+            cd source
+            ${command}
+            touch "$out"
+          '';
 
-          # nix.package = pkgs.nix;
+      configuration = _: {
+        # Set Git commit hash for darwin-version.
+        system.configurationRevision = self.rev or self.dirtyRev or null;
 
+        nix = {
           # Necessary for using flakes on this system.
-          nix.settings.experimental-features = "nix-command flakes";
+          settings.experimental-features = "nix-command flakes";
 
-          nix.gc = {
+          gc = {
             automatic = true;
             options = "--delete-older-than 30d";
           };
-          nix.optimise.automatic = true;
-
-          nixpkgs.config.allowUnfree = true;
-
-          system.stateVersion = 5;
+          optimise.automatic = true;
         };
+
+        nixpkgs.config.allowUnfree = true;
+
+        system.stateVersion = 5;
+      };
       mkDarwinConfig =
         host: system: username:
         let
-          pkgs = import inputs.nixpkgs { inherit system; };
           madeConfig = {
             nixpkgs.hostPlatform = "${system}";
           };
@@ -81,9 +99,11 @@
 
             home-manager.darwinModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home/${username}/${host}.nix;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${username} = import ./home/${username}/${host}.nix;
+              };
             }
           ]
           ++ modules;
@@ -91,7 +111,31 @@
     in
     {
       darwinConfigurations = {
-        "personal-m4mbp" = mkDarwinConfig "personal-m4mbp" "aarch64-darwin" "dane";
+        "personal-m4mbp" = mkDarwinConfig "personal-m4mbp" darwinSystem "dane";
+      };
+
+      formatter.${darwinSystem} = pkgs.nixfmt-tree;
+
+      checks.${darwinSystem} = {
+        system = self.darwinConfigurations.personal-m4mbp.system;
+
+        formatting = mkSourceCheck {
+          name = "check-nix-formatting";
+          nativeBuildInputs = [ pkgs.nixfmt-tree ];
+          command = "treefmt --ci --tree-root . --walk filesystem";
+        };
+
+        statix = mkSourceCheck {
+          name = "check-statix";
+          nativeBuildInputs = [ pkgs.statix ];
+          command = "statix check .";
+        };
+
+        deadnix = mkSourceCheck {
+          name = "check-deadnix";
+          nativeBuildInputs = [ pkgs.deadnix ];
+          command = "deadnix --fail .";
+        };
       };
     };
 }

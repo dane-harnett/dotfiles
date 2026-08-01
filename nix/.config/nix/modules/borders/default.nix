@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.borders;
-in {
+in
+{
   options = {
     borders = {
       enable = lib.mkEnableOption "Enable borders";

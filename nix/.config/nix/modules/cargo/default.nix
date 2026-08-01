@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.cargo;
-in {
+in
+{
   options = {
     cargo = {
       enable = lib.mkEnableOption "Enable cargo";

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.zoxide;
-in {
+in
+{
   options = {
     zoxide = {
       enable = lib.mkEnableOption "Enable zoxide";

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.aerospace;
-in {
+in
+{
   options = {
     aerospace = {
       enable = lib.mkEnableOption "Enable aerospace";

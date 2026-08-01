@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.fzf;
-in {
+in
+{
   options = {
     fzf = {
       enable = lib.mkEnableOption "Enable fzf";

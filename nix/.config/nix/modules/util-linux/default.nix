@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.util-linux;
-in {
+in
+{
   options = {
     util-linux = {
       enable = lib.mkEnableOption "Enable util-linux";
