@@ -87,7 +87,6 @@
     antidote = {
       enable = true;
       plugins = [
-        "atuinsh/atuin"
         "zdharma-continuum/fast-syntax-highlighting kind:defer"
       ];
     };
