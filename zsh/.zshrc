@@ -22,12 +22,6 @@ copy-prompt-to-clipboard() {
 zle -N copy-prompt-to-clipboard
 bindkey -M viins '^]' copy-prompt-to-clipboard
 
-# If my personal github ssh key exists then configure ssh-agent to use it
-if [ -f "$HOME/.ssh/github" ]; then
-  ssh-agent | source /dev/stdin > /dev/null
-  ssh-add -q --apple-use-keychain ~/.ssh/github
-fi
-
 # Disable that annoying beep.
 unsetopt BEEP
 

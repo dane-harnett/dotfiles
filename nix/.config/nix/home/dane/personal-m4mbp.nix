@@ -69,6 +69,17 @@
     };
     signing.format = "openpgp";
   };
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    settings."github.com" = {
+      User = "git";
+      IdentityFile = "~/.ssh/github";
+      IdentitiesOnly = true;
+      UseKeychain = true;
+      AddKeysToAgent = "yes";
+    };
+  };
   programs.oh-my-posh = {
     enable = true;
     settings = builtins.fromTOML (
