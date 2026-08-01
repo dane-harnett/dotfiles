@@ -7,8 +7,12 @@
 {
   system.primaryUser = "dane";
 
-  programs.zsh.enable = true;
-  programs.zsh.enableCompletion = true;
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableGlobalCompInit = false;
+    enableBashCompletion = false;
+  };
 
   system.defaults = {
     NSGlobalDomain.AppleInterfaceStyle = "Dark";
