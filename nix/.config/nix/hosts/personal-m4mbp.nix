@@ -12,6 +12,7 @@
     enableCompletion = true;
     enableGlobalCompInit = false;
     enableBashCompletion = false;
+    promptInit = "";
   };
 
   system.defaults = {
