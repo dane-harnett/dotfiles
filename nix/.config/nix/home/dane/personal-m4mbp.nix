@@ -73,6 +73,8 @@
     enable = true;
     enableDefaultConfig = false;
     settings."github.com" = {
+      HostName = "ssh.github.com";
+      Port = 443;
       User = "git";
       IdentityFile = "~/.ssh/github";
       IdentitiesOnly = true;
