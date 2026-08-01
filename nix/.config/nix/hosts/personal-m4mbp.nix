@@ -27,6 +27,11 @@
 
   system.keyboard.remapCapsLockToEscape = true;
 
+  security.pam.services.sudo_local = {
+    touchIdAuth = true;
+    reattach = true;
+  };
+
   homebrew = {
     enable = true;
     onActivation = {
