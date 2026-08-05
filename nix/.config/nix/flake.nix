@@ -119,6 +119,18 @@
       checks.${darwinSystem} = {
         system = self.darwinConfigurations.personal-m4mbp.system;
 
+        homebrew-path =
+          let
+            darwinConfig = self.darwinConfigurations.personal-m4mbp.config;
+            homebrewPrefix = darwinConfig.homebrew.prefix;
+            systemPath = darwinConfig.environment.systemPath;
+          in
+          assert pkgs.lib.hasInfix "${homebrewPrefix}/bin" systemPath;
+          assert pkgs.lib.hasInfix "${homebrewPrefix}/sbin" systemPath;
+          pkgs.runCommand "check-homebrew-path" { } ''
+            touch "$out"
+          '';
+
         formatting = mkSourceCheck {
           name = "check-nix-formatting";
           nativeBuildInputs = [ pkgs.nixfmt-tree ];

@@ -1,4 +1,11 @@
-_: {
+{ config, ... }:
+
+{
+  environment.systemPath = [
+    "${config.homebrew.prefix}/bin"
+    "${config.homebrew.prefix}/sbin"
+  ];
+
   system = {
     primaryUser = "dane";
 
