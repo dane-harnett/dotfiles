@@ -10,9 +10,6 @@ export KEYTIMEOUT=5
 # Ctrl+space accepts the auto-suggestion
 bindkey '^ ' autosuggest-accept
 
-#bindkey -M vicmd 'k' history-substring-search-up
-#bindkey -M vicmd 'j' history-substring-search-down
-
 # copy current input on command-prompt to clipboard:
 copy-prompt-to-clipboard() {
   zle kill-buffer
