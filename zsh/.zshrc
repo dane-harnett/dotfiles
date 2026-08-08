@@ -5,7 +5,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 if [ ! "$TMUX" = "" ]; then export TERM=xterm-256color; fi
 
 # Make vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
-export KEYTIMEOUT=1
+export KEYTIMEOUT=5
 
 # Ctrl+space accepts the auto-suggestion
 bindkey '^ ' autosuggest-accept
