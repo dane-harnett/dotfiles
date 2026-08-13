@@ -63,6 +63,7 @@
   # borders.enable = true;
   carapace.enable = true;
   cargo.enable = true;
+  chatgpt.enable = true;
   cmux.enable = true;
   codex.enable = true;
   discord.enable = true;
