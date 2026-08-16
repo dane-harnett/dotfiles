@@ -66,6 +66,7 @@
   chatgpt.enable = true;
   cmux.enable = true;
   codex.enable = true;
+  docker.enable = true;
   discord.enable = true;
   eza.enable = true;
   fd.enable = true;
