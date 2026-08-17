@@ -17,7 +17,7 @@ in
     homebrew = {
       enable = true;
       casks = [
-        "docker"
+        "docker-desktop"
       ];
     };
   };
