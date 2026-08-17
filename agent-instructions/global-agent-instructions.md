@@ -11,7 +11,7 @@ Only report to me in ASD-STE100 Simplified Technical English.
 
 Read and follow the below integration protocols:
 
-- None
+- @second-brain.md
 
 Each integration owns its own protocol. This file decides which integrations
 are enabled and resolves any conflicts between them.
