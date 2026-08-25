@@ -95,7 +95,7 @@
   slack.enable = true;
   stow.enable = true;
   there.enable = true;
-  tmux.enable = true;
+  tmux.enable = false;
   tree-sitter-cli.enable = true;
   util-linux.enable = true;
   vlc.enable = true;
