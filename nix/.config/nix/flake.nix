@@ -8,7 +8,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     brew-src = {
-      url = "github:Homebrew/brew/2eaef66d2d3d45b15c0d1fd703134f9dadb5c54e";
+      url = "github:Homebrew/brew";
       flake = false;
     };
 
