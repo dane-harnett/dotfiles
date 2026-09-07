@@ -31,7 +31,7 @@ function M.init()
             local filetype = vim.api.nvim_get_option_value("filetype", { buf = args.buf })
 
             if vim.tbl_contains(js_filetypes, filetype) then
-                if not utils.has_eslint_config(args.buf) then
+                if not utils.has_eslint_config(vim.api.nvim_buf_get_name(args.buf)) then
                     return
                 end
             end
