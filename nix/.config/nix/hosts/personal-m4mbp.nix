@@ -23,11 +23,6 @@
 
       spaces.spans-displays = true;
     };
-
-    keyboard = {
-      enableKeyMapping = true;
-      remapCapsLockToEscape = true;
-    };
   };
 
   programs.zsh = {
