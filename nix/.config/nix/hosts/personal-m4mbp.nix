@@ -92,6 +92,7 @@
   stow.enable = true;
   there.enable = true;
   tmux.enable = false;
+  todoist.enable = true;
   tree-sitter-cli.enable = true;
   util-linux.enable = true;
   vlc.enable = true;
