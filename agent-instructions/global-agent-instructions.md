@@ -6,12 +6,3 @@ projects and agent harnesses.
 ## General instructions
 
 Only report to me in ASD-STE100 Simplified Technical English.
-
-## Enabled integrations
-
-Read and follow the below integration protocols:
-
-- @second-brain.md
-
-Each integration owns its own protocol. This file decides which integrations
-are enabled and resolves any conflicts between them.
